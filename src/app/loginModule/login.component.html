@@ -1,0 +1,22 @@
+<div class="login-container">
+    <div >
+        <img class="logo-div" src="../../assets/logo.png" alt="alt"/>
+    </div>
+    <h3>Sign In with your account</h3>
+        <form #loginForm="ngForm" (ngSubmit)="onSubmit()" method="post">
+            <label id="lable" for="mailid">Email</label>
+            <input type="email" id="mailid" name="mailid" value=""
+                   required placeholder="email" [(ngModel)]="email" #vemail="ngModel"
+                   ngModel email="true"
+                   >
+                   <p *ngIf="vemail.dirty && vemail.invalid" id="error" class="efname">Please enter a valid email id..!</p>
+            <label id="lable" for="password">Password</label>
+            <input type="password" id="password" name="password" value=""
+                   required placeholder="password" [(ngModel)]="password" #vpassword="ngModel"
+                   >
+                   <p *ngIf="vpassword.dirty && vpassword.invalid" id="error" class="efname">Password should not be empty..!</p>       
+            <input [disabled]="!loginForm.form.valid" id="submit" type="submit" value="LogIn" >
+        </form>
+    <p>don't have an account? <a href="/register">register</a></p>
+    <p *ngIf="exception.length>0" id="exception">{{exception}}</p>
+</div>

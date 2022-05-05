@@ -1,0 +1,139 @@
+.register-container {
+    margin: 0 auto;
+    width: 60%;
+    background-color: rgba(211, 211, 211, 0.301);
+    padding: 20px;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    height: 500px;
+    border-radius: 1rem;
+    margin-top: 20px;
+    height: 70vh;
+  }
+
+  .logo-div{
+      width: 80px;
+      height: 80px;
+/*                      background-color: black;*/
+      margin-bottom: 20px;
+  }
+  h3{
+    margin-bottom: 10px;
+    font-size: 1.3em;
+    
+}
+  #login{
+      margin-top: 40px;
+      font-size: 20px;
+  }
+  form{
+    width: 80%;
+    /* height: 50px; */
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: auto auto; 
+    
+  }
+
+  input{
+        height: 2rem;
+        width: 95%;
+        padding: 5px;
+        font-size: 14px;
+  }
+  
+  .input-div{
+      margin-left: 10px;
+      margin-bottom: 1.5rem;
+  }
+
+  #lable{
+      font-size: 14px;
+      font-weight: bold;
+  }
+
+  #submit{
+      width: 100%; 
+      height: 50px; 
+      padding:0;
+      color: white;
+      font-weight: bold;
+      background-color: green;
+      border: none;
+      margin-left: 12px;
+      grid-column-start: 1;
+      grid-column-end: 3;
+      margin-right: 200px;
+      
+  }
+
+  #submit:disabled{
+    width: 100%; 
+    height: 50px; 
+    padding:0;
+    
+    font-weight: bold;
+    background-color: rgb(194, 194, 194);
+    color: #aaa;
+    border: none;
+    margin-left: 12px;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    margin-right: 200px;
+    
+}
+
+  
+  #error{
+      background-color: rgb(247, 174, 174);
+      color: rgb(170, 0, 0);
+      font-size: 14px;
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+      padding: 10px;
+      width: 94%;
+      border-radius: 5px;
+  }
+  
+  #exception{
+      margin-top: 10px;
+      color:red;
+      font-size: 18px;
+  }
+
+  .register-done{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+  }
+
+  #completed-img{
+      width: 30%;
+      height: 60vh;
+  }
+
+  #register-msg{
+      font-size: 2.3rem;
+      margin-bottom: 20px;
+  }
+
+  #login-msg{
+      font-size: 1rem;
+      font-weight: bold;
+      margin-bottom: 20px;
+  }
+
+  #login-btn{
+    width: 5%; 
+    height: 50px; 
+    padding:0;
+    color: white;
+    font-weight: bold;
+    background-color: green;
+    border: none;
+    border-radius: 10px;
+  }

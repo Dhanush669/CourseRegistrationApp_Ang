@@ -1,0 +1,55 @@
+
+.brand{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+#logo{
+    width: 2rem;
+    height: 2rem;
+    margin: 0.5rem;
+}
+
+.topnav{
+    
+/*        float: right;
+color: #000000;
+text-align: center;
+padding: 14px 16px;
+font-size: 16px;*/
+display:flex;
+justify-content: space-between;
+background-color: black;
+padding: 10px;
+align-items: center;
+ 
+}
+
+.topnav div{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+a:hover{
+    color:#8AF5F5;
+}
+
+a{
+    margin: 20px;
+    color: white;
+}
+b{
+    color: white;
+    font-size: 1.7em;
+    margin-left: 5px
+}
+
+.account{
+    background-color: #8AF5F5;
+    width: 3.5rem;
+    height: 3.5rem;
+    border-radius: 50%;
+}

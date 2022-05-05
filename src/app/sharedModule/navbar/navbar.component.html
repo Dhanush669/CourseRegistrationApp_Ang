@@ -1,0 +1,44 @@
+
+<!-- not logged in -->
+<div class="topnav" *ngIf="!auth.isLoggedIn">
+    <div class="brand">
+        <img id="logo" src="../../../assets/nav_logo.png"/>
+        <b>LIT</b>
+    </div>
+    <div>
+        <a routerLink="login"  routerLinkActive="active">
+            LogIn
+        </a>
+        <a routerLink="register"  routerLinkActive="active">
+            Register
+        </a>
+        
+    </div>
+</div>
+
+<!-- logged in user -->
+<div class="topnav" *ngIf="auth.isLoggedIn">
+    <div class="brand">
+        <img id="logo" src="../../../assets/nav_logo.png"/>
+        <b>LIT</b>
+    </div>
+    <div>
+        <a routerLink="home"  routerLinkActive="active">
+            Home
+        </a>
+        <a routerLink="courses"  routerLinkActive="active">
+            Courses
+        </a>
+        <!-- <a routerLink="login"  routerLinkActive="active">
+            LogIn
+        </a>
+        <a routerLink="register"  routerLinkActive="active">
+            Register
+        </a> -->
+        <div class="account" (click)="account">
+
+        </div>
+        
+    </div>
+</div>
+<router-outlet></router-outlet>

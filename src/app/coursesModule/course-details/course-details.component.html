@@ -1,0 +1,36 @@
+<div class="main">
+    <div class="content">
+        <h2 id="course-name">{{course.name}}</h2>
+        <h5 id="course-overview">{{course.overview}}</h5>
+        <h3>Syllabus</h3>
+        <div class="syllabus-list" *ngFor="let syl of course.syllabus;let ind=index;">
+            <p>{{ind+1}}</p>
+            <p>{{syl}}</p>
+        </div>
+        
+
+        <hr>
+        
+        <div class="instructor-det">
+            <b>Instructor</b>
+            <div class="instructor-div">
+                <div class="instructor-img"></div>
+                <p>{{course.instructor}}</p>
+            </div>
+           
+            <p>I will be your lead trainer in this course. Within no time I will make you understand this subject in easy manner. I have huge experience in online training 
+                and recording videoes. Let's get Started
+            </p>
+        </div>
+    </div>
+    <div class="details">
+        <div class="img">
+
+        </div>
+        <button type="submit" (click)="enroll()">Enroll</button>
+        <hr>
+        <p>Duration : {{course.duration}}</p>
+        <p>{{course.sub_category}}</p>
+        <p>{{course.no_of_enrollments}} enrollments</p>
+    </div>
+</div>
