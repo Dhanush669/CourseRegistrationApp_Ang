@@ -24,8 +24,8 @@ export class LoginComponent implements OnInit {
     
     //this.auth.Logout()
     const userCredentials={"emailId":this.email,"password":this.password}
-    this.login.userLogin(userCredentials).subscribe((response)=>{
-      console.log(response);
+    this.login.userLogin(userCredentials).subscribe((response:any)=>{
+      
       
       if(response==="UNF"){
         this.exception="No user found with these credentials try again (or) Please Login..!"
@@ -34,10 +34,15 @@ export class LoginComponent implements OnInit {
         this.exception="Incorrect Password. Try again..!"
       }
       else{
-        console.log(response);
+        //console.log(response);
         this.exception=""
-        localStorage.setItem("TOKEN",response);
-        localStorage.setItem("USER_NAME",this.email)
+        let res=JSON.parse(response)
+        let token=res.token
+        let role=res.role
+        
+        
+        localStorage.setItem("TOKEN",token);
+        localStorage.setItem("Login_Status",role)
         this.auth.Login()
         this.router.navigate(['/home']);
         

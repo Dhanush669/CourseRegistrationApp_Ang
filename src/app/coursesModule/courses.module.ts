@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpRequestService } from '../services/http-request.service';
 import { FormsModule } from '@angular/forms';
 import { CourseDetailsComponent } from './course-details/course-details.component';
+import { HttpErrorInterceptor } from '../http-error.interceptor';
 
 
 
@@ -19,7 +20,7 @@ import { CourseDetailsComponent } from './course-details/course-details.componen
     FormsModule
   ],
   providers: [
-    HttpRequestService
+    HttpRequestService,
   ]
 })
 export class CoursesModule { }

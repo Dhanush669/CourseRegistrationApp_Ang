@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Course } from 'src/models/course.helper';
+import { AuthService } from '../services/auth.service';
 import { CourseService } from '../services/course.service';
 
 
@@ -18,17 +19,44 @@ export class CoursesComponent implements OnInit {
   subCategories:string[]=["Select","All","Mobile Development","Web Development","UI/UX","Fontend","Backend"]
   filter:string=""
   
-  constructor(private course:CourseService,private route:Router) { }
+  constructor(private course:CourseService,private route:Router,private auth:AuthService) { }
   search:string=""
   ngOnInit(): void {
-    this.course.getAllCourse().subscribe((response:any)=>{
+    this.course.getAllCourse().subscribe({
+      next:(response:any)=>{
     
       for(let i=0;i<response.length;i++){
         this.courses.push(response[i])
       }
       this.allCourses=this.courses
       
-    })
+    },
+    error:(error)=>{
+      //console.log(error.error.text);
+      this.course.getToken().subscribe({next:(res:any)=>{
+        localStorage.removeItem("TOKEN")
+        localStorage.removeItem("Login_Status")
+        if(res==="jwt expired"){
+          this.route.navigate(['/login'])
+          localStorage.clear()
+          this.auth.Logout()
+          this.course.removeToken()
+          return
+        }
+        let response=JSON.parse(res)
+        let token=response.token
+        let role=response.role
+        localStorage.setItem("TOKEN",token);
+        localStorage.setItem("Login_Status",role);
+        console.log(" "+role);
+        
+        //this.route.navigate(['/home'])
+        window.location.reload()
+      }});
+      
+    }
+  })
+  
   }
 
   searchCourse(){
@@ -37,7 +65,8 @@ export class CoursesComponent implements OnInit {
       return
     }
     
-    this.course.searchOneCourse(this.search).subscribe((response:any)=>{
+    this.course.searchOneCourse(this.search).subscribe({
+      next:(response:any)=>{
       
       
       this.courses=[]
@@ -46,7 +75,32 @@ export class CoursesComponent implements OnInit {
       }
       
       
-    })
+    },
+    error:(error)=>{
+      //console.log(error.error.text);
+      this.course.getToken().subscribe({next:(res:any)=>{
+        localStorage.removeItem("TOKEN")
+        localStorage.removeItem("Login_Status")
+        if(res==="jwt expired"){
+          this.route.navigate(['/login'])
+          localStorage.clear()
+          this.auth.Logout()
+          this.course.removeToken()
+          return
+        }
+        let response=JSON.parse(res)
+        let token=response.token
+        let role=response.role
+        localStorage.setItem("TOKEN",token);
+        localStorage.setItem("Login_Status",role);
+        console.log(" "+role);
+        
+        //this.route.navigate(['/home'])
+        window.location.reload()
+      }});
+      
+    }
+  })
   }
 
   onChange(event:Event){
@@ -59,7 +113,8 @@ export class CoursesComponent implements OnInit {
       this.courses=this.allCourses
     }
     else{
-    this.course.filterCourse(filter).subscribe((response:any)=>{ 
+    this.course.filterCourse(filter).subscribe({
+      next:(response:any)=>{ 
       console.log(response);
       
         this.courses=[]
@@ -67,7 +122,32 @@ export class CoursesComponent implements OnInit {
           this.courses.push(response[i])
         }
         this.allSubCategory=this.courses
-    })
+    },
+    error:(error)=>{
+      //console.log(error.error.text);
+      this.course.getToken().subscribe({next:(res:any)=>{
+        localStorage.removeItem("TOKEN")
+        localStorage.removeItem("Login_Status")
+        if(res==="jwt expired"){
+          this.route.navigate(['/login'])
+          localStorage.clear()
+          this.auth.Logout()
+          this.course.removeToken()
+          return
+        }
+        let response=JSON.parse(res)
+        let token=response.token
+        let role=response.role
+        localStorage.setItem("TOKEN",token);
+        localStorage.setItem("Login_Status",role);
+        console.log(" "+role);
+        
+        //this.route.navigate(['/home'])
+        window.location.reload()
+      }});
+      
+    }
+  })
   }
 
   }
@@ -83,12 +163,38 @@ export class CoursesComponent implements OnInit {
     else{
       console.log(filter);
       
-    this.course.filterCourseSub(filter).subscribe((response:any)=>{
+    this.course.filterCourseSub(filter).subscribe({
+      next:(response:any)=>{
         this.courses=[]
         for(let i=0;i<response.length;i++){
           this.courses.push(response[i])
         }
-    })
+    },
+    error:(error)=>{
+      //console.log(error.error.text);
+      this.course.getToken().subscribe({next:(res:any)=>{
+        localStorage.removeItem("TOKEN")
+        localStorage.removeItem("Login_Status")
+        if(res==="jwt expired"){
+          this.route.navigate(['/login'])
+          localStorage.clear()
+          this.auth.Logout()
+          this.course.removeToken()
+          return
+        }
+        let response=JSON.parse(res)
+        let token=response.token
+        let role=response.role
+        localStorage.setItem("TOKEN",token);
+        localStorage.setItem("Login_Status",role);
+        console.log(" "+role);
+        
+        //this.route.navigate(['/home'])
+        window.location.reload()
+      }});
+      
+    }
+  })
   }
 
   }

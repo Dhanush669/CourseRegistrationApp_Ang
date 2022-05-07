@@ -4,7 +4,7 @@ import { RegisterUser } from 'src/models/register.model';
 import { RegisterHelper } from 'src/models/register.helper';
 import { Course } from 'src/models/course.helper';
 import { throwError } from 'rxjs/internal/observable/throwError';
-import { catchError, retry } from 'rxjs';
+import { catchError, Observable, retry } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -34,25 +34,26 @@ export class HttpRequestService {
   }
 
   // ------- courses -------
-  enrollCourse(uri:string,header:HttpHeaders,payload:Object){
+  enrollCourse(uri:string,header:HttpHeaders,payload:Object):Observable<string>{
     return this.http.patch(`${this.url}/${uri}`,payload,{responseType:"text",headers:header});
   }
 
-  getAllCourses(uri:string,header:HttpHeaders){
-    return this.http.get<Course>(`${this.courseurl}/${uri}`,{responseType:"json",headers:header},).pipe(
-      catchError(this.handleError)
-    );
+  getAllCourses(uri:string,header:HttpHeaders):Observable<Course>{
+     return this.http.get<Course>(`${this.courseurl}/${uri}`,{responseType:"json",headers:header},)
+    //.pipe(
+    //   catchError(this.handleError)
+    // );
   }
 
-  getOneCourse(uri:string,header:HttpHeaders){
+  getOneCourse(uri:string,header:HttpHeaders):Observable<Course>{
     return this.http.get<Course>(`${this.courseurl}/${uri}`,{responseType:"json",headers:header});
   }
 
-  filterCourse(uri:string,header:HttpHeaders){
+  filterCourse(uri:string,header:HttpHeaders):Observable<Course>{
     return this.http.get<Course>(`${this.courseurl}/${uri}`,{responseType:"json",headers:header});
   }
 
-  filterCourseSub(uri:string,header:HttpHeaders){
+  filterCourseSub(uri:string,header:HttpHeaders):Observable<Course>{
     return this.http.get<Course>(`${this.courseurl}/${uri}`,{responseType:"json",headers:header});
   }
 
@@ -65,25 +66,19 @@ export class HttpRequestService {
 
   getAccessToken(){
     let ref_token=localStorage.getItem("TOKEN")
-    localStorage.clear()
-    this.http.get(`${this.url}/getToken/?refreshToken:${ref_token?.split(' ')[2]}`).subscribe((res:any)=>{
-        localStorage.setItem("TOKEN",res);
-    })
+    
+    ref_token=ref_token?.split(' ')[2]||''
+    
+    return this.http.get(`${this.url}/getToken/?refreshToken=${ref_token}`,{responseType:"text"})
   }
 
-  private handleError(error: HttpErrorResponse) {
-    if (error.status === 0) {
-      console.error('An error occurred:', error.error);
-    } else {
-      if(error.error.text==="IV_JWT"){
-        alert("jwt Expired")
-      }
-      console.error(
-        `Backend returned code ${error.status}, text was: `, error.error.text);
-    }
-    // Return an observable with a user-facing error message.
-    return throwError(() => new Error('Something bad happened; please try again later.'));
+  removeToken(){
+    let ref_token=localStorage.getItem("TOKEN")
+    
+    ref_token=ref_token?.split(' ')[2]||''
+    
+    return this.http.delete(`${this.url}/removeToken/?refreshToken=${ref_token}`,{responseType:"text"})
   }
-
+ 
 
 }

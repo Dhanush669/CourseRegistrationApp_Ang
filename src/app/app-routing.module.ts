@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpRequestService } from './services/http-request.service';
 import { CourseDetailsComponent } from './coursesModule/course-details/course-details.component';
 import { AuthenticationGuard } from './services/authentication.guard';
+import { ProfileComponent } from './profileModule/profile.component';
 
 
 
@@ -36,6 +37,18 @@ const routes: Routes = [
   },
   {
     path:"courseDetails",
+    component:CourseDetailsComponent,
+    canActivate:[AuthenticationGuard]
+  }
+  // ,
+  // {
+  //   path:"profile",
+  //   component:ProfileComponent,
+  //   canActivate:[AuthenticationGuard]
+  // }
+  ,
+  {
+    path:"myEnrollments",
     component:CourseDetailsComponent,
     canActivate:[AuthenticationGuard]
   }

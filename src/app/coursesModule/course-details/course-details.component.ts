@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 import { CourseService } from 'src/app/services/course.service';
 import { Course } from 'src/models/course.helper';
 
@@ -11,7 +12,7 @@ import { Course } from 'src/models/course.helper';
 })
 export class CourseDetailsComponent implements OnInit {
   course!:Course
-  constructor(private selected:CourseService,private router:Router) {
+  constructor(private selected:CourseService,private router:Router,private auth:AuthService) {
    }
 
   ngOnInit(): void {
@@ -19,14 +20,38 @@ export class CourseDetailsComponent implements OnInit {
   }
 
   enroll(){
-    // this.router.navigate(['/login'])
     let body={
-      "emailId":localStorage.getItem("USER_NAME")
+      "courses_Enrolled":{"name":this.course.name,"img_thumbnai":this.course.img_thumbnai}
     }
-    this.selected.enrollCourse(body).subscribe((res)=>{
-      console.log(res);
+    this.selected.enrollCourse(body).subscribe({
+      next:(res)=>{
+      alert("Sucessfully enrolled the course "+this.course.name)
+      this.router.navigate(['/courses'])
       
-    })
+    },
+    error:(error)=>{
+      //console.log(error.error.text);
+      this.selected.getToken().subscribe({next:(res:any)=>{
+        localStorage.removeItem("TOKEN")
+        localStorage.removeItem("Login_Status")
+        if(res==="jwt expired"){
+          this.router.navigate(['/login'])
+          localStorage.clear()
+          this.auth.Logout()
+          this.selected.removeToken()
+          return
+        }
+        let response=JSON.parse(res)
+        let token=response.token
+        let role=response.role
+        localStorage.setItem("TOKEN",token);
+        localStorage.setItem("Login_Status",role);
+        console.log(" "+role);
+        window.location.reload()
+    }});
+      
+    }
+  })
   }
 
 }

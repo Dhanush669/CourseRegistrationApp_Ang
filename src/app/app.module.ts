@@ -7,10 +7,11 @@ import { AppComponent } from './app.component';
 
 import {NavbarModule} from './sharedModule/navbar/navbar.module'
 import {NavbarComponent} from './sharedModule/navbar/navbar.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpRequestService } from './services/http-request.service';
 import { CourseService } from './services/course.service';
 import { AuthenticationGuard } from './services/authentication.guard';
+import { HttpErrorInterceptor } from './http-error.interceptor';
 
 
 
@@ -27,7 +28,12 @@ import { AuthenticationGuard } from './services/authentication.guard';
     NavbarModule,
     HttpClientModule
   ],
-  providers: [HttpRequestService],
+  providers: [HttpRequestService,{
+    provide: HTTP_INTERCEPTORS,
+    useClass: HttpErrorInterceptor,
+    multi: true
+
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

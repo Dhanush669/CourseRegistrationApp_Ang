@@ -1,6 +1,6 @@
 
 <!-- not logged in -->
-<div class="topnav" *ngIf="!auth.isLoggedIn">
+<div class="topnav" *ngIf="auth.isLoggedIn==='no'">
     <div class="brand">
         <img id="logo" src="../../../assets/nav_logo.png"/>
         <b>LIT</b>
@@ -17,7 +17,7 @@
 </div>
 
 <!-- logged in user -->
-<div class="topnav" *ngIf="auth.isLoggedIn">
+<div class="topnav" *ngIf="auth.isLoggedIn==='user'">
     <div class="brand">
         <img id="logo" src="../../../assets/nav_logo.png"/>
         <b>LIT</b>
@@ -29,15 +29,16 @@
         <a routerLink="courses"  routerLinkActive="active">
             Courses
         </a>
-        <!-- <a routerLink="login"  routerLinkActive="active">
-            LogIn
-        </a>
-        <a routerLink="register"  routerLinkActive="active">
-            Register
+        <!-- <a routerLink="profile"  routerLinkActive="active">
+            Profile
         </a> -->
-        <div class="account" (click)="account">
+        <a routerLink="register"  routerLinkActive="active">
+            My Enrollments
+        </a>
+        <button (click)="logout()">
+            Logout
+        </button>
 
-        </div>
         
     </div>
 </div>

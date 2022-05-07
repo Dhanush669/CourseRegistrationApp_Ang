@@ -5,8 +5,10 @@ import { HttpRequestService } from './http-request.service';
   providedIn: 'root'
 })
 export class AuthService {
-  isLoggedIn:boolean=false
-  constructor(private auth:HttpRequestService) { }
+  isLoggedIn!:string
+  constructor(private auth:HttpRequestService) { 
+      this.isLoggedIn=localStorage.getItem("Login_Status")||"no"
+  }
 
   validate(){
     const uri=localStorage.getItem("TOKEN");
@@ -14,10 +16,12 @@ export class AuthService {
   }
 
   Login(){
-    this.isLoggedIn=true
+    this.isLoggedIn=localStorage.getItem("Login_Status")||"no"
   }
 
   Logout(){
-    this.isLoggedIn=false
+    this.auth.removeToken();
+    localStorage.clear()
+    this.isLoggedIn="no"
   }
 }
