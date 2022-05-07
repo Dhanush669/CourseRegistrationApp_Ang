@@ -5,6 +5,7 @@ import { AuthService } from '../services/auth.service';
 import { LoginService } from '../services/login.service';
 import { NavbarComponent } from '../sharedModule/navbar/navbar.component';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -43,9 +44,11 @@ export class LoginComponent implements OnInit {
         
         localStorage.setItem("TOKEN",token);
         localStorage.setItem("Login_Status",role)
+        var currentDate = new Date();
+        var futureDate = new Date(currentDate.getTime() + 30*60000);
+        localStorage.setItem("Expiration_Time",""+futureDate.getTime())
         this.auth.Login()
         this.router.navigate(['/home']);
-        
         
         
       }

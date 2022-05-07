@@ -12,7 +12,9 @@ import { HttpRequestService } from './services/http-request.service';
 import { CourseService } from './services/course.service';
 import { AuthenticationGuard } from './services/authentication.guard';
 import { HttpErrorInterceptor } from './http-error.interceptor';
-
+import { CommonModule } from '@angular/common';
+import { EnrollMentComponent } from './enrollmentsModule/enrollment/enroll-ment/enroll-ment.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 
@@ -20,13 +22,15 @@ import { HttpErrorInterceptor } from './http-error.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
-    
+    EnrollMentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     NavbarModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule,
+    BrowserAnimationsModule
   ],
   providers: [HttpRequestService,{
     provide: HTTP_INTERCEPTORS,

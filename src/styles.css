@@ -6,5 +6,8 @@
 }
 
 body{
-    background-color: rgb(255, 255, 255);
+    background-color: #503E9D
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

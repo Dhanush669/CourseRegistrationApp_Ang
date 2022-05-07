@@ -1,0 +1,25 @@
+<div class="main">
+    <h1>My Enrollments</h1>
+    <div class="body">
+        <div class="enrollment-det" *ngFor="let course of enrollments">
+            <div class="enrollment-img">
+    
+            </div>
+            <div class="course-det">
+                <h3>{{course.name}}</h3>
+                <th>
+                    <tr>
+                        <td>
+                            <h5>{{course.category}}</h5></td>
+                        <td>
+                            <h5>{{course.sub_category}}</h5>
+                        </td>
+                    </tr>
+                </th>
+                <h5>{{course.overview}}</h5>
+                <h5>{{course.duration}}</h5>
+            </div>
+        </div>
+    </div>
+    
+</div>

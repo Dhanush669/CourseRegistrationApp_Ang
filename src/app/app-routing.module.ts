@@ -12,7 +12,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpRequestService } from './services/http-request.service';
 import { CourseDetailsComponent } from './coursesModule/course-details/course-details.component';
 import { AuthenticationGuard } from './services/authentication.guard';
-import { ProfileComponent } from './profileModule/profile.component';
+import { EnrollMentComponent } from './enrollmentsModule/enrollment/enroll-ment/enroll-ment.component';
+import { CommonModule } from '@angular/common';
+
 
 
 
@@ -49,13 +51,13 @@ const routes: Routes = [
   ,
   {
     path:"myEnrollments",
-    component:CourseDetailsComponent,
+    component:EnrollMentComponent,
     canActivate:[AuthenticationGuard]
   }
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes),CommonModule],
   exports: [RouterModule],
   providers:[AuthenticationGuard]
 })

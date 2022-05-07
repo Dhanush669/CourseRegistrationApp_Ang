@@ -1,7 +1,7 @@
 
 <!-- not logged in -->
 <div class="topnav" *ngIf="auth.isLoggedIn==='no'">
-    <div class="brand">
+    <div class="brand" layout="row" layout-align="center center">
         <img id="logo" src="../../../assets/nav_logo.png"/>
         <b>LIT</b>
     </div>
@@ -32,7 +32,7 @@
         <!-- <a routerLink="profile"  routerLinkActive="active">
             Profile
         </a> -->
-        <a routerLink="register"  routerLinkActive="active">
+        <a routerLink="myEnrollments"  routerLinkActive="active">
             My Enrollments
         </a>
         <button (click)="logout()">

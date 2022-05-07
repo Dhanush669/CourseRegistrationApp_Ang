@@ -21,7 +21,8 @@ export class CourseDetailsComponent implements OnInit {
 
   enroll(){
     let body={
-      "courses_Enrolled":{"name":this.course.name,"img_thumbnai":this.course.img_thumbnai}
+      //"courses_Enrolled":{"name":this.course.name,"img_thumbnai":this.course.img_thumbnai}
+      "courses_Enrolled":JSON.stringify(this.course)
     }
     this.selected.enrollCourse(body).subscribe({
       next:(res)=>{
@@ -47,7 +48,7 @@ export class CourseDetailsComponent implements OnInit {
         localStorage.setItem("TOKEN",token);
         localStorage.setItem("Login_Status",role);
         console.log(" "+role);
-        window.location.reload()
+        this.router.navigate(['/courses'])
     }});
       
     }

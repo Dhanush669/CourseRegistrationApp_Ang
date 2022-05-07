@@ -5,6 +5,7 @@ import { RegisterHelper } from 'src/models/register.helper';
 import { Course } from 'src/models/course.helper';
 import { throwError } from 'rxjs/internal/observable/throwError';
 import { catchError, Observable, retry } from 'rxjs';
+import { User } from 'src/models/user.helper';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +32,11 @@ export class HttpRequestService {
   //------ login -----------
   login(uri:string,payload:Object){
     return this.http.post(`${this.url}/${uri}`,payload,{responseType:"text"});
+  }
+
+  // ---------- user -----------
+  getMyEnrollments(uri:string,header:HttpHeaders):Observable<User>{
+      return this.http.get<User>(`${this.url}/${uri}`,{responseType:"json",headers:header})
   }
 
   // ------- courses -------
@@ -79,6 +85,8 @@ export class HttpRequestService {
     
     return this.http.delete(`${this.url}/removeToken/?refreshToken=${ref_token}`,{responseType:"text"})
   }
+
+  
  
 
 }
