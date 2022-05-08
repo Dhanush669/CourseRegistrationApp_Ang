@@ -203,7 +203,7 @@ export class CoursesComponent implements OnInit {
   showOverview(courseName:Course){
     //console.log(courseName);
     
-    this.course.setUpCourse(courseName)
+    //this.course.setUpCourse(courseName)
     this.route.navigate(['/courseDetails'])
   }
 

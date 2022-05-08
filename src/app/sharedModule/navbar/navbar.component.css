@@ -2,61 +2,52 @@
 .brand{
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    width: 100%;
+    width: 60%;
 }
 
 #logo{
     width: 2rem;
     height: 2rem;
-    margin-top: 0.5rem;
     margin-right: 0.5rem;
 }
 
 .topnav{
-    
-/*        float: right;
-color: #000000;
-text-align: center;
-padding: 14px 16px;
-font-size: 16px;*/
 display:flex;
-flex-direction: column;
-justify-content: flex-start;
-padding: 10px;
+flex-direction: row;
+justify-content: space-between;
 align-items: center;
-left: 0;
-height: 100vh;
-width: 15%;
-z-index: 1;
+top: 0;
+width: 95%;
+position: sticky;
+margin:0 auto;
+margin-bottom: 20px;
+background-color: #503E9D;
 }
 
-.topnav div{
+.right{
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    flex-direction: row;
+    justify-content: space-between;
     align-items: center;
 }
 
 a:hover{
-    color:#8AF5F5;
+    color:#ff706b;
+    
 }
+
+
 
 a{
     margin: 20px;
     color: white;
+    font-size: 1rem;
 }
 b{
     color: white;
     font-size: 1.7em;
-}
-
-.account{
-    background-color: #8AF5F5;
-    width: 3rem;
-    height: 3rem;
-    border-radius: 50%;
 }
 
 button{
@@ -66,4 +57,3 @@ button{
     background-color: red;
     color: white;
 }
-

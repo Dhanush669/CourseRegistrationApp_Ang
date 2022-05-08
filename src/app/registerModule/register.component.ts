@@ -34,18 +34,18 @@ export class RegisterComponent implements OnInit {
         return 
       }
       else{
-        
-        
-      }
-    })
-
-    this.exception=""
+        this.exception=""
         const newUser={"fname":this.fname,"lname":this.lname,"email":this.email,"password":this.password,"phno":this.phno}
         this.register.createNewUser(newUser).subscribe((Response)=>{
           console.log("yess in"+Response);
           
           this.isSuccessfull=true
         })
+        
+      }
+    })
+
+   
     
   }
 

@@ -1,7 +1,7 @@
 .register-container {
     margin: 0 auto;
     width: 60%;
-    background-color: rgba(211, 211, 211, 0.301);
+    background-color: rgb(255, 255, 255);
     padding: 20px;
     font-size: 18px;
     display: flex;
@@ -43,6 +43,7 @@
         width: 95%;
         padding: 5px;
         font-size: 14px;
+        border-radius: 5px;
   }
   
   .input-div{
@@ -61,7 +62,7 @@
       padding:0;
       color: white;
       font-weight: bold;
-      background-color: green;
+      background-color: #503E9D;
       border: none;
       margin-left: 12px;
       grid-column-start: 1;

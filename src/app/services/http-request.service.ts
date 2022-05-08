@@ -44,11 +44,19 @@ export class HttpRequestService {
     return this.http.patch(`${this.url}/${uri}`,payload,{responseType:"text",headers:header});
   }
 
+  increaseEnrollmentCount(uri:string,header:HttpHeaders,payload:Object):Observable<string>{
+    return this.http.patch(`${this.courseurl}/${uri}`,payload,{responseType:"text",headers:header});
+  }
+
   getAllCourses(uri:string,header:HttpHeaders):Observable<Course>{
      return this.http.get<Course>(`${this.courseurl}/${uri}`,{responseType:"json",headers:header},)
     //.pipe(
     //   catchError(this.handleError)
     // );
+  }
+
+  getSelectedCourse(uri:string,header:HttpHeaders):Observable<Course>{
+    return this.http.get<Course>(`${this.courseurl}/${uri}`,{responseType:"json",headers:header});
   }
 
   getOneCourse(uri:string,header:HttpHeaders):Observable<Course>{

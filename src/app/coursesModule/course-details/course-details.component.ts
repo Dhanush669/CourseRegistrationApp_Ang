@@ -13,10 +13,40 @@ import { Course } from 'src/models/course.helper';
 export class CourseDetailsComponent implements OnInit {
   course!:Course
   constructor(private selected:CourseService,private router:Router,private auth:AuthService) {
+  
    }
 
   ngOnInit(): void {
-    this.course=this.selected.getSelectedCourse();
+    // this.selected.getSelectedCourse().subscribe({
+    //   next:(response)=>{
+    //     console.log(response);
+    //     this.course=response
+    //   },
+    //   error:(error)=>{
+    //     console.log(error.error.text);
+    //     this.selected.getToken().subscribe({next:(res:any)=>{
+    //       localStorage.removeItem("TOKEN")
+    //       localStorage.removeItem("Login_Status")
+    //       if(res==="jwt expired"){
+    //         this.router.navigate(['/login'])
+    //         localStorage.clear()
+    //         this.auth.Logout()
+    //         this.selected.removeToken()
+    //         return
+    //       }
+    //       let response=JSON.parse(res)
+    //       let token=response.token
+    //       let role=response.role
+    //       localStorage.setItem("TOKEN",token);
+    //       localStorage.setItem("Login_Status",role);
+    //       console.log(" "+role);
+          
+    //       //this.route.navigate(['/home'])
+    //      // window.location.reload()
+    //     }});
+        
+    //   }
+    // })
   }
 
   enroll(){
@@ -26,6 +56,7 @@ export class CourseDetailsComponent implements OnInit {
     }
     this.selected.enrollCourse(body).subscribe({
       next:(res)=>{
+        this.selected.increaseEnrollmentCount(this.course.name)
       alert("Sucessfully enrolled the course "+this.course.name)
       this.router.navigate(['/courses'])
       
@@ -47,6 +78,7 @@ export class CourseDetailsComponent implements OnInit {
         let role=response.role
         localStorage.setItem("TOKEN",token);
         localStorage.setItem("Login_Status",role);
+        this.selected.increaseEnrollmentCount(this.course.name)
         console.log(" "+role);
         this.router.navigate(['/courses'])
     }});

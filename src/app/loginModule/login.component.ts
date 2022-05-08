@@ -40,17 +40,13 @@ export class LoginComponent implements OnInit {
         let res=JSON.parse(response)
         let token=res.token
         let role=res.role
-        
-        
         localStorage.setItem("TOKEN",token);
         localStorage.setItem("Login_Status",role)
         var currentDate = new Date();
         var futureDate = new Date(currentDate.getTime() + 30*60000);
         localStorage.setItem("Expiration_Time",""+futureDate.getTime())
         this.auth.Login()
-        this.router.navigate(['/home']);
-        
-        
+        this.router.navigate(['/home'],{ replaceUrl: true });
       }
     })
   }

@@ -9,7 +9,6 @@ import { HttpRequestService } from './http-request.service';
 })
 export class CourseService {
 
-  course!:Course
   token!:string
   headers!:HttpHeaders
 
@@ -35,7 +34,17 @@ export class CourseService {
   this.token=localStorage.getItem("TOKEN")||''
     this.headers = new HttpHeaders({
       'Authorization': this.token });
+      
     return this.courses.enrollCourse("update/enrollmentdetails",this.headers,body)
+  }
+
+  increaseEnrollmentCount(name:string){
+    this.headers = new HttpHeaders({
+      'Authorization': this.token });
+    let payload={
+        "name":name
+    }
+    this.courses.increaseEnrollmentCount("update/enrollment",this.headers,payload)
   }
 
   searchOneCourse(course:string){
@@ -60,12 +69,16 @@ export class CourseService {
     return this.courses.filterCourseSub("filterBySubCategory/?sub_category="+filter,this.headers);
   }
 
-  setUpCourse(selected:Course){
-    this.course=selected
-  }
+  // setUpCourse(selected:Course){
+  //   this.course=selected
+  // }
 
   getSelectedCourse(){
-    return this.course
+    this.token=localStorage.getItem("TOKEN")||''
+    this.headers = new HttpHeaders({
+      'Authorization': this.token });
+    let uri= "getSelectedCourse"
+    return this.courses.getSelectedCourse(uri,this.headers)
   }
 
   getToken(){
