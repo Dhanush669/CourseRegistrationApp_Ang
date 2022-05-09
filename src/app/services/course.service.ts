@@ -34,17 +34,14 @@ export class CourseService {
   this.token=localStorage.getItem("TOKEN")||''
     this.headers = new HttpHeaders({
       'Authorization': this.token });
-      
     return this.courses.enrollCourse("update/enrollmentdetails",this.headers,body)
   }
 
-  increaseEnrollmentCount(name:string){
+  increaseEnrollmentCount(payload:Object){
     this.headers = new HttpHeaders({
       'Authorization': this.token });
-    let payload={
-        "name":name
-    }
-    this.courses.increaseEnrollmentCount("update/enrollment",this.headers,payload)
+   
+    return this.courses.increaseEnrollmentCount("update/enrollment",this.headers,payload)
   }
 
   searchOneCourse(course:string){
@@ -73,11 +70,11 @@ export class CourseService {
   //   this.course=selected
   // }
 
-  getSelectedCourse(){
+  getSelectedCourse(courseName:string){
     this.token=localStorage.getItem("TOKEN")||''
     this.headers = new HttpHeaders({
       'Authorization': this.token });
-    let uri= "getSelectedCourse"
+    let uri= "getSelectedCourse/?name="+courseName
     return this.courses.getSelectedCourse(uri,this.headers)
   }
 
@@ -86,7 +83,7 @@ export class CourseService {
   }
 
   removeToken(){
-    this.courses.removeToken();
+    return this.courses.removeToken();
   }
 
 

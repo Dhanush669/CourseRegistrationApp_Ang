@@ -44,8 +44,9 @@ export class HttpRequestService {
     return this.http.patch(`${this.url}/${uri}`,payload,{responseType:"text",headers:header});
   }
 
-  increaseEnrollmentCount(uri:string,header:HttpHeaders,payload:Object):Observable<string>{
-    return this.http.patch(`${this.courseurl}/${uri}`,payload,{responseType:"text",headers:header});
+  increaseEnrollmentCount(uri:string,header:HttpHeaders,payload:Object){
+    return this.http.patch(`${this.courseurl}//${uri}`,payload,{responseType:"text",headers:header});
+    //return this.http.patch("http://localhost:9000/course/update/enrollment",payload,{responseType:"text",headers:header})
   }
 
   getAllCourses(uri:string,header:HttpHeaders):Observable<Course>{
@@ -88,7 +89,7 @@ export class HttpRequestService {
 
   removeToken(){
     let ref_token=localStorage.getItem("TOKEN")
-    
+  
     ref_token=ref_token?.split(' ')[2]||''
     
     return this.http.delete(`${this.url}/removeToken/?refreshToken=${ref_token}`,{responseType:"text"})

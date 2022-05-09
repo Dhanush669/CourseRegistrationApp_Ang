@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   }
 
   goToCourse_trending(tname:string){
-    this.router.navigate(['/courseDetails']);
+    this.router.navigate(['/courseDetails',{name:tname}])
   }
 
 }

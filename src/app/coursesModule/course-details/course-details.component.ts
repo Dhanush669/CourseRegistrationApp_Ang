@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { CourseService } from 'src/app/services/course.service';
 import { Course } from 'src/models/course.helper';
@@ -12,41 +12,45 @@ import { Course } from 'src/models/course.helper';
 })
 export class CourseDetailsComponent implements OnInit {
   course!:Course
-  constructor(private selected:CourseService,private router:Router,private auth:AuthService) {
-  
+  courseName!:string
+  constructor(private selected:CourseService,private router:Router,private auth:AuthService,private rout:ActivatedRoute) {
+   
    }
 
   ngOnInit(): void {
-    // this.selected.getSelectedCourse().subscribe({
-    //   next:(response)=>{
-    //     console.log(response);
-    //     this.course=response
-    //   },
-    //   error:(error)=>{
-    //     console.log(error.error.text);
-    //     this.selected.getToken().subscribe({next:(res:any)=>{
-    //       localStorage.removeItem("TOKEN")
-    //       localStorage.removeItem("Login_Status")
-    //       if(res==="jwt expired"){
-    //         this.router.navigate(['/login'])
-    //         localStorage.clear()
-    //         this.auth.Logout()
-    //         this.selected.removeToken()
-    //         return
-    //       }
-    //       let response=JSON.parse(res)
-    //       let token=response.token
-    //       let role=response.role
-    //       localStorage.setItem("TOKEN",token);
-    //       localStorage.setItem("Login_Status",role);
-    //       console.log(" "+role);
+    
+    //console.log(this.courseName);
+    this.courseName=this.rout.snapshot.paramMap.get('name')||''
+    this.selected.getSelectedCourse(this.courseName).subscribe({
+      next:(response)=>{
+        console.log(response);
+        this.course=response
+      },
+      error:(error)=>{
+        console.log(error);
+        this.selected.getToken().subscribe({next:(res:any)=>{
+          localStorage.removeItem("TOKEN")
+          localStorage.removeItem("Login_Status")
+          if(res==="jwt expired"){
+            this.router.navigate(['/login'])
+            localStorage.clear()
+            this.auth.Logout()
+            this.selected.removeToken()
+            return
+          }
+          let response=JSON.parse(res)
+          let token=response.token
+          let role=response.role
+          localStorage.setItem("TOKEN",token);
+          localStorage.setItem("Login_Status",role);
+          console.log(" "+role);
           
-    //       //this.route.navigate(['/home'])
-    //      // window.location.reload()
-    //     }});
+          //this.route.navigate(['/home'])
+         // window.location.reload()
+        }});
         
-    //   }
-    // })
+      }
+    })
   }
 
   enroll(){
@@ -56,7 +60,9 @@ export class CourseDetailsComponent implements OnInit {
     }
     this.selected.enrollCourse(body).subscribe({
       next:(res)=>{
-        this.selected.increaseEnrollmentCount(this.course.name)
+        this.selected.increaseEnrollmentCount({"name":this.course.name}).subscribe((res)=>{
+
+        })
       alert("Sucessfully enrolled the course "+this.course.name)
       this.router.navigate(['/courses'])
       
@@ -68,9 +74,12 @@ export class CourseDetailsComponent implements OnInit {
         localStorage.removeItem("Login_Status")
         if(res==="jwt expired"){
           this.router.navigate(['/login'])
-          localStorage.clear()
           this.auth.Logout()
-          this.selected.removeToken()
+          localStorage.clear()
+          
+          this.selected.removeToken().subscribe((res)=>{
+          
+          })
           return
         }
         let response=JSON.parse(res)
@@ -78,13 +87,21 @@ export class CourseDetailsComponent implements OnInit {
         let role=response.role
         localStorage.setItem("TOKEN",token);
         localStorage.setItem("Login_Status",role);
-        this.selected.increaseEnrollmentCount(this.course.name)
+        this.selected.increaseEnrollmentCount({"name":this.course.name}).subscribe((res)=>{
+          
+        })
         console.log(" "+role);
         this.router.navigate(['/courses'])
     }});
       
     }
   })
+  // this.selected.increaseEnrollmentCount({"name":this.course.name}).subscribe(
+  //   (res)=>{
+  //     console.log("poodddaaaa "+res);
+      
+  //   }
+  // )
   }
 
 }

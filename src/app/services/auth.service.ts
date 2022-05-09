@@ -20,7 +20,9 @@ export class AuthService {
   }
 
   Logout(){
-    this.auth.removeToken();
+    this.auth.removeToken().subscribe((res)=>{
+          
+    })
     localStorage.clear()
     this.isLoggedIn="no"
   }

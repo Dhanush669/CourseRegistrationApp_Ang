@@ -178,9 +178,12 @@ export class CoursesComponent implements OnInit {
         localStorage.removeItem("Login_Status")
         if(res==="jwt expired"){
           this.route.navigate(['/login'])
-          localStorage.clear()
           this.auth.Logout()
-          this.course.removeToken()
+          localStorage.clear()
+          
+          this.course.removeToken().subscribe((res)=>{
+          
+          })
           return
         }
         let response=JSON.parse(res)
@@ -204,7 +207,7 @@ export class CoursesComponent implements OnInit {
     //console.log(courseName);
     
     //this.course.setUpCourse(courseName)
-    this.route.navigate(['/courseDetails'])
+    this.route.navigate(['/courseDetails',{name:courseName.name}])
   }
 
   

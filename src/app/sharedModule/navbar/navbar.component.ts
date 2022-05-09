@@ -23,8 +23,8 @@ export class NavbarComponent implements OnInit {
 
   logout(){
     alert("are you sure!. You want to logout")
-    localStorage.clear()
     this.auth.Logout()
+    localStorage.clear()
     this.router.navigate(['/login'])
 
   }
