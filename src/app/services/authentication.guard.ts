@@ -47,8 +47,9 @@ export class AuthenticationGuard implements CanActivate {
         // })
 
       //}
-      localStorage.clear()
+
       this.auth.Logout()
+      localStorage.clear()
       this.route.navigate(['/login'])
     return false;
   }

@@ -13,6 +13,7 @@ import { Course } from 'src/models/course.helper';
 export class CourseDetailsComponent implements OnInit {
   course!:Course
   courseName!:string
+  comments:any[]=[]
   constructor(private selected:CourseService,private router:Router,private auth:AuthService,private rout:ActivatedRoute) {
    
    }
@@ -25,6 +26,15 @@ export class CourseDetailsComponent implements OnInit {
       next:(response)=>{
         console.log(response);
         this.course=response
+        let arr=this.course.comments.split('@')
+        console.log(arr);
+
+        
+        for(let i=0;i<arr.length;i++){
+          let oneComment=arr[i].split('-')
+          let obj={"name":oneComment[0],"comment":oneComment[1]}
+          this.comments.push(obj)
+        }
       },
       error:(error)=>{
         console.log(error);
@@ -75,13 +85,15 @@ export class CourseDetailsComponent implements OnInit {
         if(res==="jwt expired"){
           this.router.navigate(['/login'])
           this.auth.Logout()
-          localStorage.clear()
+          
           
           this.selected.removeToken().subscribe((res)=>{
           
           })
+          localStorage.clear()
           return
         }
+        
         let response=JSON.parse(res)
         let token=response.token
         let role=response.role

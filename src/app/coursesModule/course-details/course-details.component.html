@@ -1,26 +1,40 @@
 <div class="main">
-    <div class="content">
+    <div class="content scroll-style">
         <h2 id="course-name">{{course.name}}</h2>
         <h5 id="course-overview">{{course.overview}}</h5>
-        <h3>Syllabus</h3>
+        <h3 id="syllabus">Syllabus</h3>
         <div class="syllabus-list" *ngFor="let syl of course.syllabus;let ind=index;">
-            <p>{{ind+1}}</p>
-            <p>{{syl}}</p>
+            <p id="syl-ind">{{ind+1}}</p>
+            <p id="syl">{{syl}}</p>
         </div>
         
 
         <hr>
         
         <div class="instructor-det">
-            <b>Instructor</b>
+            <h3 id="syllabus">Instructor</h3>
             <div class="instructor-div">
-                <div class="instructor-img"></div>
-                <p>{{course.instructor}}</p>
+                <img class="instructor-img" src="../../../assets/instructor.jpg"/>
+                <p id="instructor">{{course.instructor}}</p>
             </div>
            
-            <p>I will be your lead trainer in this course. Within no time I will make you understand this subject in easy manner. I have huge experience in online training 
+            <p id="instructor-msg">I will be your lead trainer in this course. Within no time I will make you understand this subject in easy manner. I have huge experience in online training 
                 and recording videoes. Let's get Started
             </p>
+        </div>
+
+        <hr>
+
+        <div class="comments-div">
+            <h3 id="syllabus">Comments</h3>
+            <div class="comment" *ngFor="let cmt of comments">
+                <div>
+                    <img src="../../../assets/account.png" alt="" class="account">
+                    <b class="comment-name">{{cmt.name}}</b>
+                </div>
+                
+                <p class="cmt">{{cmt.comment}}</p>
+            </div>
         </div>
     </div>
     <div class="details">
@@ -28,10 +42,18 @@
 
         </div>
         <button type="submit" (click)="enroll()">Enroll</button>
-        <hr>
-        <p>Duration : {{course.duration}}</p>
-        <p>{{course.sub_category}}</p>
-        <p>{{course.no_of_enrollments}} enrollments</p>
+        <div class="more-det">
+            
+                <p>Duration : {{course.duration}}</p>
+                <p>{{course.category}}, {{course.sub_category}}</p>
+            <div>
+                <p>{{course.no_of_enrollments}} enrollments</p>
+                <p id="price">₹ 300.00</p>
+            </div>
+            
+            
+        </div>
+        
     </div>
 
     <div class="enrolled">

@@ -1,41 +1,5 @@
 <div class="main">
 
-    <!-- <div class="start">
-        <div>
-            <h2>LEARN-IT</h2>
-            <h4 id="content">Best place to learn current technology, with High Quality and Affordable Price.</h4>
-            <h4 id="content-2">Trusted by 200,000 Students and Professionals</h4>
-            <div class="search">
-                <input type="text" name="course" id="course" placeholder="what do you want to learn">
-                <img id="search-img" src="../assets/search.png" alt="">
-            </div>
-        </div>
-
-        <div>
-            <img id="content-img"src="../assets/contentimg.jpg" alt="#alt">
-        </div>
-        
-
-    </div>
-
-    <div class="trending">
-
-
-
-    </div>
-
-    <div class="course-container">
-        <div>
-
-        </div>
-        <div>
-            
-        </div>
-        <div>
-            
-        </div>
-    </div> -->
-
     <div class="start">
         <h1 id="heading">Find the best Online Course & Learn</h1>
         <h4 id="sub-heading">Best place to learn new technology, with High Quality and Affordable Price.</h4>
@@ -46,10 +10,10 @@
     <div class="body">
         <h2 id="value">Trusted by 3,000+ Companies WorldWide</h2>
         <div class="logos">
-            <img id="comp-img" src="../../assets/apple.png" alt="">
+            <img id="comp-logo" src="../../assets/netflix.png" alt="">
             <img id="comp-img" src="../../assets/facebook.png" alt="">
-            <img id="comp-img" src="../../assets/google-symbol.png" alt="">
-            <img id="comp-img" src="../../assets/microsoft.png" alt="">
+            <img id="comp-logo" src="../../assets/google.png" alt="">
+            <img id="comp-img" src="../../assets/amazon.png" alt="">
         </div>
     </div>
 
@@ -76,7 +40,7 @@
     </div>
 
     <div class="bottom">
-        <img src="../../assets/bottom-img.png" alt="" class="bottom-img">
+        <!-- <img src="../../assets/bottom-img.jpg" alt="" class="bottom-img">
         <div>
             <div class="bottom-cont">
                 <h3 id="trending-content">We help students to grow their career</h3>
@@ -96,6 +60,51 @@
                 <h3 id="trending-subcontent">Countriess</h3>
                 </div>
             </div>
+        </div> -->
+
+        <div class="left-side">
+            <div class="left-course">
+                <div class="course-card">
+                    <h3>Full Stack web Developer with Django</h3>
+                    <div class="left-bottom">
+                        <button id="bottom-btn"type="submit" (click)="goToCourse_trending('Django')">Enroll</button>
+                        <img id="course-logo" src="../../assets/python.png" alt="">
+                    </div>
+                   
+                </div>
+                <div class="course-card">
+                    <h3>Pro Front End Developer - React</h3>
+                    <div class="left-bottom">
+                        <button id="bottom-btn"type="submit" (click)="goToCourse_trending('React')">Enroll</button>
+                        <img id="course-logo" src="../../assets/atom.png" alt="">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="left-course">
+                <div class="course-card">
+                    <h3>Introduction to UI Design for beginners - Figma</h3>
+                    <div class="left-bottom">
+                        <button id="bottom-btn"type="submit" (click)="goToCourse_trending('Figma')">Enroll</button>
+                        <img id="course-logo" src="../../assets/figma.png" alt="">
+                    </div>
+                   
+                </div>
+                <div class="course-card">
+                    <h3>Introduction to DevOps</h3>
+                    <div class="left-bottom">
+                        <button id="bottom-btn"type="submit" (click)="goToCourse_trending('Devops')">Enroll</button>
+                        <img id="course-logo" src="../../assets/devops.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right-side">
+            <b>Popular topics to learn now</b>
+            <h3>Don’t know where to start from?</h3>        
+            <p>It’s ok to be confused as a beginner. Tech is vast but don’t worry. Our curated bundles will act as a guided learning path. Check out all Of our bundles and start your programming journey with us.</p>                                              
+            <button id="courses-btn"type="submit" (click)="goToCourse()">View More</button>
         </div>
         
     </div>

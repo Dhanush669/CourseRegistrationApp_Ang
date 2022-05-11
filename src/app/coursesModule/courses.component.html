@@ -3,35 +3,63 @@
     <div class="navbar">
         <div class="search">
             <input type="text" name="course" id="course" placeholder="search" [(ngModel)]="search">
-            <img id="search-img" src="../assets/search.png" alt="" (click)="searchCourse()" >
+            <button id="search-btn" type="submit" (click)="searchCourse()">search</button>
         </div>
 
-        <div class="category-div">
-            <select class="form-control" id="category" (change)="onChange($event)">
+        <!-- <div class="category-div"> -->
+            <!-- <select class="form-control" id="category" (change)="onChange($event)">
                 <option *ngFor="let category of categories" [value]="category">{{category}}</option>
-            </select>
-        </div>
+            </select> -->
+            <!-- <button class="cat-div" *ngFor="let category of categories" (click)="onChange(category)">
+                {{category}}
+            </button>
+        </div> -->
 
-        <div class="category-div">
+        <!-- <div class="category-div">
             <select class="form-control" id="category" (change)="onChangeSub($event)">
                 <option *ngFor="let subCategory of subCategories" [value]="subCategory">{{subCategory}}</option>
             </select>
-        </div>
+        </div> -->
 
     </div>
 
-    <div class="courses">
-        <div *ngFor="let course of courses" class="course-div" (click)="showOverview(course)">
-            <div class="course-img">
+    <div class="body">
+        <div class="filter">
+            <b>Filter by Category</b>
+                <div *ngFor="let cat of categories">
+                    <input type="radio" id="radio-btn" name="fav_language" value="cat" (click)="onChange(cat)">
+                    <label for="radio-btn">{{cat}}</label><br>
+                </div> 
+                <b>Filter by Sub Category</b>
+                <div class="category-div">
+                    <select class="form-control" id="category" (change)="onChangeSub($event)">
+                        <option *ngFor="let subCategory of subCategories" [value]="subCategory">{{subCategory}}</option>
+                    </select>
+                </div>    
+            
+        </div>
+        <div class="courses scroll-style">
+            <div *ngFor="let course of courses" class="course-div" (click)="showOverview(course)">
+                <div class="course-img">
+        
+                </div>
+                <div  class="course-desc">
+                    <h4>{{course.name}}</h4>
+                    <div class="course-info">
+                        <div>
+                            <p id="instructor">by {{course.instructor}}</p>
+                            <p id="duration">{{course.syllabus.length}} lessons, {{course.duration}}</p>
+                        </div>
+                        
+                        <b id="price">₹ 300.00</b>
+                    </div>
+                        
+                </div>
+            </div>
+        </div>
+    </div>
+
     
-            </div>
-            <div  class="course-desc">
-                <h4>{{course.name}}</h4>
-                <p>{{course.overview}}</p>
-                <b>{{course.no_of_enrollments}} fokes enrolled</b>    
-            </div>
-        </div>
-    </div>
 
    
 

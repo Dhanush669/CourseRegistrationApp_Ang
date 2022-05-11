@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { HttpRequestService } from '../services/http-request.service';
 import { FormsModule } from '@angular/forms';
 import { CourseDetailsComponent } from './course-details/course-details.component';
-import { HttpErrorInterceptor } from '../http-error.interceptor';
+import { MatRadioModule } from '@angular/material/radio'
 
 
 
@@ -17,7 +17,8 @@ import { HttpErrorInterceptor } from '../http-error.interceptor';
   imports: [
     CommonModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    MatRadioModule,
   ],
   providers: [
     HttpRequestService,
