@@ -17,17 +17,18 @@ export class EnrollMentComponent implements OnInit {
   ngOnInit(): void {
     this.user.getMyEnrollments().subscribe({
       next:(response)=>{
-        let arr=response.courses_Enrolled
-        console.log(arr);
+        let arr=response
+        console.log(response);
         
         for(let i=1;i<arr.length;i++){
           console.log(arr[i]);
           
-          this.enrollments.push(JSON.parse(arr[i]))
+          this.enrollments.push(arr[i])
         }
       },
       error:(error)=>{
-        //console.log(error.error.text);
+        console.log("insideeeeee "+error);
+        if(error==="IV_JWT"){
         this.course.getToken().subscribe({next:(res:any)=>{
           localStorage.removeItem("TOKEN")
           localStorage.removeItem("Login_Status")
@@ -48,8 +49,15 @@ export class EnrollMentComponent implements OnInit {
           //this.route.navigate(['/home'])
           window.location.reload()
         }});
-        
+      }
+      else{
+        alert("something went wrong please try again later")
+      }
       }
     })
+  }
+
+  goToCourseDet(show:string){
+    this.route.navigate(['/courseDetails',{name:show}])
   }
 }

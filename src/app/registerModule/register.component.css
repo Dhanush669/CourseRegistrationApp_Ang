@@ -105,11 +105,15 @@
       font-size: 18px;
   }
 
-  .register-done{
+  .register-done{ 
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      background-color: white;
+      width: 80%;
+      margin: 0 auto;
+      border-radius: 10px;
   }
 
   #completed-img{
@@ -137,4 +141,5 @@
     background-color: green;
     border: none;
     border-radius: 10px;
+    margin-bottom: 10px;
   }

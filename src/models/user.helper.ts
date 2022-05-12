@@ -5,5 +5,4 @@ export interface User{
     password:string
     phno:string
     role:string
-    courses_Enrolled:string[]
 }

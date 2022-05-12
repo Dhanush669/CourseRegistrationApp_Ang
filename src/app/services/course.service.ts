@@ -86,5 +86,13 @@ export class CourseService {
     return this.courses.removeToken();
   }
 
+  addComments(payload:Object){
+    this.token=localStorage.getItem("TOKEN")||''
+    this.headers = new HttpHeaders({
+      'Authorization': this.token });
+    let uri= "addComment"
+    return this.courses.addComment(uri,this.headers,payload)
+  }
+
 
 }

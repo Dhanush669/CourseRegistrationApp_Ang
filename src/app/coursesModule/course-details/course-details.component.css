@@ -73,6 +73,51 @@
     margin-top: 0px;
 }
 
+#name{
+    padding: 5px;
+    background-color: rgb(235, 235, 235);
+    /* margin-left: 10px; */
+    /* margin-right: 10px; */
+    text-decoration: none;
+    border: none;
+    outline: 0;
+    border: 0;
+    font-size: 1rem;
+    color: rgb(0, 0, 0);
+    width: 100%;
+    height: 4vh;
+    border-radius: 5px;
+    flex-wrap: wrap;
+}
+
+#new-comment{
+    padding: 5px;
+    background-color: rgb(235, 235, 235);
+    margin: 10px;
+    text-decoration: none;
+    border: none;
+    outline: 0;
+    border: 0;
+    font-size: 1rem;
+    color: rgb(0, 0, 0);
+    width: 100%;
+    height: 15vh;
+    border-radius: 5px;
+    vertical-align: text-top;
+    flex-wrap: wrap;
+}
+
+#comment-btn{
+    width: 15rem;
+    height: 5vh;
+    margin: 0 auto;
+    border: 0;
+    background-color: green;
+    color: white;
+    font-size: 1.2rem;
+    border-radius: 5px;
+}
+
 .cmt{
     font-size: 1rem;
     margin-left: 10px;
@@ -198,5 +243,53 @@ button{
 
 hr{
     margin-top: 10px;
+}
+
+.add-comments{
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.enrolled{
+    width: 80%;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    align-items: center;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.enrollment-done{ 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#completed-img{
+    width: 80%;
+    height: 60vh;
+}
+
+#enrollment-msg{
+    font-size: 2.3rem;
+    margin-bottom: 20px;
+    font-family: poppins-bold;
+}
+
+#login-btn{
+  width: 20%; 
+  height: 50px; 
+  padding:0;
+  color: white;
+  font-weight: bold;
+  background-color: green;
+  border: none;
+  border-radius: 10px;
 }
 

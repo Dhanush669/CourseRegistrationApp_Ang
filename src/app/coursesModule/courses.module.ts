@@ -6,6 +6,7 @@ import { HttpRequestService } from '../services/http-request.service';
 import { FormsModule } from '@angular/forms';
 import { CourseDetailsComponent } from './course-details/course-details.component';
 import { MatRadioModule } from '@angular/material/radio'
+import { CourseRoutingModule } from './courses-rounting.module';
 
 
 
@@ -19,6 +20,7 @@ import { MatRadioModule } from '@angular/material/radio'
     HttpClientModule,
     FormsModule,
     MatRadioModule,
+    CourseRoutingModule
   ],
   providers: [
     HttpRequestService,

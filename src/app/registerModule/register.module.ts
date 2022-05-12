@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RegisterService } from '../services/register.service';
 import { HttpRequestService } from '../services/http-request.service';
+import { RegisterRoutingModule } from './register-routing.module';
 
 
 
@@ -17,7 +18,8 @@ import { HttpRequestService } from '../services/http-request.service';
   imports: [
     CommonModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RegisterRoutingModule
   ],
   providers:[RegisterService,HttpRequestService]
 })

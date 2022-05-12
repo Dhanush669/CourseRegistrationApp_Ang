@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginService } from '../services/login.service';
 import { HttpRequestService } from '../services/http-request.service';
+import { LoginRoutingModule } from './login-routing.module';
 
 
 
@@ -15,7 +16,8 @@ import { HttpRequestService } from '../services/http-request.service';
   imports: [
     CommonModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    LoginRoutingModule
   ],
   providers:[LoginService,HttpRequestService]
 })

@@ -82,7 +82,8 @@ export class CoursesComponent implements OnInit {
       
     },
     error:(error)=>{
-      //console.log(error.error.text);
+      console.log("insideeeeee "+error);
+      if(error==="IV_JWT"){
       this.course.getToken().subscribe({next:(res:any)=>{
         localStorage.removeItem("TOKEN")
         localStorage.removeItem("Login_Status")
@@ -103,7 +104,10 @@ export class CoursesComponent implements OnInit {
         //this.route.navigate(['/home'])
         window.location.reload()
       }});
-      
+    }
+    else{
+      alert("something went wrong please try again later")
+    }
     }
   })
   }

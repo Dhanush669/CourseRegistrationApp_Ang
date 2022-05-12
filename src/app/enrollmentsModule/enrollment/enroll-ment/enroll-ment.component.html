@@ -1,23 +1,32 @@
 <div class="main">
-    <h1>My Enrollments</h1>
+    <!-- <div class="heading-div"> -->
+        <h1 id="title">My Enrollments</h1>
+    <!-- </div> -->
+    
     <div class="body">
-        <div class="enrollment-det" *ngFor="let course of enrollments">
+        <div class="enrollment-det" *ngFor="let course of enrollments" (click)="goToCourseDet(course.name)">
             <div class="enrollment-img">
     
             </div>
-            <div class="course-det">
-                <h3>{{course.name}}</h3>
+            <div class="course-det-div">
+                <div>
+                    <h3 id="course-det-name">{{course.name}}</h3>
+                    <p id="price">₹ 300.00</p>
+                </div>
+                
+                <h5 id="course-det">{{course.syllabus.length}} lessons</h5>
                 <th>
                     <tr>
                         <td>
-                            <h5>{{course.category}}</h5></td>
+                            <h5 id="course-det">{{course.category}} -></h5></td>
                         <td>
-                            <h5>{{course.sub_category}}</h5>
+                            <h5 id="course-det">{{course.sub_category}}</h5>
                         </td>
                     </tr>
                 </th>
-                <h5>{{course.overview}}</h5>
-                <h5>{{course.duration}}</h5>
+                <h5 id="course-det">{{course.overview}}</h5>
+                <b id="course-det">by {{course.instructor}}</b>
+                <!-- <h5>{{course.duration}}</h5> -->
             </div>
         </div>
     </div>

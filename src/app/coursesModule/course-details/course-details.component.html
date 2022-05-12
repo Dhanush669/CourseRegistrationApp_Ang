@@ -1,4 +1,4 @@
-<div class="main">
+<div class="main" *ngIf="!isEnrolled">
     <div class="content scroll-style">
         <h2 id="course-name">{{course.name}}</h2>
         <h5 id="course-overview">{{course.overview}}</h5>
@@ -35,6 +35,14 @@
                 
                 <p class="cmt">{{cmt.comment}}</p>
             </div>
+
+        <hr>
+        <h3 id="syllabus">Add Comments</h3>
+            <div class="add-comments">
+                <input type="text" name="" id="name" placeholder="Name" [(ngModel)]="uname">
+                <textarea type="text" name="" id="new-comment" placeholder="type here.." [(ngModel)]="newcomment"></textarea>
+                <button id="comment-btn" type="submit" (click)="addComment()">Add Comment</button>
+            </div>
         </div>
     </div>
     <div class="details">
@@ -50,14 +58,16 @@
                 <p>{{course.no_of_enrollments}} enrollments</p>
                 <p id="price">₹ 300.00</p>
             </div>
-            
-            
         </div>
-        
     </div>
 
-    <div class="enrolled">
-        
-    </div>
+</div>
 
+<div class="enrolled" *ngIf="isEnrolled">
+    <div  class="enrollment-done">
+        <img id="completed-img" src="../../assets/completed.jpg" alt="">
+        <h3 id="enrollment-msg">Enrollment Successful</h3>
+        <!-- <input type="submit" id="login-btn" value="Login"/> -->
+        <input id="login-btn" type="submit" value="Continue" (click)="goToCourse()"/>
+    </div>
 </div>

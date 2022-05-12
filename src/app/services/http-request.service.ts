@@ -35,8 +35,8 @@ export class HttpRequestService {
   }
 
   // ---------- user -----------
-  getMyEnrollments(uri:string,header:HttpHeaders):Observable<User>{
-      return this.http.get<User>(`${this.url}/${uri}`,{responseType:"json",headers:header})
+  getMyEnrollments(uri:string,header:HttpHeaders):Observable<Course[]>{
+      return this.http.get<Course[]>(`${this.url}/${uri}`,{responseType:"json",headers:header})
   }
 
   // ------- courses -------
@@ -70,6 +70,10 @@ export class HttpRequestService {
 
   filterCourseSub(uri:string,header:HttpHeaders):Observable<Course>{
     return this.http.get<Course>(`${this.courseurl}/${uri}`,{responseType:"json",headers:header});
+  }
+
+  addComment(uri:string,header:HttpHeaders,payload:Object):Observable<string>{
+    return this.http.patch(`${this.courseurl}/${uri}`,payload,{responseType:"text",headers:header});
   }
 
   //----------- auth ------------

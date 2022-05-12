@@ -1,15 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {LoginModule} from './loginModule/login.module'
-import {RegisterModule} from './registerModule/register.module'
-import {CoursesModule} from './coursesModule/courses.module'
 import {} from './homeModule/home.module'
-import { LoginComponent } from './loginModule/login.component';
-import { RegisterComponent } from './registerModule/register.component';
-import { CoursesComponent } from './coursesModule/courses.component';
-import { HomeComponent } from './homeModule/home.component';
-import { HttpClientModule } from '@angular/common/http';
-import { HttpRequestService } from './services/http-request.service';
 import { CourseDetailsComponent } from './coursesModule/course-details/course-details.component';
 import { AuthenticationGuard } from './services/authentication.guard';
 import { EnrollMentComponent } from './enrollmentsModule/enrollment/enroll-ment/enroll-ment.component';
@@ -21,36 +12,36 @@ import { CommonModule } from '@angular/common';
 const routes: Routes = [
   {
     path:"login",
-    component: LoginComponent
+    loadChildren: () => import('./loginModule/login.module').then(m => m.LoginModule)
+    // component: LoginComponent
   },
   {
     path:"register",
-    component: RegisterComponent
+    loadChildren: () => import('./registerModule/register.module').then(m => m.RegisterModule)
+    //component: RegisterComponent
   },
   {
     path:"courses",
-    component: CoursesComponent,
+    loadChildren: () => import('./coursesModule/courses.module').then(m => m.CoursesModule),
+    //component: CoursesComponent,
     canActivate:[AuthenticationGuard]
   },
   {
     path:"home",
-    component: HomeComponent,
+    loadChildren: () => import('./homeModule/home.module').then(m => m.HomeModule),
+    //component: HomeComponent,
     canActivate:[AuthenticationGuard]
   },
   {
     path:"courseDetails",
+    //loadChildren: () => import('./coursesModule/courses.module').then(m => m.CoursesModule),
     component:CourseDetailsComponent,
     canActivate:[AuthenticationGuard]
   }
-  // ,
-  // {
-  //   path:"profile",
-  //   component:ProfileComponent,
-  //   canActivate:[AuthenticationGuard]
-  // }
   ,
   {
     path:"myEnrollments",
+    //loadChildren: () => import('./enrollmentsModule/enrollment/enrollment.module').then(m => m.EnrollmentModule),
     component:EnrollMentComponent,
     canActivate:[AuthenticationGuard]
   }
