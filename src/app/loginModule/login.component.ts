@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { LoginService } from '../services/login.service';
+import { TostNotificationService } from '../services/tost-notification.service';
 import { NavbarComponent } from '../sharedModule/navbar/navbar.component';
 
 
@@ -16,7 +17,7 @@ export class LoginComponent implements OnInit {
   email:string=""
   password:string=""
   exception:string=""
-  constructor(private login:LoginService,private router:Router,private auth:AuthService) { }
+  constructor(private login:LoginService,private router:Router,private auth:AuthService,private toast:TostNotificationService) { }
 
   ngOnInit(): void {
   }
@@ -41,12 +42,18 @@ export class LoginComponent implements OnInit {
         let token=res.token
         let role=res.role
         localStorage.setItem("TOKEN",token);
-        localStorage.setItem("Login_Status",role)
+        // localStorage.setItem("Login_Status",role)
         var currentDate = new Date();
         var futureDate = new Date(currentDate.getTime() + 30*60000);
         localStorage.setItem("Expiration_Time",""+futureDate.getTime())
         this.auth.Login()
+        this.toast.showSuccess("Welcome to LIT")
+        if(role==="user"){
         this.router.navigate(['/home'],{ replaceUrl: true });
+        }
+        else{
+          this.router.navigate(['/adminHome'])
+        }
       }
     })
   }

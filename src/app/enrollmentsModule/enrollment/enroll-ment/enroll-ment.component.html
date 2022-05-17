@@ -5,16 +5,14 @@
     
     <div class="body">
         <div class="enrollment-det" *ngFor="let course of enrollments" (click)="goToCourseDet(course.name)">
-            <div class="enrollment-img">
-    
-            </div>
+            <img class="enrollment-img" src="{{course.img_thumbnai}}">
             <div class="course-det-div">
                 <div>
                     <h3 id="course-det-name">{{course.name}}</h3>
                     <p id="price">₹ 300.00</p>
                 </div>
                 
-                <h5 id="course-det">{{course.syllabus.length}} lessons</h5>
+                <h5 id="course-det">{{course.duration}} lessons</h5>
                 <th>
                     <tr>
                         <td>

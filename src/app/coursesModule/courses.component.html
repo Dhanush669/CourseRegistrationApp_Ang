@@ -31,27 +31,29 @@
                     <label for="radio-btn">{{cat}}</label><br>
                 </div> 
                 <b>Filter by Sub Category</b>
-                <div class="category-div">
+                <!-- <div class="category-div">
                     <select class="form-control" id="category" (change)="onChangeSub($event)">
                         <option *ngFor="let subCategory of subCategories" [value]="subCategory">{{subCategory}}</option>
                     </select>
-                </div>    
+                </div>     -->
+                <div *ngFor="let subcat of subCategories">
+                    <input type="radio" id="radio-btn" name="fav_language" value="subcat" (click)="onChangeSub(subcat)">
+                    <label for="radio-btn">{{subcat}}</label><br>
+                </div> 
             
         </div>
         <div class="courses scroll-style">
             <div *ngFor="let course of courses" class="course-div" (click)="showOverview(course)">
-                <div class="course-img">
-        
-                </div>
+                <img class="course-img" src="{{course.img_thumbnai}}">
                 <div  class="course-desc">
                     <h4>{{course.name}}</h4>
                     <div class="course-info">
                         <div>
                             <p id="instructor">by {{course.instructor}}</p>
-                            <p id="duration">{{course.syllabus.length}} lessons, {{course.duration}}</p>
+                            <p id="duration">{{course.duration}}</p>
                         </div>
                         
-                        <b id="price">₹ 300.00</b>
+                        <b id="price">₹ {{course.price}}.00</b>
                     </div>
                         
                 </div>

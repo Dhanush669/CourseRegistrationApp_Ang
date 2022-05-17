@@ -3,7 +3,7 @@
         <h2 id="course-name">{{course.name}}</h2>
         <h5 id="course-overview">{{course.overview}}</h5>
         <h3 id="syllabus">Syllabus</h3>
-        <div class="syllabus-list" *ngFor="let syl of course.syllabus;let ind=index;">
+        <div class="syllabus-list" *ngFor="let syl of syllabus;let ind=index;">
             <p id="syl-ind">{{ind+1}}</p>
             <p id="syl">{{syl}}</p>
         </div>
@@ -46,28 +46,34 @@
         </div>
     </div>
     <div class="details">
-        <div class="img">
+        <img class="img" src="{{course.img_thumbnai}}">
 
-        </div>
-        <button type="submit" (click)="enroll()">Enroll</button>
+        
+        <button type="submit" (click)="enroll()" id="enroll" *ngIf="!alreadyEnrolled">Enroll</button>
+        <button type="submit" (click)="enroll()" id="enrolled" *ngIf="alreadyEnrolled">Enrolled</button>
         <div class="more-det">
             
                 <p>Duration : {{course.duration}}</p>
                 <p>{{course.category}}, {{course.sub_category}}</p>
             <div>
                 <p>{{course.no_of_enrollments}} enrollments</p>
-                <p id="price">₹ 300.00</p>
+                <b id="price">₹ {{course.price}}.00</b>
             </div>
+        </div>
+        <div class="admin-btns" *ngIf="isAdmin()">
+            <button type="submit" (click)="update()" id="update">Update</button>
+            <button type="submit" (click)="delete()" id="delete">Delete</button>
         </div>
     </div>
 
 </div>
 
 <div class="enrolled" *ngIf="isEnrolled">
-    <div  class="enrollment-done">
+    <div  class="enrollment-done"> 
         <img id="completed-img" src="../../assets/completed.jpg" alt="">
         <h3 id="enrollment-msg">Enrollment Successful</h3>
         <!-- <input type="submit" id="login-btn" value="Login"/> -->
         <input id="login-btn" type="submit" value="Continue" (click)="goToCourse()"/>
     </div>
+    
 </div>

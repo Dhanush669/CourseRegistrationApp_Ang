@@ -20,10 +20,11 @@
 /*                      background-color: black;*/
       margin-bottom: 20px;
   }
-  h3{
+
+#headding{
     margin-bottom: 10px;
     font-size: 1.3em;
-    
+    font-family: poppins-bold;
 }
   #login{
       margin-top: 40px;
@@ -35,19 +36,20 @@
     margin-top: 20px;
     display: grid;
     grid-template-columns: auto auto; 
+    gap: 10px;
     
   }
 
   input{
-        height: 2rem;
-        width: 95%;
+        height: 50px;
+        width: 100%;
         padding: 5px;
         font-size: 14px;
-        border-radius: 5px;
+        border-radius: 5px; 
+        box-sizing: border-box;
   }
   
   .input-div{
-      margin-left: 10px;
       margin-bottom: 1.5rem;
   }
 
@@ -64,10 +66,8 @@
       font-weight: bold;
       background-color: #503E9D;
       border: none;
-      margin-left: 12px;
       grid-column-start: 1;
       grid-column-end: 3;
-      margin-right: 200px;
       
   }
 
@@ -80,10 +80,8 @@
     background-color: rgb(194, 194, 194);
     color: #aaa;
     border: none;
-    margin-left: 12px;
     grid-column-start: 1;
     grid-column-end: 3;
-    margin-right: 200px;
     
 }
 
@@ -143,3 +141,16 @@
     border-radius: 10px;
     margin-bottom: 10px;
   }
+
+
+  /* responsive */
+
+  @media(max-width:1200px){
+    .register-container{
+        height: 100%;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+    }
+}

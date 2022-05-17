@@ -1,0 +1,27 @@
+<div class="main">
+    <h1 id="headding">Add Categories</h1>
+    <div class="body">
+        <label for="category">Category</label>
+        <input type="text" id="category" name="category" value="" required placeholder="Category" [(ngModel)]="category"
+        />
+        <label for="category">Sub Category</label>
+        <input type="text" id="subcategory" name="subcategory" value="" required placeholder="Sub Category" [(ngModel)]="subcategory"
+        />
+    
+        <button type="submit" id="add-btn" (click)="addCategory()">Add Category</button>
+    </div>
+
+    <h1 id="headding">Available Categories</h1>
+
+    <div class="catorory-div">
+        <div>
+            <h3 id="sub-headding">Categories</h3>
+            <p id="cate-p" *ngFor="let category of categoryList">{{category}}</p>
+        </div>
+        <div>
+            <h3 id="sub-headding">Sub Categories</h3>
+            <p id="subcate-p" *ngFor="let subcate of subCategoryList">{{subcate}}</p>
+        </div>
+    </div>
+    
+</div>

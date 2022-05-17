@@ -45,8 +45,8 @@
     margin-left: 20px;
     margin-right: 20px;
     margin-bottom: 20px;
-    height: 400px;
-    justify-content: center;
+    height: 500px;
+    justify-content: flex-start;
     align-items: flex-start;
     display: flex;
     border-radius: 10px;
@@ -137,8 +137,7 @@
 .img{
     width: 100%;
     height: 250px;
-    background-color: bisque;
-    border-radius: 10px;
+    border-radius: 10px 10px 0px 0px;
 }
 
 .syllabus-list{
@@ -229,7 +228,7 @@ b{
     background-color: aqua;
 }
 
-button{
+#enroll{
     width: 95%;
     height: 50px;
     background-color: green;
@@ -239,6 +238,49 @@ button{
     margin: 0 auto;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+#enrolled{
+    width: 95%;
+    height: 50px;
+    background-color: rgb(0, 0, 0);
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#update{
+    width: 100%;
+    height: 50px;
+    background-color: green;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#delete{
+    width: 100%;
+    height: 50px;
+    background-color: red;
+    color: white;
+    border: 0;
+    border-radius: 5px;
+    margin: 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+.admin-btns{
+    width: 90%;
+    display: flex;
+    margin: 0 auto;
 }
 
 hr{

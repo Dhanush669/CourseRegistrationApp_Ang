@@ -1,0 +1,7 @@
+<div class="main">
+    <h1 id="headding">All Users</h1>
+    <div class="user-div" *ngFor="let user of allUsers">
+        <p id="user-name">{{user.emailId}}</p>
+        <button type="submit" id="btn" (click)="makeAdmin(user.emailId)">Make as Admin</button>
+    </div>
+</div>

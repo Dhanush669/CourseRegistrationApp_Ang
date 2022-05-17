@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Course } from 'src/models/course.helper';
 import { AuthService } from '../services/auth.service';
 import { CourseService } from '../services/course.service';
+import { TostNotificationService } from '../services/tost-notification.service';
 
 
 @Component({
@@ -18,13 +19,17 @@ export class CoursesComponent implements OnInit {
   allSubCategory:Course[]=[]
   filterCategory:Course[]=[]
   filterSubCategory:Course[]=[]
-  categories:string[]=["All","Development","DSA","Testing","Bootcamp","Ago/DSA","Database","Interview Prepration"]
-  subCategories:string[]=["Select","All","Mobile Development","Web Development","UI/UX","Fontend","Backend"]
+  categories:string[]=["All"]
+  subCategories:string[]=["Select","All"]
   filter:string=""
   
-  constructor(private course:CourseService,private route:Router,private auth:AuthService) { }
+  constructor(private course:CourseService,private route:Router,private auth:AuthService,private toast:TostNotificationService) { }
   search:string=""
   ngOnInit(): void {
+    // let tok=localStorage.getItem("TOKEN")||''
+    // let c:any=atob(tok.split('.')[1])
+    // console.log(JSON.parse(c).user.role);
+
     this.course.getAllCourse().subscribe({
       next:(response:any)=>{
     
@@ -32,53 +37,6 @@ export class CoursesComponent implements OnInit {
         this.courses.push(response[i])
       }
       this.allCourses=this.courses
-      
-    },
-    error:(error)=>{
-      console.log(error);
-      
-      //console.log(error.error.text);
-      this.course.getToken().subscribe({next:(res:any)=>{
-        localStorage.removeItem("TOKEN")
-        localStorage.removeItem("Login_Status")
-        if(res==="jwt expired"){
-          this.route.navigate(['/login'])
-          this.auth.Logout()
-          this.course.removeToken()
-          localStorage.clear()
-          return
-        }
-        let response=JSON.parse(res)
-        let token=response.token
-        let role=response.role
-        localStorage.setItem("TOKEN",token);
-        localStorage.setItem("Login_Status",role);
-        console.log(" "+role);
-        
-        //this.route.navigate(['/home'])
-        window.location.reload()
-      }});
-      
-    }
-  })
-  
-  }
-
-  searchCourse(){
-    if(this.search===""){
-      alert("please type something to search..!")
-      return
-    }
-    
-    this.course.searchOneCourse(this.search).subscribe({
-      next:(response:any)=>{
-      
-      
-      this.courses=[]
-      for(let i=0;i<response.length;i++){
-        this.courses.push(response[i])
-      }
-      
       
     },
     error:(error)=>{
@@ -106,35 +64,53 @@ export class CoursesComponent implements OnInit {
       }});
     }
     else{
-      alert("something went wrong please try again later")
+      this.toast.showError("something went wrong please try again later")
     }
     }
   })
+
+  this.course.getAllCategory().subscribe({
+      next:(response)=>{
+        for(let i=0;i<response.length;i++){
+          console.log(response[i]);
+          
+          this.categories.push(response[i])
+        }
+      }
+  })
+
+  this.course.getAllSubCategory().subscribe(
+    {
+      next:(response)=>{
+        for(let i=0;i<response.length;i++){
+          this.subCategories.push(response[i])
+        }
+      }
+    }
+  )
+  
   }
 
-  onChange(search:string){
-    const filter:string=search
-
-    if(filter==="Select"){
+  searchCourse(){
+    if(this.search===""){
+      alert("please type something to search..!")
       return
     }
-    if(filter==="All"){
-      this.courses=this.allCourses
-      return
-    }
-    this.courses=[]
-  //   this.course.filterCourse(filter).subscribe({
-  //     next:(response:any)=>{ 
-  //     console.log(response);
+    
+  //   this.course.searchCourse(this.search).subscribe({
+  //     next:(response:any)=>{
       
-  //       this.courses=[]
-  //       for(let i=0;i<response.length;i++){
-  //         this.courses.push(response[i])
-  //       }
-  //       this.allSubCategory=this.courses
+      
+  //     this.courses=[]
+  //     for(let i=0;i<response.length;i++){
+  //       this.courses.push(response[i])
+  //     }
+      
+      
   //   },
   //   error:(error)=>{
-  //     //console.log(error.error.text);
+  //     console.log("insideeeeee "+error);
+  //     if(error==="IV_JWT"){
   //     this.course.getToken().subscribe({next:(res:any)=>{
   //       localStorage.removeItem("TOKEN")
   //       localStorage.removeItem("Login_Status")
@@ -151,19 +127,44 @@ export class CoursesComponent implements OnInit {
   //       localStorage.setItem("TOKEN",token);
   //       localStorage.setItem("Login_Status",role);
   //       console.log(" "+role);
+        
+  //       //this.route.navigate(['/home'])
   //       window.location.reload()
   //     }});
-      
+  //   }
+  //   else{
+  //     alert("something went wrong please try again later")
+  //   }
   //   }
   // })
+
+  this.courses=this.allCourses.filter((fcourse:Course)=>{
+    let curCourse=fcourse.name.toLowerCase()
+    return curCourse.includes(this.search.toLowerCase())
+  })
+
+  }
+
+  onChange(search:string){
+    const filter:string=search
+
+    if(filter==="Select"){
+      return
+    }
+    if(filter==="All"){
+      this.courses=this.allCourses
+      return
+    }
+    this.courses=[]
     this.courses=this.allCourses.filter((fcourse:Course)=>{
       return fcourse.category===search
     })
     this.allSubCategory=this.courses
   }
 
-  onChangeSub(event:Event){
-    const filter:string=(event.target as HTMLInputElement).value
+  onChangeSub(event:string){
+    //const filter:string=(event.target as HTMLInputElement).value
+    const filter=event
     if(filter==="Select"){
       return
     }
@@ -172,44 +173,6 @@ export class CoursesComponent implements OnInit {
     }
     else{
       this.courses=[]
-  //     console.log(filter);
-      
-  //   this.course.filterCourseSub(filter).subscribe({
-  //     next:(response:any)=>{
-  //       this.courses=[]
-  //       for(let i=0;i<response.length;i++){
-  //         this.courses.push(response[i])
-  //       }
-  //   },
-  //   error:(error)=>{
-  //     //console.log(error.error.text);
-  //     this.course.getToken().subscribe({next:(res:any)=>{
-  //       localStorage.removeItem("TOKEN")
-  //       localStorage.removeItem("Login_Status")
-  //       if(res==="jwt expired"){
-  //         this.route.navigate(['/login'])
-  //         this.auth.Logout()
-  //         localStorage.clear()
-          
-  //         this.course.removeToken().subscribe((res)=>{
-          
-  //         })
-  //         return
-  //       }
-  //       let response=JSON.parse(res)
-  //       let token=response.token
-  //       let role=response.role
-  //       localStorage.setItem("TOKEN",token);
-  //       localStorage.setItem("Login_Status",role);
-  //       console.log(" "+role);
-        
-  //       //this.route.navigate(['/home'])
-  //       window.location.reload()
-  //     }});
-      
-  //   }
-  // })
-
       this.courses=this.allCourses.filter((fcourse:Course)=>{
         return fcourse.sub_category===filter
       })

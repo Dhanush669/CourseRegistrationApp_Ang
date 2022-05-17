@@ -60,7 +60,7 @@ export class HttpRequestService {
     return this.http.get<Course>(`${this.courseurl}/${uri}`,{responseType:"json",headers:header});
   }
 
-  getOneCourse(uri:string,header:HttpHeaders):Observable<Course>{
+  searchCourses(uri:string,header:HttpHeaders):Observable<Course>{
     return this.http.get<Course>(`${this.courseurl}/${uri}`,{responseType:"json",headers:header});
   }
 
@@ -74,6 +74,14 @@ export class HttpRequestService {
 
   addComment(uri:string,header:HttpHeaders,payload:Object):Observable<string>{
     return this.http.patch(`${this.courseurl}/${uri}`,payload,{responseType:"text",headers:header});
+  }
+
+  getSyllabus(uri:string,header:HttpHeaders):Observable<string[]>{
+    return this.http.get<string[]>(`${this.courseurl}/${uri}`,{responseType:"json",headers:header})
+  }
+
+  getComments(uri:string,header:HttpHeaders):Observable<string[]>{
+    return this.http.get<string[]>(`${this.courseurl}/${uri}`,{responseType:"json",headers:header})
   }
 
   //----------- auth ------------
@@ -99,7 +107,42 @@ export class HttpRequestService {
     return this.http.delete(`${this.url}/removeToken/?refreshToken=${ref_token}`,{responseType:"text"})
   }
 
-  
+  //------------- admin---------
+  deleteCourse(uri:string,header:HttpHeaders):Observable<string>{
+    return this.http.delete(`${this.courseurl}/${uri}`,{responseType:"text",headers:header})
+  }
+
+  addCourse(uri:string,header:HttpHeaders,body:Object):Observable<string>{
+    return this.http.post(`${this.courseurl}/${uri}`,body,{responseType:"text",headers:header})
+  }
+
+  updateCourse(uri:string,header:HttpHeaders,body:Object):Observable<string>{
+    return this.http.patch(`${this.courseurl}/${uri}`,body,{responseType:"text",headers:header})
+  }
+
+  showAllUsers(uri:string,header:HttpHeaders):Observable<User[]>{
+    return this.http.get<User[]>(`${this.url}/${uri}`,{responseType:"json",headers:header})
+  }
+
+  makeAdmin(uri:string,header:HttpHeaders,body:Object){
+    return this.http.patch(`${this.url}/${uri}`,body,{responseType:"text",headers:header})
+  }
+
+  addCategory(uri:string,header:HttpHeaders,body:Object){
+    return this.http.patch(`${this.courseurl}/${uri}`,body,{responseType:"text",headers:header})
+  }
+
+  addSubCategory(uri:string,header:HttpHeaders,body:Object){
+    return this.http.patch(`${this.courseurl}/${uri}`,body,{responseType:"text",headers:header})
+  }
+
+  getAllCategory(uri:string,header:HttpHeaders):Observable<string[]>{
+    return this.http.get<string[]>(`${this.courseurl}/${uri}`,{responseType:"json",headers:header})
+  }
+
+  getAllSubCategory(uri:string,header:HttpHeaders):Observable<string[]>{
+    return this.http.get<string[]>(`${this.courseurl}/${uri}`,{responseType:"json",headers:header})
+  }
  
 
 }

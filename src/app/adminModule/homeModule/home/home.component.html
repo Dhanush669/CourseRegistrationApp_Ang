@@ -1,0 +1,27 @@
+<div class="main">
+    <h1 id="heading">All Courses</h1>
+    <div class="filter-div">
+        <div class="search-div">
+            <input type="text" name="course"#ref id="search" placeholder="search">
+            <button id="search-btn" type="submit" (click)="searchCourse(ref.value)">search</button>
+        </div>
+        <div class="category-container">
+            <!-- <div class="category-div"> -->
+            <select class="form-control" id="category" (change)="onChange($event)">
+                <option *ngFor="let category of categories" [value]="category">{{category}}</option>
+            </select>
+                <select class="form-control" id="category" (change)="onChangeSub($event)">
+                    <option *ngFor="let subCategory of subCategories" [value]="subCategory">{{subCategory}}</option>
+                </select>
+              
+        </div>
+    </div>
+    <div class="body">
+        <div class="course-container" *ngFor="let course of courses" (click)="overView(course.name)">
+            <img class="course-img" src="{{course.img_thumbnai}}">
+
+            
+            <h3 id="courseName">{{course.name}}</h3>
+        </div>
+    </div>
+</div>

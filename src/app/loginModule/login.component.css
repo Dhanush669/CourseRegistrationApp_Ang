@@ -133,3 +133,14 @@
     align-items: center;
     margin-top: -40px;
 }
+ 
+/* responsive */
+
+@media(max-width:1500px){
+    .img{
+        display: none;
+    }
+    .login-container{
+        width: 60%;
+    }
+}

@@ -106,6 +106,7 @@
     width: 50%;
     line-height: 1.3;
     margin-left: 2rem;
+    box-sizing: border-box;
 }
 
 
@@ -113,29 +114,30 @@
 .sub-sub-trending1{
     background-image: url('../../assets/sub-trending1.png'); 
     background-color: aquamarine;
-    margin-left: 10px;
-    width: 40%;
-    height: 30vh;
+    width: 100%;
+    height: 250px;
     background-size: cover;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    box-sizing: border-box;
 }
 
 .sub-sub-trending2{
     background-image: url('../../assets/sub-trending2.png'); 
     background-color: aqua;
     margin-left: 10px;
-    width: 40%;
-    height: 30vh;
+    width: 100%;
+    height: 250px;
     background-size: cover;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    box-sizing: border-box;
 }
 
 .sub-trending{
@@ -143,9 +145,9 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    width: 100%;
+    width: 80%;
     margin-top: 2rem;
-    
+    box-sizing: border-box;
 }
 
 .bottom{
@@ -157,6 +159,7 @@
     border-radius: 15px;
     width: 80%;
     margin: 0 auto;
+    margin-bottom: 10px;
 }
 
 .bottom-img{
@@ -166,7 +169,7 @@
 }
 
 .bottom-det{
-    display: flex;
+    display: flex; 
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -179,13 +182,17 @@
     align-items: center;
 }
 
+.top{
+    margin-bottom: 2rem;
+}
+
 .course-card{
     width: 50%;
     height: 17vh;
     background-color: rgb(0, 0, 0);
     border-radius: 10px;
     margin-right: 2rem;
-    margin-bottom: 2rem;
+    
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -270,4 +277,81 @@
 #comp-logo{
     width: 10%;
     height: 5vh;
+}
+
+/* responsive */
+@media(max-width:1500px){
+    .main{
+        background-color: black;
+    }
+
+    .start{
+        height: 300px;
+    }
+    #heading{
+        font-size: 2rem;
+    }
+    #sub-heading{
+        font-size: 1rem;
+        width: 60%;
+    }
+
+    /* .trending-course{
+        height: 200px;
+    }
+
+    .trending{
+        
+    }
+
+    .sub-trending{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sub-sub-trending1{
+        height: 200px;
+    }
+    .sub-sub-trending2{
+        height: 200px;
+        margin-left: 0px;
+        margin-top: 10px;
+    }
+
+    #trending-content{
+        font-size: 1.3rem;
+        margin-bottom: 5px;
+    }
+    #trending-subcontent{
+        font-size: 1rem;
+        margin-bottom: 2px;
+    }
+
+    #courses-btn{
+        width: 100px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+
+    .right-side h3{
+        font-size: 1.5rem;
+        width: 85%;
+        
+    }
+    
+    .right-side p{
+        font-size: 1rem;
+        width: 90%;
+        
+    }
+    
+    .right-side b{
+        font-size: 1rem;
+        
+    } */
+
+    
+
+    
+    
 }

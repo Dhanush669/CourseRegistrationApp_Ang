@@ -18,11 +18,13 @@
 
 <!-- logged in user -->
 <div class="topnav" *ngIf="auth.isLoggedIn==='user'">
-    <div class="brand">
+    <div class="brand" (click)="goToHome()">
         <img id="logo" src="../../../assets/nav_logo.png"/>
         <b>LIT</b>
     </div>
+
     <div class="right">
+
         <a routerLink="home"  routerLinkActive="active">
             Home
         </a>
@@ -37,6 +39,38 @@
         <a routerLink="myEnrollments"  routerLinkActive="active">
             My Enrollments
         </a>
+        <button (click)="logout()">
+            Logout
+        </button>
+
+        
+    </div>
+</div>
+
+<!-- Admin -->
+<div class="topnav" *ngIf="auth.isLoggedIn==='admin'">
+    <div class="brand" (click)="goToHomeAdmin()">
+        <img id="logo" src="../../../assets/nav_logo.png"/>
+        <b>LIT</b>
+    </div>
+
+    <div class="right">
+        <a routerLink="adminHome"  routerLinkActive="active">
+            Home
+        </a>
+
+        <a routerLink="addCourse"  routerLinkActive="active">
+            Add Course
+        </a>
+
+        <a routerLink="allUsers"  routerLinkActive="active">
+            Users
+        </a>
+
+        <a routerLink="addCategory"  routerLinkActive="active">
+            Add Category
+        </a>
+
         <button (click)="logout()">
             Logout
         </button>

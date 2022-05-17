@@ -7,6 +7,5 @@ export interface Course{
     img_thumbnai:string
     no_of_enrollments:number
     sub_category:string
-    comments:string
-    syllabus:string[]
+    price:number
 }

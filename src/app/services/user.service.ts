@@ -32,4 +32,14 @@ export class UserService {
       return   expiryTime >= (Math.floor((new Date).getTime()))
   }
 
+  getRole(){
+    let token=localStorage.getItem("TOKEN")||''
+    if(token===''){
+      return "no"
+    }
+      let obj:any=atob(token.split('.')[1]);
+      obj=JSON.parse(obj)
+      return obj.user.role
+  }
+
 }

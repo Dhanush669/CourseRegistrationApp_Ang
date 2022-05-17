@@ -1,10 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {} from './homeModule/home.module'
 import { CourseDetailsComponent } from './coursesModule/course-details/course-details.component';
 import { AuthenticationGuard } from './services/authentication.guard';
 import { EnrollMentComponent } from './enrollmentsModule/enrollment/enroll-ment/enroll-ment.component';
 import { CommonModule } from '@angular/common';
+import { HomeComponent } from './adminModule/homeModule/home/home.component';
+import { NewCourseComponent } from './adminModule/add-course/new-course/new-course.component';
+import { UserComponent } from './adminModule/all-users/user/user.component';
+import { AddCategoriesComponent } from './adminModule/addCategoryModule/add-categories/add-categories.component';
+import { RoleGuardGuard } from './services/role-guard.guard';
+
+
 
 
 
@@ -35,16 +41,64 @@ const routes: Routes = [
   {
     path:"courseDetails",
     //loadChildren: () => import('./coursesModule/courses.module').then(m => m.CoursesModule),
-    component:CourseDetailsComponent,
-    canActivate:[AuthenticationGuard]
-  }
-  ,
+     component:CourseDetailsComponent,
+     //canActivate:[AuthenticationGuard]
+    
+  },
+
   {
     path:"myEnrollments",
     //loadChildren: () => import('./enrollmentsModule/enrollment/enrollment.module').then(m => m.EnrollmentModule),
     component:EnrollMentComponent,
     canActivate:[AuthenticationGuard]
+  },
+
+  {
+    path:"adminHome",
+    //loadChildren: () => import('./adminModule/homeModule/home/home.module').then(m => m.HomeModule),
+    component: HomeComponent,
+    canActivate:[RoleGuardGuard],
+    data: { 
+      expectedRole: 'admin'
+    }
+    
   }
+  ,
+
+  {
+    path:"addCourse",
+    //loadChildren: () => import('./adminModule/homeModule/home/home.module').then(m => m.HomeModule),
+    component: NewCourseComponent,
+    canActivate:[RoleGuardGuard],
+    data: { 
+      expectedRole: 'admin'
+    }
+    
+  }
+  ,
+
+  {
+    path:"allUsers",
+    //loadChildren: () => import('./adminModule/homeModule/home/home.module').then(m => m.HomeModule),
+    component: UserComponent,
+    canActivate:[RoleGuardGuard],
+    data: { 
+      expectedRole: 'admin'
+    }
+    
+  }
+  ,
+  {
+    path:"addCategory",
+    //loadChildren: () => import('./adminModule/homeModule/home/home.module').then(m => m.HomeModule),
+    component: AddCategoriesComponent,
+    canActivate:[RoleGuardGuard],
+    data: { 
+      expectedRole: 'admin'
+    }
+    
+  }
+
 ];
 
 @NgModule({

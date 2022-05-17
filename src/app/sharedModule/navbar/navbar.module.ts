@@ -8,6 +8,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
+import {MatSnackBarModule} from '@angular/material/snack-bar'
 import {MatListModule} from '@angular/material/list'
 
 
@@ -20,12 +21,13 @@ import {MatListModule} from '@angular/material/list'
     CommonModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatToolbarModule,
-    MatSidenavModule,
-    MatButtonModule,
-    MatIconModule,
-    MatDividerModule,
-    MatListModule,
+    // MatToolbarModule,
+    // MatSidenavModule,
+    // MatButtonModule,
+    // MatIconModule,
+    // MatSnackBarModule,
+    // MatDividerModule,
+    // MatListModule,
   ],
   exports:[
     NavbarComponent

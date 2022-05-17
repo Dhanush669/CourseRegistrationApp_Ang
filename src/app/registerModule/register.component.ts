@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RegisterHelper } from 'src/models/register.helper';
 import { RegisterService } from '../services/register.service';
+import { TostNotificationService } from '../services/tost-notification.service';
 
 @Component({
   selector: 'app-register',
@@ -19,7 +20,7 @@ export class RegisterComponent implements OnInit {
   confirmPassword:string=""
   exception:string=""
   isSuccessfull:boolean=false
-  constructor(private register:RegisterService,private router:Router) { }
+  constructor(private register:RegisterService,private router:Router,private toast:TostNotificationService) { }
 
   ngOnInit(): void {
     

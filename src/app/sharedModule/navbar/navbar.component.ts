@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
+import { TostNotificationService } from 'src/app/services/tost-notification.service';
+import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog'
+
 
 @Component({
   selector: 'app-navbar',
@@ -10,21 +13,27 @@ import { AuthService } from 'src/app/services/auth.service';
 export class NavbarComponent implements OnInit {
 
   //isLoggedIn!:string
-  constructor(public auth:AuthService,private router:Router) { 
+  constructor(public auth:AuthService,private router:Router,private toast:TostNotificationService) { 
    // this.isLoggedIn=this.auth.isLoggedIn;
   }
   
 
   ngOnInit(): void {
 
-    
+  }
 
+  goToHome(){
+    this.router.navigate(['/home'])
+  }
+
+  goToHomeAdmin(){
+    this.router.navigate(['/adminHome'])
   }
 
   logout(){
-    alert("are you sure!. You want to logout")
     this.auth.Logout()
     localStorage.clear()
+    this.toast.showSuccess("Logging out")
     this.router.navigate(['/login'])
 
   }
