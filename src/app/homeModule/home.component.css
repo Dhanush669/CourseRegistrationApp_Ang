@@ -8,7 +8,7 @@
     background-size: cover;
     border-radius: 10px;
     width: 80%;
-    height: 50vh;
+    height: 450px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -32,6 +32,17 @@
 }
 
 #courses-btn{
+    border: 0;
+    height: 3rem;
+    width: 12rem;
+    background-color: red;
+    color: white;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    margin-left: 2rem;
+}
+
+#top-btn{
     border: 0;
     height: 3rem;
     width: 12rem;
@@ -85,7 +96,7 @@
     background-image: url('../../assets/trendingcourse-img.png');
     background-size: cover;
     width: 80%;
-    height: 40vh;
+    height: 350px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -188,7 +199,7 @@
 
 .course-card{
     width: 50%;
-    height: 17vh;
+    height: 170px;
     background-color: rgb(0, 0, 0);
     border-radius: 10px;
     margin-right: 2rem;
@@ -281,9 +292,7 @@
 
 /* responsive */
 @media(max-width:1500px){
-    .main{
-        background-color: black;
-    }
+    
 
     .start{
         height: 300px;
@@ -296,7 +305,7 @@
         width: 60%;
     }
 
-    /* .trending-course{
+     .trending-course{
         height: 200px;
     }
 
@@ -333,25 +342,335 @@
         font-size: 0.9rem;
     }
 
-    .right-side h3{
+
+    .right-side{
+        width: 100%;
+        margin-left: 0px;
+        margin-bottom: 10px;
+    }
+
+    .left-side{
+        width: 100%;
+    }
+
+    .bottom{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    #top-btn{
+        width: 100px;
+        height: 30px;
+        font-size: 0.7rem;
+    }
+
+    
+    
+}
+
+@media(max-width:1150px){
+    
+    .start{
+        height: 250px;
+    }
+    #heading{
         font-size: 1.5rem;
+    }
+    #sub-heading{
+        font-size: 1rem;
+        width: 60%;
+    }
+
+     .trending-course{
+        height: 200px;
+    }
+
+    
+
+    .sub-trending{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sub-sub-trending1{
+        height: 200px;
+    }
+    .sub-sub-trending2{
+        height: 200px;
+        margin-left: 0px;
+        margin-top: 10px;
+    }
+
+    #trending-content{
+        font-size: 1rem;
+        margin-bottom: 5px; 
+    }
+    #trending-subcontent{
+        font-size: 0.8rem;
+        margin-bottom: 2px;
+    }
+
+    #courses-btn{
+        width: 100px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+
+    #bottom-btn{
+        width: 100px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+
+
+    .right-side{
+        width: 100%;
+        margin-left: 0px;
+        margin-bottom: 10px;
+    }
+
+    #comp-logo{
+        width: 6rem;
+        height: 2rem;
+    }
+
+    #comp-img{
+        width: 8rem;
+        height: 4rem;
+    }
+
+    .left-side{
+        width: 100%;
+    }
+
+    .bottom{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    #top-btn{
+        width: 100px;
+        height: 30px;
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width:850px){
+    #value{
+        font-size: 1rem;
+        margin-top: 10px;
+    }
+    .body{
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+    .start{
+        height: 200px;
+    }
+    .trending{
+        margin-top: 20px;
+    }
+    #heading{
+        font-size: 1rem;
+    }
+    #sub-heading{
+        font-size: 0.7rem;
+        width: 60%;
+        margin-bottom: 10px;
+        line-height: 1;
+    }
+
+     .trending-course{
+        height: 200px;
+    }
+
+    #comp-logo{
+        width: 4rem;
+        height: 1rem;
+    }
+
+    #comp-img{
+        width: 6rem;
+        height: 2rem;
+    }
+
+    .trending{
+        
+    }
+
+    .sub-trending{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sub-sub-trending1{
+        height: 200px;
+    }
+    .sub-sub-trending2{
+        height: 200px;
+        margin-left: 0px;
+        margin-top: 10px;
+    }
+
+    #trending-content{
+        font-size: 1rem;
+        margin-bottom: 5px;
+    }
+    #trending-subcontent{
+        font-size: 0.7rem;
+        margin-bottom: 2px;
+    }
+
+    #courses-btn{
+        width: 100px;
+        height: 30px;
+        font-size: 0.9rem;
+    }
+
+
+    .right-side{
+        width: 100%;
+        margin-left: 0px;
+        margin-bottom: 10px;
+    }
+
+    .left-side{
+        width: 100%;
+        margin-left: 0px;
+        margin-right:0px ;
+
+    }
+
+    .left-course{
+        display: flex;
+        flex-direction: column;
+    }
+    .top{
         width: 85%;
+    }
+
+    .course-card{
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .bottom{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    #top-btn{
+        width: 100px;
+        height: 30px;
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width:700px){
+    #value{
+        font-size: 1rem;
+        margin-top: 10px;
+    }
+    .body{
+        margin-top: 20px;
+        margin-bottom: 10px;
+    }
+    .start{
+        height: 150px;
+    }
+    .trending{
+        margin-top: 20px;
+    }
+    #heading{
+        font-size: 1rem;
+    }
+    #sub-heading{
+        font-size: 0.5rem;
+        width: 60%;
+        margin-bottom: 5px;
+        line-height: 1;
+    }
+
+     .trending-course{
+        height: 150px;
+    }
+
+    #comp-logo{
+        width: 4rem;
+        height: 1rem;
+    }
+
+    #comp-img{
+        width: 6rem;
+        height: 2rem;
+    }
+
+    .trending{
         
     }
-    
-    .right-side p{
-        font-size: 1rem;
-        width: 90%;
-        
+
+    .sub-trending{
+        display: flex;
+        flex-direction: column;
     }
-    
-    .right-side b{
-        font-size: 1rem;
-        
-    } */
 
-    
+    .sub-sub-trending1{
+        height: 150px;
+    }
+    .sub-sub-trending2{
+        height: 150px;
+        margin-left: 0px;
+        margin-top: 10px;
+    }
 
-    
-    
+    #trending-content{
+        font-size: 0.7rem;
+        margin-bottom: 5px;
+    }
+    #trending-subcontent{
+        font-size: 0.5rem;
+        margin-bottom: 2px;
+    }
+
+    #courses-btn{
+        width: 80px;
+        height: 20px;
+        font-size: 0.7rem;
+    }
+
+
+    .right-side{
+        width: 100%;
+        margin-left: 0px;
+        margin-bottom: 10px;
+    }
+
+    .left-side{
+        width: 100%;
+        margin-left: 0px;
+        margin-right:0px ;
+    }
+
+    .left-course{
+        display: flex;
+        flex-direction: column;
+    }
+    .top{
+        width: 95%;
+    }
+
+    .course-card{
+        width: 100%;
+    }
+
+    .bottom{
+        display: flex;
+        flex-direction: column-reverse;
+    }
+
+    #top-btn{
+        width: 80px;
+        height: 20px;
+        font-size: 0.5rem;
+    }
 }

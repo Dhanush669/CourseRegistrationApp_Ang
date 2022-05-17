@@ -4,7 +4,7 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
-    width: 60%;
+    
 }
 
 #logo{
@@ -56,4 +56,9 @@ button{
     border-radius: 5%;
     background-color: red;
     color: white;
+}
+
+/* responsive */
+@media (max-width:1150px) {
+    
 }

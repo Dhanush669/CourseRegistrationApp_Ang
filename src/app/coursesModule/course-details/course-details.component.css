@@ -296,7 +296,7 @@ hr{
 }
 
 .enrolled{
-    width: 80%;
+    width: 40%;
     height: 80vh;
     display: flex;
     justify-content: center;
@@ -315,13 +315,15 @@ hr{
 
 #completed-img{
     width: 80%;
-    height: 60vh;
+    height: 550px;
+    margin-bottom: 20px;
 }
 
 #enrollment-msg{
     font-size: 2.3rem;
     margin-bottom: 20px;
     font-family: poppins-bold;
+    margin-top: 20px;
 }
 
 #login-btn{

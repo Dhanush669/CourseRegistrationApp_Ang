@@ -15,15 +15,15 @@ export class NewCourseComponent implements OnInit {
   oldCourseName!:string
   cname:string=""
   price!:number
-  category:string="Select"
-  subCategory:string="Select"
+  category!:string
+  subCategory!:string
   overview:string=""
   instructor:string=""
   duration:string=""
   syllabus:string[]=[]
-  selectedCategory:string=""
+  selectedCategory:string="Select"
   url:string=""
-  selectedSubCategory:string=""
+  selectedSubCategory:string="Select"
   newCourse:any
   oneSyllabus:string=""
   categories:string[]=["Select"]
@@ -36,26 +36,73 @@ export class NewCourseComponent implements OnInit {
  
   ngOnInit(): void {
     
+    
+    this.getCategory()
+    this.getSubCategory()
+  
+
+    // let curCour=this.rout.snapshot.paramMap.get('course')||''
+    // if(curCour===''){
+    //   return
+    // }
+    // let updateCourse=JSON.parse(curCour)
+    // if(updateCourse!==null){
+    //   this.oldCourseName=updateCourse.name
+    //   this.cname=updateCourse.name
+    //   this.price=updateCourse.price
+    //   let cate_posi=this.categories.indexOf(updateCourse.category)
+    //   let subCate_posi=this.subCategories.indexOf(updateCourse.sub_category)
+    //   console.log(this.categories.indexOf("Development"));
+    //   console.log(this.subCategories);
+      
+      
+    //   console.log(cate_posi+" "+subCate_posi+" "+updateCourse.category+" "+updateCourse.sub_category);
+      
+    //   this.url=updateCourse.img_thumbnai
+    //   this.selectedCategory=this.categories[cate_posi]
+    //   this.selectedSubCategory=this.subCategories[subCate_posi]
+    //   this.category=this.selectedCategory
+    //   this.subCategory=this.selectedSubCategory
+    //   this.syllabus=updateCourse.syllabus
+    //   this.instructor=updateCourse.instructor
+    //   this.overview=updateCourse.overview
+    //   this.duration=updateCourse.duration
+    //   this.isUpdate=true
+    // }
+
+    
+    
+  }
+
+  getCategory(){
     this.httpCourse.getAllCategory().subscribe({
       next:(response)=>{
         for(let i=0;i<response.length;i++){
-          console.log(response[i]);
+          console.log(typeof response[i]);
           
           this.categories.push(response[i])
         }
       }
   })
-  
-  this.httpCourse.getAllSubCategory().subscribe(
-    {
-      next:(response)=>{
-        for(let i=0;i<response.length;i++){
-          this.subCategories.push(response[i])
+  }
+
+  getSubCategory(){
+    this.httpCourse.getAllSubCategory().subscribe(
+      {
+        next:(response)=>{
+          for(let i=0;i<response.length;i++){
+            this.subCategories.push(response[i])
+          }
+          
+        },
+        complete:()=>{
+          this.isNew_OR_Update()
         }
       }
-    }
-  )
+    )
+  }
 
+  isNew_OR_Update(){
     let curCour=this.rout.snapshot.paramMap.get('course')||''
     if(curCour===''){
       return
@@ -67,6 +114,12 @@ export class NewCourseComponent implements OnInit {
       this.price=updateCourse.price
       let cate_posi=this.categories.indexOf(updateCourse.category)
       let subCate_posi=this.subCategories.indexOf(updateCourse.sub_category)
+      console.log(this.categories.indexOf("Development"));
+      console.log(this.subCategories);
+      
+      
+      console.log(cate_posi+" "+subCate_posi+" "+updateCourse.category+" "+updateCourse.sub_category);
+      
       this.url=updateCourse.img_thumbnai
       this.selectedCategory=this.categories[cate_posi]
       this.selectedSubCategory=this.subCategories[subCate_posi]
@@ -78,9 +131,6 @@ export class NewCourseComponent implements OnInit {
       this.duration=updateCourse.duration
       this.isUpdate=true
     }
-
-    
-    
   }
 
   onChange(cate:Event){

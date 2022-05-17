@@ -13,14 +13,14 @@ import { Course } from 'src/models/course.helper';
 export class EnrollMentComponent implements OnInit {
   enrollments:Course[]=[]
   constructor(private user:UserService,private route:Router,private course:CourseService,private auth:AuthService) { }
-
+  noEnrollments:boolean=false
   ngOnInit(): void {
     this.user.getMyEnrollments().subscribe({
       next:(response)=>{
         let arr=response
-        console.log(response);
+        console.log(arr);
         
-        for(let i=1;i<arr.length;i++){
+        for(let i=0;i<arr.length;i++){
           console.log(arr[i]);
           
           this.enrollments.push(arr[i])
@@ -51,7 +51,7 @@ export class EnrollMentComponent implements OnInit {
         }});
       }
       else{
-        alert("something went wrong please try again later")
+        this.noEnrollments=true
       }
       }
     })
@@ -60,4 +60,9 @@ export class EnrollMentComponent implements OnInit {
   goToCourseDet(show:string){
     this.route.navigate(['/courseDetails',{name:show}])
   }
+
+  goToCourse(){
+    this.route.navigate(['/courses'])
+  }
+
 }

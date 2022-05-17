@@ -91,6 +91,24 @@ export class CoursesComponent implements OnInit {
   
   }
 
+  ronChange(cate:Event){
+    const filter:string=(cate.target as HTMLInputElement).value
+    this.courses=[]
+    this.courses=this.allCourses.filter((fcourse:Course)=>{
+      return fcourse.category===filter
+    })
+    this.allSubCategory=this.courses
+  }
+
+  ronChangeSub(subCate:Event){
+    const filter:string=(subCate.target as HTMLInputElement).value
+    this.courses=[]
+    this.courses=this.allCourses.filter((fcourse:Course)=>{
+      return fcourse.sub_category===filter
+    })
+    //this.allSubCategory=this.courses
+  }
+
   searchCourse(){
     if(this.search===""){
       alert("please type something to search..!")
@@ -162,9 +180,9 @@ export class CoursesComponent implements OnInit {
     this.allSubCategory=this.courses
   }
 
-  onChangeSub(event:string){
-    //const filter:string=(event.target as HTMLInputElement).value
-    const filter=event
+  onChangeSub(event:Event){
+    const filter:string=(event.target as HTMLInputElement).value
+    //const filter=event
     if(filter==="Select"){
       return
     }

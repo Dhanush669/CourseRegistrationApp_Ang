@@ -9,7 +9,7 @@
             <div class="course-det-div">
                 <div>
                     <h3 id="course-det-name">{{course.name}}</h3>
-                    <p id="price">₹ 300.00</p>
+                    <p id="price">₹ {{course.price}}</p>
                 </div>
                 
                 <h5 id="course-det">{{course.duration}} lessons</h5>
@@ -27,6 +27,13 @@
                 <!-- <h5>{{course.duration}}</h5> -->
             </div>
         </div>
+        <div class="noenrollments" *ngIf="noEnrollments">
+            <div  class="enrollment-done"> 
+                <img id="completed-img" src="../../../../assets/noenrollments.png" alt="">
+                <h3 id="enrollment-msg">Oops no Enrollment found..!</h3>
+                <!-- <input type="submit" id="login-btn" value="Login"/> -->
+                <input id="login-btn" type="submit" value="Continue" (click)="goToCourse()"/>
+            </div>
     </div>
     
 </div>
