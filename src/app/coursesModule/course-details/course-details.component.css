@@ -337,3 +337,41 @@ hr{
   border-radius: 10px;
 }
 
+/* responsive */
+@media (max-width:1500px){
+    .main{
+        
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .details{
+        width: 70%;
+    }
+
+    .img{
+        height: 300px;
+    }
+}
+
+@media (max-width:1000px){
+    .main{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .details{
+        width: 70%;
+        height: 400px;
+    }
+
+    .img{
+        height: 200px;
+    }
+}
+

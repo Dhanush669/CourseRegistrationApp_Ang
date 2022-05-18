@@ -58,4 +58,10 @@ export class LoginComponent implements OnInit {
     })
   }
 
+  googleSignin(){
+    console.log("clk");
+    
+    this.login.googleSignin()
+  }
+
 }

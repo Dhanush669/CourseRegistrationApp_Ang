@@ -42,4 +42,28 @@ export class UserService {
       return obj.user.role
   }
 
+  findOneUser(){
+    let token=localStorage.getItem("TOKEN")||''
+    let headers = new HttpHeaders({
+      'Authorization': token });
+      let uri="findUser"
+    return this.httpService.getOneUser(uri,headers)
+  }
+
+  findHim(uid:string){
+    let token=localStorage.getItem("TOKEN")||''
+    let headers = new HttpHeaders({
+      'Authorization': token });
+      let uri="findHim/?uid="+uid
+      return this.httpService.findHim(uri,headers)
+  }
+
+  updateUser(body:Object){
+    let token=localStorage.getItem("TOKEN")||''
+    let headers = new HttpHeaders({
+      'Authorization': token });
+      let uri="update/userdetails"
+      return this.httpService.updateUser(uri,headers,body)
+  }
+
 }

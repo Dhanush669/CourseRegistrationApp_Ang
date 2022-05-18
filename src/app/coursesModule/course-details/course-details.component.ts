@@ -88,7 +88,7 @@ export class CourseDetailsComponent implements OnInit {
         for(let i=0;i<response.length;i++){
           let res_obj:any=response[i]
           let oneComment=res_obj.comment.split('-')
-          let obj={"name":oneComment[0],"comment":oneComment[1]}
+          let obj={"name":oneComment[0],"comment":oneComment[1],"uid":res_obj.uid}
           this.comments.push(obj)
         }
       },error:(error)=>{
@@ -264,6 +264,10 @@ export class CourseDetailsComponent implements OnInit {
 
   goToCourse(){
     this.router.navigate(['/courses'])
+  }
+
+  showHim(cmtObj:any){
+    this.router.navigate(['/profile',{name:cmtObj.uid}])
   }
 
 }

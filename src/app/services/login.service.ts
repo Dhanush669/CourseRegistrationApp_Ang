@@ -11,4 +11,8 @@ export class LoginService {
   userLogin(credentials:Object){
     return this.register.login('login',credentials)
   }
+
+  googleSignin(){
+    return this.register.googleSignin();
+  }
 }

@@ -9,6 +9,7 @@ import { NewCourseComponent } from './adminModule/add-course/new-course/new-cour
 import { UserComponent } from './adminModule/all-users/user/user.component';
 import { AddCategoriesComponent } from './adminModule/addCategoryModule/add-categories/add-categories.component';
 import { RoleGuardGuard } from './services/role-guard.guard';
+import { UserProfileComponent } from './profileModule/user-profile/user-profile.component';
 
 
 
@@ -42,8 +43,14 @@ const routes: Routes = [
     path:"courseDetails",
     //loadChildren: () => import('./coursesModule/courses.module').then(m => m.CoursesModule),
      component:CourseDetailsComponent,
-     //canActivate:[AuthenticationGuard]
+     canActivate:[AuthenticationGuard]
     
+  },
+
+  {
+    path:"profile",
+    component:UserProfileComponent,
+    canActivate:[AuthenticationGuard]
   },
 
   {

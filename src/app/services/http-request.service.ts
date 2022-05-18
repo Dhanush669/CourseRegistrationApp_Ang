@@ -34,9 +34,27 @@ export class HttpRequestService {
     return this.http.post(`${this.url}/${uri}`,payload,{responseType:"text"});
   }
 
+  googleSignin(){
+    console.log("daiii vaa faa");
+    
+    return this.http.get(`http://localhost:9000/user/auth/google`)
+  }
+
   // ---------- user -----------
   getMyEnrollments(uri:string,header:HttpHeaders):Observable<Course[]>{
       return this.http.get<Course[]>(`${this.url}/${uri}`,{responseType:"json",headers:header})
+  }
+
+  getOneUser(uri:string,header:HttpHeaders):Observable<User>{
+    return this.http.get<User>(`${this.url}/${uri}`,{responseType:"json",headers:header})
+  }
+
+  findHim(uri:string,header:HttpHeaders):Observable<Object>{
+    return this.http.get<Object>(`${this.url}/${uri}`,{responseType:"json",headers:header})
+  }
+
+  updateUser(uri:string,header:HttpHeaders,body:Object){
+    return this.http.patch(`${this.url}/${uri}`,body,{responseType:"text",headers:header})
   }
 
   // ------- courses -------

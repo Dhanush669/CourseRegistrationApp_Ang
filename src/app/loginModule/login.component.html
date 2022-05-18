@@ -26,9 +26,16 @@
                         <p *ngIf="vpassword.dirty && vpassword.invalid" id="error" class="efname">Password should not be empty..!</p>       
                     <input [disabled]="!loginForm.form.valid" id="submit" type="submit" value="LogIn" >
                 </form>
+
+                <p>or</p>
+
+                <a class="google btn" (click)="googleSignin()"><i>
+                </i> Login with Google
+              </a>
             <p>don't have an account? <a href="/register">register</a></p>
             <p *ngIf="exception.length>0" id="exception">{{exception}}</p>
         </div>
     </div>
 
 </div>
+

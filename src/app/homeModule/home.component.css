@@ -369,9 +369,11 @@
 }
 
 @media(max-width:1150px){
-    
+    .main{
+        width: 100%;
+    }
     .start{
-        height: 250px;
+        height: 350px;
     }
     #heading{
         font-size: 1.5rem;
@@ -456,6 +458,9 @@
 }
 
 @media (max-width:850px){
+    .main{
+        width: 100%;
+    }
     #value{
         font-size: 1rem;
         margin-top: 10px;
@@ -567,6 +572,9 @@
 }
 
 @media (max-width:700px){
+    .main{
+        width: 100%;
+    }
     #value{
         font-size: 1rem;
         margin-top: 10px;

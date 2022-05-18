@@ -28,7 +28,7 @@
         <div class="comments-div">
             <h3 id="syllabus">Comments</h3>
             <div class="comment" *ngFor="let cmt of comments">
-                <div>
+                <div (click)="showHim(cmt)">
                     <img src="../../../assets/account.png" alt="" class="account">
                     <b class="comment-name">{{cmt.name}}</b>
                 </div>
@@ -43,7 +43,7 @@
                 <textarea type="text" name="" id="new-comment" placeholder="type here.." [(ngModel)]="newcomment"></textarea>
                 <button id="comment-btn" type="submit" (click)="addComment()">Add Comment</button>
             </div>
-        </div>
+        </div> 
     </div>
     <div class="details">
         <img class="img" src="{{course.img_thumbnai}}">

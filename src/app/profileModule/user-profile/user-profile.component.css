@@ -1,0 +1,106 @@
+.main{
+    width: 80%;
+    margin: 0 auto;
+}
+
+#account{
+    width: 20%;
+    height: 300px;
+}
+
+.pre-det{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin: 0 auto;
+    background-color: rgb(255, 255, 255);
+    padding: 10px;
+    border-radius: 10px;
+    
+}
+
+.details{
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    width: 80%;
+}
+
+.enrollments h3{
+    font-size: 1.5rem;
+    color: white;
+    font-size: poppins-bold;
+}
+
+.enrollments{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    background-color: black;
+    border-radius: 10px;
+    margin-left: 0px;
+    height: 100px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+.course-det{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+#update{
+    border: 0;
+    width: 100px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: #4f3e9d;
+    color: white;
+}
+
+#cancle{
+    border: 0;
+    width: 100px;
+    margin-left: 10px;
+    height: 50px;
+    border-radius: 10px;
+    background-color: red;
+    color: white;
+}
+
+input{
+    height: 3rem;
+    width: 80%;
+    padding: 5px;
+    font-size: 16px;
+    margin-bottom: 5px;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+#det{
+    font-size: 1rem;
+}
+
+#name{
+    font-size: 1.5rem;
+}
+
+.course-det p{
+    color: white;
+    font-size: 1rem;
+    
+}
+
+#headding{
+    font-size: 2rem;
+    font-family: poppins-bold;
+    color: white;
+    margin-top: 20px;
+}
