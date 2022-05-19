@@ -6,17 +6,17 @@
         <div class="details">
             
             <h2 *ngIf="!isUpdate" id="name">{{curUser.firstName}}</h2>
-            <input *ngIf="isUpdate && isOwner" type="text" id="fname" name="fname" value=""
+            <input *ngIf="isUpdate" type="text" id="fname" name="fname" value=""
              [(ngModel)]="fname" 
             >
             <!-- <p *ngIf="efname.dirty && efname.invalid" id="error" class="efname">Name should not be empty!</p> -->
             <p id="det" *ngIf="!isUpdate">{{curUser.emailId}}</p>
-            <input type="email" *ngIf="isUpdate && isOwner" id="mailid" name="mailid" value=""
+            <input type="email" *ngIf="isUpdate" id="mailid" name="mailid" value=""
             required placeholder="email" [(ngModel)]="email" 
             >
             <!-- <p *ngIf="vemail.dirty && vemail.invalid" id="error" class="efname">Please enter a valid email id..!</p> -->
             <p id="det" *ngIf="!isUpdate">{{curUser.phno}}</p>
-            <input type="text" *ngIf="isUpdate && isOwner" id="phno" name="phno" value=""
+            <input type="text" *ngIf="isUpdate" id="phno" name="phno" value=""
              [(ngModel)]="phno" 
              
              
@@ -24,21 +24,34 @@
             >
             <!-- <p *ngIf="vphno.dirty && vphno.invalid" id="error" class="efname">Phone Number should not be empty!</p> -->
             <div class="btns">
-                <button *ngIf="isOwner" type="submit" (click)="update()" id="update">{{btn_text}}</button>
-                <button *ngIf="isOwner" type="submit" (click)="cancle()" id="cancle">Cancle</button>
+                <button  type="submit" (click)="update()" id="update">{{btn_text}}</button>
+                <button  type="submit" (click)="cancle()" id="cancle">Cancle</button>
             </div>
         </div>
         
     </div>
     <h1 id="headding">Enrollment Details</h1>
-    <div class="enrollments" *ngFor="let en of enrollments">
-        <h3>
-            {{en.name}}
-        </h3>
-        <div class="course-det">
-            <p >{{en.category}}</p>
-            <p >{{en.sub_category}}</p>
-            <p >{{en.duration}}</p>
+    
+    <div class="enrollments-div">
+        <div class="enrollments" *ngFor="let en of enrollments" (click)="goToCourseDet(en.name)">
+            <h3>
+                {{en.name}}
+            </h3>
+            <div class="course-det">
+                <p >{{en.category}} -></p>
+                <p >{{en.sub_category}}</p>
+            </div>
+            <p>{{en.instructor}}</p>
+            <div class="course-det">
+                
+                    <p >₹ {{en.price}}.00, </p>
+                    <p >{{en.duration}}</p>
+                
+                
+                
+            </div>
         </div>
     </div>
+
+    <h2 id="no-enrollments" *ngIf="enrollments.length===0">No Enrollments Fount</h2>
 </div>

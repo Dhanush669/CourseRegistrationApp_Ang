@@ -1,0 +1,37 @@
+<div class="main">
+    <h1 id="headding">Personal Details</h1>
+    <div class="pre-det">
+        
+        <img src="../../../assets/account.png" alt="" id="account">
+        <div class="details">
+            
+            <h2 id="name">{{curUser.firstName}}</h2>
+                
+            <p id="det">{{curUser.emailId}}</p>
+        
+            <p id="det" >{{curUser.phno}}</p>
+           
+        </div>
+        
+    </div>
+    <h1 id="headding">Enrollment Details</h1>
+    <div class="enrollments-div">
+        <div class="enrollments" *ngFor="let en of enrollments" (click)="goToCourseDet(en.name)">
+            <h3>
+                {{en.name}}
+            </h3>
+            <div class="course-det">
+                <p >{{en.category}} -> </p>
+                <p >{{en.sub_category}}</p>
+            </div>
+            <p>{{en.instructor}}</p>
+            <div class="course-det">
+                <p >₹ {{en.price}}.00,</p>
+                <p >{{en.duration}}</p>
+            </div>
+        </div>
+    </div>
+
+    <h2 id="no-enrollments" *ngIf="enrollments.length===0">No Enrollments Fount</h2>
+</div>
+

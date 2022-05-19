@@ -267,7 +267,7 @@ export class CourseDetailsComponent implements OnInit {
   }
 
   showHim(cmtObj:any){
-    this.router.navigate(['/profile',{name:cmtObj.uid}])
+    this.router.navigate(['/othersProfile',{name:cmtObj.uid}])
   }
 
 }

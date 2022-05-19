@@ -47,14 +47,6 @@
     padding-top: 10px;
 }
 
-
-.enrollments-div{
-    display: grid;
-    grid-template-columns: auto auto auto auto;
-    margin-top: 10px;
-    gap: 10px;
-}
-
 .course-det{
     width: 100%;
     display: flex;
@@ -62,9 +54,11 @@
     
 }
 
-.course-det div{
-    display: flex;
-    align-items: center;
+.enrollments-div{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+    margin-top: 10px;
+    gap: 10px;
 }
 
 #update{
@@ -115,4 +109,11 @@ input{
     font-family: poppins-bold;
     color: white;
     margin-top: 20px;
+}
+
+#no-enrollments{
+    width: 100%;
+    text-align: center;
+    font-size: 1.7rem;
+    color: rgb(206, 206, 206);
 }

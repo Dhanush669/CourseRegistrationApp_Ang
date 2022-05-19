@@ -10,6 +10,7 @@ import { UserComponent } from './adminModule/all-users/user/user.component';
 import { AddCategoriesComponent } from './adminModule/addCategoryModule/add-categories/add-categories.component';
 import { RoleGuardGuard } from './services/role-guard.guard';
 import { UserProfileComponent } from './profileModule/user-profile/user-profile.component';
+import { OthersProfileComponent } from './profileModule/user-profile/others-profile/others-profile.component';
 
 
 
@@ -50,6 +51,12 @@ const routes: Routes = [
   {
     path:"profile",
     component:UserProfileComponent,
+    canActivate:[AuthenticationGuard]
+  },
+
+  {
+    path:"othersProfile",
+    component:OthersProfileComponent,
     canActivate:[AuthenticationGuard]
   },
 

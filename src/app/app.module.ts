@@ -24,6 +24,7 @@ import { ToastrModule } from 'ngx-toastr';
 import {MatNativeDateModule} from '@angular/material/core';
 import { CookieService } from 'ngx-cookie-service';
 import { UserProfileComponent } from './profileModule/user-profile/user-profile.component';
+import { OthersProfileComponent } from './profileModule/user-profile/others-profile/others-profile.component';
 
 
 
@@ -37,6 +38,7 @@ import { UserProfileComponent } from './profileModule/user-profile/user-profile.
     UserComponent,
     AddCategoriesComponent,
     UserProfileComponent,
+    OthersProfileComponent,
   ],
   imports: [
     BrowserModule,

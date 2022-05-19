@@ -18,7 +18,6 @@ export class UserProfileComponent implements OnInit {
   fname:string=""
   phno:string=""
   email:string=""
-  isOwner:boolean=true
   isUpdate:boolean=false
   curUser!:User
   enrollments:any[]=[]
@@ -29,7 +28,7 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
     let user=this.rout.snapshot.paramMap.get('name')||''
     if(user===''){
-      this.isOwner=true
+      
       this.userService.findOneUser().subscribe({
         next:(response)=>{
           console.log(response+" hey my");
@@ -83,7 +82,7 @@ export class UserProfileComponent implements OnInit {
       console.log(user);
       
       let obj:string=user
-      this.isOwner=false
+      
       this.userService.findHim(obj).subscribe({
         next:(res:any)=>{
           this.curUser=res.user
@@ -100,11 +99,11 @@ export class UserProfileComponent implements OnInit {
   }
 
   update(){
-    if(this.isOwner && !this.isUpdate){
+    if(!this.isUpdate){
     this.isUpdate=true
     this.btn_text="Update"
     }
-    else if(this.isOwner && this.isUpdate){
+    else if(this.isUpdate){
       this.isUpdate=false
       let body={
         "firstName":this.fname,
@@ -152,6 +151,9 @@ export class UserProfileComponent implements OnInit {
   cancle(){
     this.isUpdate=false
     this.btn_text="Edit"
+  }
+  goToCourseDet(show:string){
+    this.route.navigate(['/courseDetails',{name:show}])
   }
 
 }
