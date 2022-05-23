@@ -11,6 +11,7 @@ import { AddCategoriesComponent } from './adminModule/addCategoryModule/add-cate
 import { RoleGuardGuard } from './services/role-guard.guard';
 import { UserProfileComponent } from './profileModule/user-profile/user-profile.component';
 import { OthersProfileComponent } from './profileModule/user-profile/others-profile/others-profile.component';
+import { ForgorPasswordComponent } from './loginModule/forgor-password/forgor-password.component';
 
 
 
@@ -18,10 +19,24 @@ import { OthersProfileComponent } from './profileModule/user-profile/others-prof
 
 
 const routes: Routes = [
+
+  {
+    path:"",
+    loadChildren: () => import('./homeModule/home.module').then(m => m.HomeModule),
+    //component: HomeComponent,
+    canActivate:[AuthenticationGuard]
+  },
+
+  
+
   {
     path:"login",
     loadChildren: () => import('./loginModule/login.module').then(m => m.LoginModule)
     // component: LoginComponent
+  },
+  {
+    path:"forgortPassword",
+    component:ForgorPasswordComponent
   },
   {
     path:"register",

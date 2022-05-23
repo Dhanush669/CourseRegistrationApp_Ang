@@ -9,9 +9,7 @@ import {NavbarModule} from './sharedModule/navbar/navbar.module'
 import {NavbarComponent} from './sharedModule/navbar/navbar.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpRequestService } from './services/http-request.service';
-import { CourseService } from './services/course.service';
-import { AuthenticationGuard } from './services/authentication.guard';
-import { HttpErrorInterceptor } from './http-error.interceptor';
+
 import { CommonModule } from '@angular/common';
 import { EnrollMentComponent } from './enrollmentsModule/enrollment/enroll-ment/enroll-ment.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -25,6 +23,8 @@ import {MatNativeDateModule} from '@angular/material/core';
 import { CookieService } from 'ngx-cookie-service';
 import { UserProfileComponent } from './profileModule/user-profile/user-profile.component';
 import { OthersProfileComponent } from './profileModule/user-profile/others-profile/others-profile.component';
+import { HttpErrorInterceptor } from './interceptors/http-error.interceptor';
+import { HTTPInterceptor } from './interceptors/http.interceptor';
 
 
 
@@ -54,6 +54,11 @@ import { OthersProfileComponent } from './profileModule/user-profile/others-prof
   providers: [HttpRequestService,CookieService,{
     provide: HTTP_INTERCEPTORS,
     useClass: HttpErrorInterceptor,
+    multi: true
+
+  },{
+    provide: HTTP_INTERCEPTORS,
+    useClass: HTTPInterceptor,
     multi: true
 
   }],

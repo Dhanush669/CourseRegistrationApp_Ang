@@ -6,10 +6,10 @@
             <!-- <h1>
                 Best place to learn new technology, with High Quality and Affordable Price.
             </h1> -->
-        </div>
+        </div> 
         <div class="login-container">
             <div>
-                <img class="logo-div" src="../../assets/logo.png" alt="alt"/>
+                <img class="logo-div" src="https://learnit.s3.ap-south-1.amazonaws.com/logo.png" alt="alt"/>
             </div>
             <h3>Sign In with your account</h3>
                 <form #loginForm="ngForm" (ngSubmit)="onSubmit()" method="post">
@@ -26,12 +26,12 @@
                         <p *ngIf="vpassword.dirty && vpassword.invalid" id="error" class="efname">Password should not be empty..!</p>       
                     <input [disabled]="!loginForm.form.valid" id="submit" type="submit" value="LogIn" >
                 </form>
-
+                <a id="forgot" (click)="forgotPassword()">forgor password?</a>
                 <p>or</p>
 
-                <a class="google btn" (click)="googleSignin()"><i>
+                <!-- <a class="google btn" (click)="googleSignin()"><i>
                 </i> Login with Google
-              </a>
+              </a> -->
             <p>don't have an account? <a href="/register">register</a></p>
             <p *ngIf="exception.length>0" id="exception">{{exception}}</p>
         </div>

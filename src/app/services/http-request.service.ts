@@ -24,7 +24,7 @@ export class HttpRequestService {
   register(uri:string,payload:Object){
     return this.http.post(`${this.url}/${uri}`,payload,{responseType:"text"});
   }
-
+ 
   findUser(uri:string){
     return this.http.get(`${this.url}/${uri}`,{responseType:"text"});
   }
@@ -37,69 +37,93 @@ export class HttpRequestService {
   googleSignin(){
     console.log("daiii vaa faa");
     
-    return this.http.get(`http://localhost:9000/user/auth/google`)
+    return this.http.get(`http://localhost:9000/user/auth/google`,{responseType:"text"})
   }
 
   // ---------- user -----------
-  getMyEnrollments(uri:string,header:HttpHeaders):Observable<Course[]>{
-      return this.http.get<Course[]>(`${this.url}/${uri}`,{responseType:"json",headers:header})
+  getMyEnrollments(uri:string):Observable<Course[]>{
+      return this.http.get<Course[]>(`${this.url}/${uri}`,{responseType:"json"})
   }
 
-  getOneUser(uri:string,header:HttpHeaders):Observable<User>{
-    return this.http.get<User>(`${this.url}/${uri}`,{responseType:"json",headers:header})
+  getOneUser(uri:string):Observable<User>{
+    return this.http.get<User>(`${this.url}/${uri}`,{responseType:"json"})
   }
 
-  findHim(uri:string,header:HttpHeaders):Observable<Object>{
-    return this.http.get<Object>(`${this.url}/${uri}`,{responseType:"json",headers:header})
+  findHim(uri:string):Observable<Object>{
+    return this.http.get<Object>(`${this.url}/${uri}`,{responseType:"json"})
   }
 
-  updateUser(uri:string,header:HttpHeaders,body:Object){
-    return this.http.patch(`${this.url}/${uri}`,body,{responseType:"text",headers:header})
+  updateUser(uri:string,body:Object){
+    return this.http.patch(`${this.url}/${uri}`,body,{responseType:"text"})
+  }
+
+  sendOTP(uri:string){
+    return this.http.get(`${this.url}/${uri}`,{responseType:"text"})
+  }
+
+  verifyOtp(uri:string){
+    return this.http.get(`${this.url}/${uri}`,{responseType:"text"})
+  }
+
+  getDetails(uri:string){
+    return this.http.get<User>(`${this.url}/${uri}`,{responseType:"json"})
+  }
+
+  resetPassowrd(uri:string,body:Object){
+    return this.http.patch(`${this.url}/${uri}`,body,{responseType:"text"})
   }
 
   // ------- courses -------
-  enrollCourse(uri:string,header:HttpHeaders,payload:Object):Observable<string>{
-    return this.http.patch(`${this.url}/${uri}`,payload,{responseType:"text",headers:header});
+  enrollCourse(uri:string,payload:Object):Observable<string>{
+    return this.http.patch(`${this.url}/${uri}`,payload,{responseType:"text"});
   }
 
-  increaseEnrollmentCount(uri:string,header:HttpHeaders,payload:Object){
-    return this.http.patch(`${this.courseurl}//${uri}`,payload,{responseType:"text",headers:header});
+  increaseEnrollmentCount(uri:string,payload:Object){
+    return this.http.patch(`${this.courseurl}//${uri}`,payload,{responseType:"text"});
     //return this.http.patch("http://localhost:9000/course/update/enrollment",payload,{responseType:"text",headers:header})
   }
 
-  getAllCourses(uri:string,header:HttpHeaders):Observable<Course>{
-     return this.http.get<Course>(`${this.courseurl}/${uri}`,{responseType:"json",headers:header},)
+  getAllCourses(uri:string):Observable<Course>{
+     return this.http.get<Course>(`${this.courseurl}/${uri}`,{responseType:"json"},)
     //.pipe(
     //   catchError(this.handleError)
     // );
   }
 
-  getSelectedCourse(uri:string,header:HttpHeaders):Observable<Course>{
-    return this.http.get<Course>(`${this.courseurl}/${uri}`,{responseType:"json",headers:header});
+  getSelectedCourse(uri:string):Observable<Course>{
+    return this.http.get<Course>(`${this.courseurl}/${uri}`,{responseType:"json"});
   }
 
-  searchCourses(uri:string,header:HttpHeaders):Observable<Course>{
-    return this.http.get<Course>(`${this.courseurl}/${uri}`,{responseType:"json",headers:header});
+  searchCourses(uri:string):Observable<Course>{
+    return this.http.get<Course>(`${this.courseurl}/${uri}`,{responseType:"json"});
   }
 
-  filterCourse(uri:string,header:HttpHeaders):Observable<Course>{
-    return this.http.get<Course>(`${this.courseurl}/${uri}`,{responseType:"json",headers:header});
+  filterCourse(uri:string):Observable<Course>{
+    return this.http.get<Course>(`${this.courseurl}/${uri}`,{responseType:"json"});
   }
 
-  filterCourseSub(uri:string,header:HttpHeaders):Observable<Course>{
-    return this.http.get<Course>(`${this.courseurl}/${uri}`,{responseType:"json",headers:header});
+  filterCourseSub(uri:string):Observable<Course>{
+    return this.http.get<Course>(`${this.courseurl}/${uri}`,{responseType:"json"});
   }
 
-  addComment(uri:string,header:HttpHeaders,payload:Object):Observable<string>{
-    return this.http.patch(`${this.courseurl}/${uri}`,payload,{responseType:"text",headers:header});
+  addComment(uri:string,payload:Object):Observable<string>{
+    return this.http.patch(`${this.courseurl}/${uri}`,payload,{responseType:"text"});
   }
 
-  getSyllabus(uri:string,header:HttpHeaders):Observable<string[]>{
-    return this.http.get<string[]>(`${this.courseurl}/${uri}`,{responseType:"json",headers:header})
+  getSyllabus(uri:string):Observable<string[]>{
+    return this.http.get<string[]>(`${this.courseurl}/${uri}`,{responseType:"json"})
   }
 
-  getComments(uri:string,header:HttpHeaders):Observable<string[]>{
-    return this.http.get<string[]>(`${this.courseurl}/${uri}`,{responseType:"json",headers:header})
+  getComments(uri:string):Observable<string[]>{
+    return this.http.get<string[]>(`${this.courseurl}/${uri}`,{responseType:"json"})
+  }
+
+  paymentOerder(uri:string,body:Object):Observable<Object>{
+    return this.http.post<Object>(`${this.url}/${uri}`,body,{responseType:"json"})
+  }
+
+  verifyPayment(uri:string,body:Object){
+      return this.http.post(`${this.url}/${uri}`,body,{responseType:"text"})
   }
 
   //----------- auth ------------
@@ -126,40 +150,40 @@ export class HttpRequestService {
   }
 
   //------------- admin---------
-  deleteCourse(uri:string,header:HttpHeaders):Observable<string>{
-    return this.http.delete(`${this.courseurl}/${uri}`,{responseType:"text",headers:header})
+  deleteCourse(uri:string):Observable<string>{
+    return this.http.delete(`${this.courseurl}/${uri}`,{responseType:"text"})
   }
 
-  addCourse(uri:string,header:HttpHeaders,body:Object):Observable<string>{
-    return this.http.post(`${this.courseurl}/${uri}`,body,{responseType:"text",headers:header})
+  addCourse(uri:string,body:Object):Observable<string>{
+    return this.http.post(`${this.courseurl}/${uri}`,body,{responseType:"text"})
   }
 
-  updateCourse(uri:string,header:HttpHeaders,body:Object):Observable<string>{
-    return this.http.patch(`${this.courseurl}/${uri}`,body,{responseType:"text",headers:header})
+  updateCourse(uri:string,body:Object):Observable<string>{
+    return this.http.patch(`${this.courseurl}/${uri}`,body,{responseType:"text"})
   }
 
-  showAllUsers(uri:string,header:HttpHeaders):Observable<User[]>{
-    return this.http.get<User[]>(`${this.url}/${uri}`,{responseType:"json",headers:header})
+  showAllUsers(uri:string):Observable<User[]>{
+    return this.http.get<User[]>(`${this.url}/${uri}`,{responseType:"json"})
   }
 
-  makeAdmin(uri:string,header:HttpHeaders,body:Object){
-    return this.http.patch(`${this.url}/${uri}`,body,{responseType:"text",headers:header})
+  makeAdmin(uri:string,body:Object){
+    return this.http.patch(`${this.url}/${uri}`,body,{responseType:"text"})
   }
 
-  addCategory(uri:string,header:HttpHeaders,body:Object){
-    return this.http.patch(`${this.courseurl}/${uri}`,body,{responseType:"text",headers:header})
+  addCategory(uri:string,body:Object){
+    return this.http.patch(`${this.courseurl}/${uri}`,body,{responseType:"text"})
   }
 
-  addSubCategory(uri:string,header:HttpHeaders,body:Object){
-    return this.http.patch(`${this.courseurl}/${uri}`,body,{responseType:"text",headers:header})
+  addSubCategory(uri:string,body:Object){
+    return this.http.patch(`${this.courseurl}/${uri}`,body,{responseType:"text"})
   }
 
-  getAllCategory(uri:string,header:HttpHeaders):Observable<string[]>{
-    return this.http.get<string[]>(`${this.courseurl}/${uri}`,{responseType:"json",headers:header})
+  getAllCategory(uri:string):Observable<string[]>{
+    return this.http.get<string[]>(`${this.courseurl}/${uri}`,{responseType:"json"})
   }
 
-  getAllSubCategory(uri:string,header:HttpHeaders):Observable<string[]>{
-    return this.http.get<string[]>(`${this.courseurl}/${uri}`,{responseType:"json",headers:header})
+  getAllSubCategory(uri:string):Observable<string[]>{
+    return this.http.get<string[]>(`${this.courseurl}/${uri}`,{responseType:"json"})
   }
  
 

@@ -1,4 +1,4 @@
-<div class="main">
+<div class="main" *ngIf="isLoaded">
     <h1 id="headding">Add Categories</h1>
     <div class="body">
         <label for="category">Category</label>
@@ -25,3 +25,5 @@
     </div>
     
 </div>
+
+<div class="loader" *ngIf="!isLoaded"></div>

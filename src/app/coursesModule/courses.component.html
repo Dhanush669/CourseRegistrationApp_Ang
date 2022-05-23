@@ -1,5 +1,5 @@
-<div  class="courses-container">
-
+<div  class="courses-container" *ngIf="isLoaded">
+    
     <div class="navbar">
         <div class="search">
             <input type="text" name="course" id="course" placeholder="search" [(ngModel)]="search">
@@ -51,7 +51,7 @@
                 </div>    
                 <!-- <div *ngFor="let subcat of subCategories">
                     <input type="radio" id="radio-btn" name="fav_language" value="subcat" (click)="onChangeSub(subcat)">
-                    <label for="radio-btn">{{subcat}}</label><br>
+                    <label for="radio-btn">{{subcat}}</label><br> 
                 </div>  -->
             
         </div>
@@ -73,12 +73,7 @@
             </div>
         </div>
     </div>
-
-    
-
-   
-
-    
-
-    
+ 
 </div>
+
+<div class="loader" *ngIf="!isLoaded"></div>

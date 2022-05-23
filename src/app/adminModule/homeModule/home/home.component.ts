@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   allSubCategory:Course[]=[]
   categories:string[]=["Select","All"]
   subCategories:string[]=["Select","All"]
-  
+  topCourses:Course[]=[]
   constructor(private httpCourse:CourseService,private route:Router, private auth:AuthService,private toast:TostNotificationService) { }
   searchTxt:string=""
 
@@ -30,13 +30,17 @@ export class HomeComponent implements OnInit {
         this.courses.push(response[i])
       }
       this.allCourses=this.courses
-      //this.toast.showSuccess("Welcome")
+      this.topCourses =  this.allCourses.sort((course1, course2) => (course1.no_of_enrollments > course2.no_of_enrollments ? -1 : 1));
+      this.topCourses=this.topCourses.slice(0,3)
+      console.log(this.topCourses);
+      
+    
       
     },
     error:(error)=>{
       console.log(error);
       
-      //console.log(error.error.text);
+    
       this.httpCourse.getToken().subscribe({next:(res:any)=>{
         localStorage.removeItem("TOKEN")
         localStorage.removeItem("Login_Status")

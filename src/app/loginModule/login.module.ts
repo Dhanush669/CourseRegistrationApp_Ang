@@ -6,12 +6,15 @@ import { HttpClientModule } from '@angular/common/http';
 import { LoginService } from '../services/login.service';
 import { HttpRequestService } from '../services/http-request.service';
 import { LoginRoutingModule } from './login-routing.module';
+import { ForgorPasswordComponent } from './forgor-password/forgor-password.component';
+import { UserService } from '../services/user.service';
 
 
 
 @NgModule({
   declarations: [
-    LoginComponent
+    LoginComponent,
+    ForgorPasswordComponent
   ],
   imports: [
     CommonModule,
@@ -19,6 +22,6 @@ import { LoginRoutingModule } from './login-routing.module';
     HttpClientModule,
     LoginRoutingModule
   ],
-  providers:[LoginService,HttpRequestService]
+  providers:[LoginService,HttpRequestService,UserService]
 })
 export class LoginModule { }

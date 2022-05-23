@@ -29,6 +29,8 @@ export class NewCourseComponent implements OnInit {
   categories:string[]=["Select"]
   subCategories:string[]=["Select"]
   isUpdate:boolean=false
+  isLoaded:boolean=false
+  
 
   constructor(private courseHttp:AdminService,private httpCourse:CourseService,private route:Router,private auth:AuthService,private rout:ActivatedRoute,private toast:TostNotificationService) {
     
@@ -74,6 +76,8 @@ export class NewCourseComponent implements OnInit {
     
   }
 
+ 
+
   getCategory(){
     this.httpCourse.getAllCategory().subscribe({
       next:(response)=>{
@@ -97,6 +101,7 @@ export class NewCourseComponent implements OnInit {
         },
         complete:()=>{
           this.isNew_OR_Update()
+          this.isLoaded=true
         }
       }
     )
@@ -148,9 +153,9 @@ export class NewCourseComponent implements OnInit {
     this.oneSyllabus=""
   }
 
-  removeSyllabus(){
+  removeSyllabus(cursyll:string){
     this.syllabus=this.syllabus.filter((oneSyll:string)=>{
-      return oneSyll!==this.oneSyllabus
+      return oneSyll!==cursyll
     })
   }
 
@@ -163,6 +168,8 @@ export class NewCourseComponent implements OnInit {
       alert("please select category")
       return
     }
+
+    
 
     if(this.isUpdate){
       const newCourse={"name":this.cname,"category":this.category,"sub_category":this.subCategory,"duration":this.duration,"img_thumbnai":this.url,"syllabus":this.syllabus,"instructor":this.instructor,
@@ -199,6 +206,9 @@ export class NewCourseComponent implements OnInit {
         else{
           alert("something went wrong please try again later")
         }
+        },
+        complete:()=>{
+          this.isLoaded=true
         }
 
       })
@@ -236,7 +246,10 @@ export class NewCourseComponent implements OnInit {
           //window.location.reload()
         }});
         
-      }
+      },
+        complete:()=>{
+          this.isLoaded=true
+        }
     })
     
     

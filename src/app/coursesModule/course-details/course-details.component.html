@@ -1,3 +1,6 @@
+<div *ngIf="isLoaded">
+
+
 <div class="main" *ngIf="!isEnrolled">
     <div class="content scroll-style">
         <h2 id="course-name">{{course.name}}</h2>
@@ -5,7 +8,7 @@
         <h3 id="syllabus">Syllabus</h3>
         <div class="syllabus-list" *ngFor="let syl of syllabus;let ind=index;">
             <p id="syl-ind">{{ind+1}}</p>
-            <p id="syl">{{syl}}</p>
+            <p id="syl">{{syl}}</p> 
         </div>
         
 
@@ -14,7 +17,7 @@
         <div class="instructor-det">
             <h3 id="syllabus">Instructor</h3>
             <div class="instructor-div">
-                <img class="instructor-img" src="../../../assets/instructor.jpg"/>
+                <img class="instructor-img" src="https://learnit.s3.ap-south-1.amazonaws.com/instructor.jpg"/>
                 <p id="instructor">{{course.instructor}}</p>
             </div>
            
@@ -29,7 +32,7 @@
             <h3 id="syllabus">Comments</h3>
             <div class="comment" *ngFor="let cmt of comments">
                 <div (click)="showHim(cmt)">
-                    <img src="../../../assets/account.png" alt="" class="account">
+                    <img src="https://learnit.s3.ap-south-1.amazonaws.com/account.png" alt="" class="account">
                     <b class="comment-name">{{cmt.name}}</b>
                 </div>
                 
@@ -68,12 +71,25 @@
 
 </div>
 
+
+
 <div class="enrolled" *ngIf="isEnrolled">
     <div  class="enrollment-done"> 
-        <img id="completed-img" src="../../../assets/enrollmentdone.png" alt="">
+        <img id="completed-img" src="https://learnit.s3.ap-south-1.amazonaws.com/enrollmentdone.png" alt="">
         <h3 id="enrollment-msg">Enrollment Successful</h3>
         <!-- <input type="submit" id="login-btn" value="Login"/> -->
         <input id="login-btn" type="submit" value="Continue" (click)="goToCourse()"/>
     </div>
     
+</div>
+
+</div> 
+
+
+
+<div class="payment-loading" *ngIf="!isLoaded">
+    <b>your Payment is under progress..</b>
+    <div class="loader">
+
+    </div>
 </div>

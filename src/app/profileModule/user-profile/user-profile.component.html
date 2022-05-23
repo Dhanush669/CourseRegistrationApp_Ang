@@ -2,7 +2,7 @@
     <h1 id="headding">Personal Details</h1>
     <div class="pre-det">
         
-        <img src="../../../assets/account.png" alt="" id="account">
+        <img src="https://learnit.s3.ap-south-1.amazonaws.com/account.png" alt="" id="account">
         <div class="details">
             
             <h2 *ngIf="!isUpdate" id="name">{{curUser.firstName}}</h2>
@@ -17,7 +17,7 @@
             <!-- <p *ngIf="vemail.dirty && vemail.invalid" id="error" class="efname">Please enter a valid email id..!</p> -->
             <p id="det" *ngIf="!isUpdate">{{curUser.phno}}</p>
             <input type="text" *ngIf="isUpdate" id="phno" name="phno" value=""
-             [(ngModel)]="phno" 
+             [(ngModel)]="phno"  
              
              
 
@@ -53,5 +53,32 @@
         </div>
     </div>
 
-    <h2 id="no-enrollments" *ngIf="enrollments.length===0">No Enrollments Fount</h2>
+    <!-- <div class="enrollments-div">
+        <div class="enrollments" *ngFor="let en of enrollments" (click)="goToCourseDet(en.name)">
+            <div>
+                <h3>
+                    {{en.name}}
+                </h3>
+                
+                    <p >{{en.category}}</p>
+                    <p >{{en.sub_category}}</p>
+            </div>
+            
+            <div class="course-bottom">
+                <p>{{en.duration}} Course</p>
+                
+                <div class="course-det">
+                    <p>By {{en.instructor}}</p>
+                        <p >₹ {{en.price}}.00</p>
+                    
+                    
+                    
+                </div>
+            </div>
+            
+            
+        </div>
+    </div> -->
+
+    <h2 id="no-enrollments" *ngIf="enrollments.length===0">No Enrollments Found</h2>
 </div>

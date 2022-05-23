@@ -16,6 +16,7 @@ export class AddCategoriesComponent implements OnInit {
   category:string=""
   subcategory:string=""
   categoryList:string[]=[]
+  isLoaded:boolean=false
   subCategoryList:string[]=[]
   constructor(private adminHttp:AdminService,private httpCourse:CourseService,private route:Router,private auth:AuthService,private toast:TostNotificationService) { }
 
@@ -52,6 +53,8 @@ export class AddCategoriesComponent implements OnInit {
       else{
         alert("something went wrong please try again later")
       }
+    },complete:()=>{
+      this.isLoaded=true
     }
     })
 
@@ -137,6 +140,8 @@ export class AddCategoriesComponent implements OnInit {
       else{
         this.toast.showError("something went wrong please try again later")
       }
+    },complete:()=>{
+      this.isLoaded=true
     }
 
     })
@@ -177,6 +182,8 @@ export class AddCategoriesComponent implements OnInit {
         else{
           this.toast.showError("something went wrong please try again later")
         }
+      },complete:()=>{
+        this.isLoaded=true
       }
       })
     }

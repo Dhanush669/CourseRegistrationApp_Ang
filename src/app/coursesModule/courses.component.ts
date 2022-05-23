@@ -22,6 +22,7 @@ export class CoursesComponent implements OnInit {
   categories:string[]=["All"]
   subCategories:string[]=["Select","All"]
   filter:string=""
+  isLoaded:boolean=false
   
   constructor(private course:CourseService,private route:Router,private auth:AuthService,private toast:TostNotificationService) { }
   search:string=""
@@ -66,6 +67,9 @@ export class CoursesComponent implements OnInit {
     else{
       this.toast.showError("something went wrong please try again later")
     }
+    },
+    complete:()=>{
+      this.isLoaded=true
     }
   })
 

@@ -3,6 +3,7 @@ import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTr
 import { Observable } from 'rxjs';
 import { AuthService } from './auth.service';
 import { CourseService } from './course.service';
+import { TostNotificationService } from './tost-notification.service';
 import { UserService } from './user.service';
 
 @Injectable({
@@ -10,7 +11,7 @@ import { UserService } from './user.service';
 })
 export class AuthenticationGuard implements CanActivate {
 
-  constructor(private userAuth:UserService,private route:Router,private course:CourseService,private auth:AuthService){
+  constructor(private userAuth:UserService,private route:Router,private course:CourseService,private auth:AuthService,private toast:TostNotificationService){
 
   }
 
@@ -51,6 +52,7 @@ export class AuthenticationGuard implements CanActivate {
       this.auth.Logout()
       localStorage.clear()
       this.route.navigate(['/login'])
+      this.toast.showError("please login")
     return false;
   }
   

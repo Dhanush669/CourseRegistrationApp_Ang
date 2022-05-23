@@ -28,14 +28,14 @@ export class CourseService {
     this.setHeader()
     console.log(this.token);
     
-    return this.courses.getAllCourses("getAllCourses",this.headers)
+    return this.courses.getAllCourses("getAllCourses")
   }
 
   getSyllabus(name:string){
     this.setHeader()
 
       let uri="getSyllabus/?name="+name
-      return this.courses.getSyllabus(uri,this.headers)
+      return this.courses.getSyllabus(uri)
   }
 
   enrollCourse(body:Object){
@@ -43,29 +43,29 @@ export class CourseService {
   //     "emailId":user
   //   }
   this.setHeader()
-    return this.courses.enrollCourse("update/enrollmentdetails",this.headers,body)
+    return this.courses.enrollCourse("update/enrollmentdetails",body)
   }
 
   increaseEnrollmentCount(payload:Object){
     this.setHeader()
    
-    return this.courses.increaseEnrollmentCount("update/enrollment",this.headers,payload)
+    return this.courses.increaseEnrollmentCount("update/enrollment",payload)
   }
 
   searchCourse(course:string){
     this.setHeader()
-    return this.courses.searchCourses("getByName/?name="+course,this.headers);
+    return this.courses.searchCourses("getByName/?name="+course);
 
   }
 
   filterCourse(filter:string){
     this.setHeader()
-    return this.courses.filterCourse("filterByCategory/?category="+filter,this.headers);
+    return this.courses.filterCourse("filterByCategory/?category="+filter);
   }
 
   filterCourseSub(filter:string){
     this.setHeader()
-    return this.courses.filterCourseSub("filterBySubCategory/?sub_category="+filter,this.headers);
+    return this.courses.filterCourseSub("filterBySubCategory/?sub_category="+filter);
   }
 
   // setUpCourse(selected:Course){
@@ -75,7 +75,7 @@ export class CourseService {
   getSelectedCourse(courseName:string){
     this.setHeader()
     let uri= "getSelectedCourse/?name="+courseName
-    return this.courses.getSelectedCourse(uri,this.headers)
+    return this.courses.getSelectedCourse(uri)
   }
 
   getToken(){
@@ -89,25 +89,35 @@ export class CourseService {
   addComments(payload:Object){
     this.setHeader()
     let uri= "addComment"
-    return this.courses.addComment(uri,this.headers,payload)
+    return this.courses.addComment(uri,payload)
   }
 
   getComments(courseName:string){
     this.setHeader()
     let uri="getComments/?name="+courseName
-    return this.courses.getComments(uri,this.headers)
+    return this.courses.getComments(uri)
   }
 
   getAllCategory(){
     this.setHeader()
     let uri="allCategory"
-    return this.courses.getAllCategory(uri,this.headers)
+    return this.courses.getAllCategory(uri)
   }
 
   getAllSubCategory(){
     this.setHeader()
     let uri="allSubCategory"
-    return this.courses.getAllCategory(uri,this.headers)
+    return this.courses.getAllCategory(uri)
+  }
+
+  getPaymentOrder(body:Object){
+    const uri="orders"
+    return this.courses.paymentOerder(uri,body)
+  }
+
+  verifyPayment(body:Object){
+    const uri="verigyPayment"
+    return this.courses.verifyPayment(uri,body)
   }
 
 

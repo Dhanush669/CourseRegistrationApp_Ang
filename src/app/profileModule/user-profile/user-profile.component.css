@@ -4,7 +4,7 @@
 }
 
 #account{
-    width: 20%;
+    width: 300px;
     height: 300px;
 }
 
@@ -56,10 +56,10 @@
 }
 
 .course-det{
-    width: 100%;
+    
     display: flex;
     align-items: center;
-    
+    justify-content: space-between;
 }
 
 .course-det div{
@@ -104,9 +104,13 @@ input{
     font-size: 1.5rem;
 }
 
+/* .course-bottom{
+    width: 100%;
+} */
+
 .enrollments p{
     color: white;
-    font-size: 1rem;
+    font-size: 0.9rem;
     margin-right: 5px;
 }
 
@@ -115,4 +119,99 @@ input{
     font-family: poppins-bold;
     color: white;
     margin-top: 20px;
+}
+
+#no-enrollments{
+    width: 100%;
+    text-align: center;
+    font-size: 1.7rem;
+    color: rgb(206, 206, 206);
+    margin-top: 20px;
+}
+
+/* responsive */
+
+@media(max-width:1550px){
+    .enrollments-div{
+        display: grid;
+        grid-template-columns: auto auto;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media(max-width:960px){
+    .enrollments-div{
+        display: grid;
+        grid-template-columns: auto auto;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .enrollments{
+        width: 300px;
+    }
+    .course-det{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+}
+
+@media(max-width:700px){
+    .pre-det{
+        display: flex;
+        flex-direction: column;
+    }
+
+    #account{
+        width: 200px;
+        height: 200px;
+    }
+
+    .enrollments-div{
+        display: grid;
+        grid-template-columns: auto;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .enrollments{
+        width: 300px;
+    }
+
+    .course-det{
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    
+}
+
+@media(max-width:355px){
+    .btns{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #cancle{
+        margin-left: 0px;
+        margin-top: 10px;
+    }
+
+    .enrollments{
+        width: 250px;
+    }
+
+    .course-det{
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
 }

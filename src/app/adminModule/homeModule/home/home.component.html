@@ -1,7 +1,22 @@
 <div class="main">
     <h1 id="heading">Top Courses</h1>
     <div class="topCourse">
-        
+        <div class="enrollments" *ngFor="let en of topCourses" (click)="overView(en.name)">
+            <h3>
+                {{en.name}}
+            </h3>
+            <div class="course-det">
+                <p >{{en.category}} -></p>
+                <p >{{en.sub_category}}</p>
+                
+            </div>
+
+            <div class="course-det">
+                    <p >₹ {{en.price}}.00, </p>
+                    <p >{{en.duration}}</p>
+            </div>
+            <p>{{en.no_of_enrollments}} - enrollments</p>
+        </div>
     </div>
     
     <h1 id="heading">All Courses</h1>

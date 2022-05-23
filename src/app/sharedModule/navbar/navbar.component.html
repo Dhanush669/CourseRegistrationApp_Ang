@@ -2,10 +2,10 @@
 <!-- not logged in -->
 <div class="topnav" *ngIf="auth.isLoggedIn==='no'">
     <div class="brand" layout="row" layout-align="center center">
-        <img id="logo" src="../../../assets/nav_logo.png"/>
+        <img id="logo" src="https://learnit.s3.ap-south-1.amazonaws.com/nav_logo.png"/>
         <b>LIT</b>
     </div>
-    <div class="right">
+    <div class="right-login">
         <a routerLink="login"  routerLinkActive="active">
             LogIn
         </a>
@@ -17,22 +17,45 @@
 </div>
 
 <!-- logged in user -->
-<div class="topnav" *ngIf="auth.isLoggedIn==='user'">
-    <div class="brand" (click)="goToHome()">
-        <img id="logo" src="../../../assets/nav_logo.png"/>
-        <b>LIT</b>
+<div>
+    <div class="topnav" *ngIf="auth.isLoggedIn==='user'">
+        <div class="brand" (click)="goToHome()">
+            <img id="logo" src="https://learnit.s3.ap-south-1.amazonaws.com/nav_logo.png"/>
+            <b>LIT</b>
+        </div>
+
+        <div class="right">
+
+            <a routerLink="home"  routerLinkActive="active">
+                Home
+            </a>
+            <a routerLink="courses"  routerLinkActive="active">
+                Courses
+            </a>
+
+            <a routerLink="profile"  routerLinkActive="active">
+                Profile
+            </a>
+
+            <!-- <a routerLink="myEnrollments"  routerLinkActive="active">
+                My Enrollments
+            </a> -->
+            <button (click)="logout()">
+                Logout
+            </button>
+        </div>
+        <img src="../../../assets/list.png" alt="" id="menu" (click)="showMenu()">
     </div>
 
-    <div class="right">
-
-        <a routerLink="home"  routerLinkActive="active">
+    <div class="res-nav dis" *ngIf="auth.isLoggedIn==='user' && isSmaller">
+        <a routerLink="home"  routerLinkActive="active" (click)="hide()">
             Home
         </a>
-        <a routerLink="courses"  routerLinkActive="active">
+        <a routerLink="courses"  routerLinkActive="active" (click)="hide()">
             Courses
         </a>
 
-        <a routerLink="profile"  routerLinkActive="active">
+        <a routerLink="profile"  routerLinkActive="active" (click)="hide()">
             Profile
         </a>
 
@@ -42,41 +65,67 @@
         <button (click)="logout()">
             Logout
         </button>
-
-        
     </div>
+
 </div>
 
 <!-- Admin -->
-<div class="topnav" *ngIf="auth.isLoggedIn==='admin'">
-    <div class="brand" (click)="goToHomeAdmin()">
-        <img id="logo" src="../../../assets/nav_logo.png"/>
-        <b>LIT</b>
+<div>
+    <div class="topnav" *ngIf="auth.isLoggedIn==='admin'">
+        <div class="brand" (click)="goToHomeAdmin()">
+            <img id="logo" src="https://learnit.s3.ap-south-1.amazonaws.com/nav_logo.png"/>
+            <b>LIT</b>
+        </div>
+
+        <div class="right">
+            <a routerLink="adminHome"  routerLinkActive="active">
+                Home
+            </a>
+
+            <a routerLink="addCourse"  routerLinkActive="active">
+                Add Course
+            </a>
+
+            <a routerLink="allUsers"  routerLinkActive="active">
+                Users
+            </a>
+
+            <a routerLink="addCategory"  routerLinkActive="active">
+                Add Category
+            </a>
+
+            <button (click)="logout()">
+                Logout
+            </button>
+
+            
+            
+        </div>
+        <img src="../../../assets/list.png" alt="" id="menu" (click)="showMenu()">
     </div>
 
-    <div class="right">
-        <a routerLink="adminHome"  routerLinkActive="active">
+    <div class="res-nav dis" *ngIf="auth.isLoggedIn==='admin' && isSmaller">
+        <a routerLink="adminHome"  routerLinkActive="active"  (click)="hide()">
             Home
         </a>
 
-        <a routerLink="addCourse"  routerLinkActive="active">
+        <a routerLink="addCourse"  routerLinkActive="active" (click)="hide()">
             Add Course
         </a>
 
-        <a routerLink="allUsers"  routerLinkActive="active">
+        <a routerLink="allUsers"  routerLinkActive="active" (click)="hide()">
             Users
         </a>
 
-        <a routerLink="addCategory"  routerLinkActive="active">
+        <a routerLink="addCategory"  routerLinkActive="active" (click)="hide()">
             Add Category
         </a>
 
         <button (click)="logout()">
             Logout
         </button>
-
-        
     </div>
+
 </div>
 
 <router-outlet></router-outlet>

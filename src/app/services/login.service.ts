@@ -13,6 +13,7 @@ export class LoginService {
   }
 
   googleSignin(){
-    return this.register.googleSignin();
+    return this.register.googleSignin(); 
   }
+  
 }

@@ -231,6 +231,23 @@ label{
     margin-left: 10px;
 }
 
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid red;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    margin-top: 200px;
+    animation: spin 2s linear infinite;
+  }
+
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
 /* responsive */
 
 @media(max-width:1900px){
@@ -386,5 +403,15 @@ label{
         height: 200px;
     }
 
+}
+
+@media(max-width:450px){
+    .course-div{
+        width: 300px;
+    }
+
+    .course-img{
+        height: 150px;
+    }
 }
 

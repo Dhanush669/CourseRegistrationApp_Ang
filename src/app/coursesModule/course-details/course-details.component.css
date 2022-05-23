@@ -4,6 +4,7 @@
     display: flex;
     flex-direction: row;
     margin-top: 60px;
+    position: relative;
 }
 
 .content{
@@ -287,12 +288,41 @@ hr{
     margin-top: 10px;
 }
 
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid red;
+    width: 120px;
+    height: 120px;
+    margin: 0 auto;
+    margin-top: 200px;
+    animation: spin 2s linear infinite;
+    /* width: 100%;
+    height: 100vh;
+    background-color: white; */
+  }
+
 .add-comments{
     margin: 10px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.payment-loading{
+    width: 100%;
+    height: 100vh;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.payment-loading b{
+    font-size: 2rem;
+    font-weight: bold;
 }
 
 .enrolled{
@@ -372,6 +402,29 @@ hr{
 
     .img{
         height: 200px;
+    }
+}
+
+@media (max-width:430px){
+    .main{
+        display: flex;
+        flex-direction: column-reverse;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    .details{
+        width: 70%;
+        height: 400px;
+    }
+
+    .img{
+        height: 200px;
+    }
+
+    .more-det{
+        margin-left: 5px;
     }
 }
 

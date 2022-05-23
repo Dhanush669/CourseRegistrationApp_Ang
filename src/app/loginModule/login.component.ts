@@ -61,7 +61,21 @@ export class LoginComponent implements OnInit {
   googleSignin(){
     console.log("clk");
     
-    this.login.googleSignin()
+    this.login.googleSignin();
+  }
+  forgotPassword(){
+    console.log(this.email);
+    
+    if(this.email===""){
+      this.toast.showError("please enter your email id")
+      return 
+    }
+    else{
+      console.log(this.email);
+      
+    this.router.navigate(['/forgortPassword',{email:this.email}])
+    }
+    
   }
 
 }

@@ -12,6 +12,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 })
 export class NavbarComponent implements OnInit {
 
+  isSmaller:boolean=false
   //isLoggedIn!:string
   constructor(public auth:AuthService,private router:Router,private toast:TostNotificationService) { 
    // this.isLoggedIn=this.auth.isLoggedIn;
@@ -35,7 +36,19 @@ export class NavbarComponent implements OnInit {
     localStorage.clear()
     this.toast.showSuccess("Logging out")
     this.router.navigate(['/login'])
+  }
 
+  showMenu(){
+    if(this.isSmaller){
+    this.isSmaller=false
+    }
+    else{
+      this.isSmaller=true
+    }
+  }
+
+  hide(){
+    this.isSmaller=false
   }
 
 

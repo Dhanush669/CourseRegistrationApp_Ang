@@ -1,6 +1,6 @@
-<div class="main">
+<div class="main" *ngIf="isLoaded">
     <h1 id="headding">Add New Course</h1>
-    <div class="body">
+    <div class="body"> 
         <form #newCourseForm="ngForm" method="post">
             <div class="input-div">
                 <label for="url">Image URL</label>
@@ -76,7 +76,7 @@
             <label for="syllabus">Add Syllabus</label>
             <div class="add-syll">
                 <div class="syll-name">
-                    <input type="text" id="syllabus" name="syllabus" value=""
+                    <input type="text" id="syllabus" name="syllabus" value="" (keyup.enter)="addSyllabus()"
                     required placeholder="syllabus" [(ngModel)]="oneSyllabus" #vsyllabus="ngModel"
                     />
                     <!-- <p *ngIf="vsyllabus.dirty && vsyllabus.invalid" id="error" class="epassword">Syllabus should not be empty!</p> -->
@@ -85,8 +85,8 @@
             </div>
             <div class="added-syll" *ngFor="let syll of syllabus">
                 <div class="added-syll-div">
-                    <p id="syll-content">{{syll}}</p>
-                    <button type="submit" id="cancle-btn" (click)="removeSyllabus()">cancle</button>
+                    <p id="syll-content" >{{syll}}</p>
+                    <button type="submit" id="cancle-btn" (click)="removeSyllabus(syll)">cancle</button>
                 </div>
                 
             </div>
@@ -94,3 +94,5 @@
         <input [disabled]="!newCourseForm.form.valid" id="submit" type="submit" value="Upload" (click)="onSubmit()"/>
     </div>
 </div>
+
+<div class="loader" *ngIf="!isLoaded"></div>
