@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { AdminService } from 'src/app/services/admin.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { CourseService } from 'src/app/services/course.service';
 import { TostNotificationService } from 'src/app/services/tost-notification.service';
@@ -19,23 +20,34 @@ export class HomeComponent implements OnInit {
   categories:string[]=["Select","All"]
   subCategories:string[]=["Select","All"]
   topCourses:Course[]=[]
-  constructor(private httpCourse:CourseService,private route:Router, private auth:AuthService,private toast:TostNotificationService) { }
+  totalEnrollments!:string
+  totalStudents!:string
+  totalCourses!:string
+  income!:string
+
+  constructor(private adminHttp:AdminService,private httpCourse:CourseService,private route:Router, private auth:AuthService,private toast:TostNotificationService) { }
   searchTxt:string=""
 
   ngOnInit(): void {
+
     this.httpCourse.getAllCourse().subscribe({
       next:(response:any)=>{
-    
+      let tot_enrollments=0
+      let tot_income=0
+      let tot_hours=0
       for(let i=0;i<response.length;i++){
         this.courses.push(response[i])
+        tot_enrollments+=Number(response[i].no_of_enrollments)
+        tot_income+=tot_enrollments*Number(response[i].price)
+        
       }
+      this.totalEnrollments=""+tot_enrollments
+      this.income=""+tot_income
       this.allCourses=this.courses
+      this.totalCourses=""+this.courses.length
       this.topCourses =  this.allCourses.sort((course1, course2) => (course1.no_of_enrollments > course2.no_of_enrollments ? -1 : 1));
       this.topCourses=this.topCourses.slice(0,3)
       console.log(this.topCourses);
-      
-    
-      
     },
     error:(error)=>{
       console.log(error);
@@ -64,6 +76,19 @@ export class HomeComponent implements OnInit {
       
     }
   })
+
+  this.adminHttp.showAllUsers().subscribe({
+    next:(res)=>{
+      let tot_stud=0
+      for(let i=0;i<res.length;i++){
+        if(res[i].role==="user"){
+          tot_stud++
+        }
+      }
+      this.totalStudents=""+tot_stud
+    }
+  })
+
   this.httpCourse.getAllCategory().subscribe({
     next:(response)=>{
       for(let i=0;i<response.length;i++){

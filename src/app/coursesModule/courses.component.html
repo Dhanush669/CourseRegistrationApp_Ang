@@ -29,10 +29,10 @@
             <!-- hidden -->
             <div class="rcategory-container">
                 <div>
-                    <select class="form-control" id="category" (change)="ronChange($event)" name="cate" >
+                    <select  id="category" (change)="ronChange($event)" name="cate" >
                         <option *ngFor="let category of categories" [value]="category">{{category}}</option>
                     </select>
-                        <select class="form-control" id="sub-category" (change)="ronChangeSub($event)" name="subcate" >
+                        <select id="sub-category" (change)="ronChangeSub($event)" name="subcate" >
                             <option *ngFor="let subCategory of subCategories" [value]="subCategory">{{subCategory}}</option>
                         </select>
                 </div>
@@ -45,7 +45,7 @@
                 </div> 
                 <b>Filter by Sub Category</b>
                 <div class="category-div">
-                    <select class="form-control" id="category" (change)="onChangeSub($event)">
+                    <select  id="category" (change)="onChangeSub($event)">
                         <option *ngFor="let subCategory of subCategories" [value]="subCategory">{{subCategory}}</option>
                     </select>
                 </div>    

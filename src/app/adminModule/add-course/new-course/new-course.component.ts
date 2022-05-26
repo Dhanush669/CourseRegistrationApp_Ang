@@ -23,6 +23,7 @@ export class NewCourseComponent implements OnInit {
   syllabus:string[]=[]
   selectedCategory:string="Select"
   url:string=""
+  enrollments!:number
   selectedSubCategory:string="Select"
   newCourse:any
   oneSyllabus:string=""
@@ -117,6 +118,7 @@ export class NewCourseComponent implements OnInit {
       this.oldCourseName=updateCourse.name
       this.cname=updateCourse.name
       this.price=updateCourse.price
+      this.enrollments=updateCourse.no_of_enrollments
       let cate_posi=this.categories.indexOf(updateCourse.category)
       let subCate_posi=this.subCategories.indexOf(updateCourse.sub_category)
       console.log(this.categories.indexOf("Development"));
@@ -173,7 +175,7 @@ export class NewCourseComponent implements OnInit {
 
     if(this.isUpdate){
       const newCourse={"name":this.cname,"category":this.category,"sub_category":this.subCategory,"duration":this.duration,"img_thumbnai":this.url,"syllabus":this.syllabus,"instructor":this.instructor,
-      "overview":this.overview,"no_of_enrollments":0,"price":this.price,"courseName":this.oldCourseName
+      "overview":this.overview,"no_of_enrollments":this.enrollments,"price":this.price,"courseName":this.oldCourseName
     }
       this.courseHttp.updateCourse(newCourse).subscribe({
         next:(response)=>{

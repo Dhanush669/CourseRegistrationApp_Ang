@@ -8,12 +8,12 @@
         <input type="text" id="subcategory" name="subcategory" value="" required placeholder="Sub Category" [(ngModel)]="subcategory"
         />
     
-        <button type="submit" id="add-btn" (click)="addCategory()">Add Category</button>
+        <button type="submit" id="add-btn" (click)="addCategory()">Add</button>
     </div>
 
     <h1 id="headding">Available Categories</h1>
 
-    <div class="catorory-div">
+    <div class="catorory-div"> 
         <div>
             <h3 id="sub-headding">Categories</h3>
             <p id="cate-p" *ngFor="let category of categoryList">{{category}}</p>

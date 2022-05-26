@@ -50,7 +50,6 @@ export class AuthenticationGuard implements CanActivate {
       //}
 
       this.auth.Logout()
-      localStorage.clear()
       this.route.navigate(['/login'])
       this.toast.showError("please login")
     return false;

@@ -1,94 +1,95 @@
 <div *ngIf="isLoaded">
 
-
-<div class="main" *ngIf="!isEnrolled">
-    <div class="content scroll-style">
-        <h2 id="course-name">{{course.name}}</h2>
-        <h5 id="course-overview">{{course.overview}}</h5>
-        <h3 id="syllabus">Syllabus</h3>
-        <div class="syllabus-list" *ngFor="let syl of syllabus;let ind=index;">
-            <p id="syl-ind">{{ind+1}}</p>
-            <p id="syl">{{syl}}</p> 
-        </div>
-        
-
-        <hr>
-        
-        <div class="instructor-det">
-            <h3 id="syllabus">Instructor</h3>
-            <div class="instructor-div">
-                <img class="instructor-img" src="https://learnit.s3.ap-south-1.amazonaws.com/instructor.jpg"/>
-                <p id="instructor">{{course.instructor}}</p>
+    <div class="main" *ngIf="!isEnrolled">
+        <div class="content scroll-style">
+            <h2 id="course-name">{{course.name}}</h2>
+            <h5 id="course-overview">{{course.overview}}</h5>
+            <h3 id="syllabus">Syllabus</h3>
+            <div class="syllabus-list" *ngFor="let syl of syllabus;let ind=index;"> 
+                <p id="syl-ind">{{ind+1}}</p>
+                <p id="syl">{{syl}}</p> 
             </div>
-           
-            <p id="instructor-msg">I will be your lead trainer in this course. Within no time I will make you understand this subject in easy manner. I have huge experience in online training 
-                and recording videoes. Let's get Started
-            </p>
-        </div>
-
-        <hr>
-
-        <div class="comments-div">
-            <h3 id="syllabus">Comments</h3>
-            <div class="comment" *ngFor="let cmt of comments">
-                <div (click)="showHim(cmt)">
-                    <img src="https://learnit.s3.ap-south-1.amazonaws.com/account.png" alt="" class="account">
-                    <b class="comment-name">{{cmt.name}}</b>
-                </div>
-                
-                <p class="cmt">{{cmt.comment}}</p>
-            </div>
-
-        <hr>
-        <h3 id="syllabus">Add Comments</h3>
-            <div class="add-comments">
-                <input type="text" name="" id="name" placeholder="Name" [(ngModel)]="uname">
-                <textarea type="text" name="" id="new-comment" placeholder="type here.." [(ngModel)]="newcomment"></textarea>
-                <button id="comment-btn" type="submit" (click)="addComment()">Add Comment</button>
-            </div>
-        </div> 
-    </div>
-    <div class="details">
-        <img class="img" src="{{course.img_thumbnai}}">
-
-        
-        <button type="submit" (click)="enroll()" id="enroll" *ngIf="!alreadyEnrolled">Enroll</button>
-        <button type="submit" (click)="enroll()" id="enrolled" *ngIf="alreadyEnrolled">Enrolled</button>
-        <div class="more-det">
             
-                <p>Duration : {{course.duration}}</p>
-                <p>{{course.category}}, {{course.sub_category}}</p>
-            <div>
-                <p>{{course.no_of_enrollments}} enrollments</p>
-                <b id="price">₹ {{course.price}}.00</b>
+
+            <hr>
+            
+            <div class="instructor-det">
+                <h3 id="syllabus">Instructor</h3>
+                <div class="instructor-div">
+                    <img class="instructor-img" src="https://learnitv1.s3.ap-south-1.amazonaws.com/images/instructor.jpg"/>
+                    <p id="instructor">{{course.instructor}}</p>
+                </div>
+            
+                <p id="instructor-msg">I will be your lead trainer in this course. Within no time I will make you understand this subject in easy manner. I have huge experience in online training 
+                    and recording videoes. Let's get Started
+                </p>
+            </div>
+
+            <hr>
+
+            <div class="comments-div">
+                <h3 id="syllabus">Comments</h3>
+                <div class="comment" *ngFor="let cmt of comments">
+                    <div (click)="showHim(cmt)">
+                        <img src="https://learnitv1.s3.ap-south-1.amazonaws.com/images/account.png" alt="" class="account">
+                        <b class="comment-name">{{cmt.name}}</b>
+                    </div>
+                    
+                    <p class="cmt">{{cmt.comment}}</p>
+                </div>
+
+            <hr>
+            <h3 id="syllabus">Add Comments</h3>
+                <div class="add-comments">
+                    <input type="text" name="" id="name" placeholder="Name" [(ngModel)]="uname">
+                    <textarea type="text" name="" id="new-comment" placeholder="type here.." [(ngModel)]="newcomment"></textarea>
+                    <button id="comment-btn" type="submit" (click)="addComment()">Add Comment</button>
+                </div>
+            </div> 
+        </div>
+        <div class="details">
+            <img class="img" src="{{course.img_thumbnai}}">
+
+            <div *ngIf="!isAdmin()" class="isadmin-div">
+                <button type="submit" (click)="enroll()" id="enroll" *ngIf="!alreadyEnrolled">Enroll</button>
+                <button type="submit" (click)="enroll()" id="enrolled" *ngIf="alreadyEnrolled">Enrolled</button>
+            </div>
+             
+            <div class="more-det">
+                
+                    <p>Duration : {{course.duration}}</p>
+                    <p>{{course.category}}, {{course.sub_category}}</p>
+                <div>
+                    <p>{{course.no_of_enrollments}} enrollments</p>
+                    <b id="price">₹ {{course.price}}.00</b>
+                </div>
+            </div>
+            <div class="admin-btns" *ngIf="isAdmin()">
+                <button type="submit" (click)="update()" id="update">Update</button>
+                <button type="submit" (click)="delete()" id="delete">Delete</button>
             </div>
         </div>
-        <div class="admin-btns" *ngIf="isAdmin()">
-            <button type="submit" (click)="update()" id="update">Update</button>
-            <button type="submit" (click)="delete()" id="delete">Delete</button>
+
+    </div>
+
+
+
+    <div class="enrolled" *ngIf="isEnrolled">
+        <div  class="enrollment-done"> 
+            <img id="completed-img" src="https://learnitv1.s3.ap-south-1.amazonaws.com/images/enrollmentdone.png" alt="">
+            <h3 id="enrollment-msg">Enrollment Successful</h3>
+            <!-- <input type="submit" id="login-btn" value="Login"/> -->
+            <input id="login-btn" type="submit" value="Continue" (click)="goToCourse()"/>
         </div>
+        
     </div>
-
-</div>
-
-
-
-<div class="enrolled" *ngIf="isEnrolled">
-    <div  class="enrollment-done"> 
-        <img id="completed-img" src="https://learnit.s3.ap-south-1.amazonaws.com/enrollmentdone.png" alt="">
-        <h3 id="enrollment-msg">Enrollment Successful</h3>
-        <!-- <input type="submit" id="login-btn" value="Login"/> -->
-        <input id="login-btn" type="submit" value="Continue" (click)="goToCourse()"/>
-    </div>
-    
-</div>
 
 </div> 
 
 
 
 <div class="payment-loading" *ngIf="!isLoaded">
-    <b>your Payment is under progress..</b>
+    <b>{{loading_text}}</b>
     <div class="loader">
 
     </div>

@@ -14,6 +14,33 @@
     display: flex;
 }
 
+.courses-info{
+    display: flex;
+    flex-direction: row;
+   justify-content: space-between;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.allcourse-info{
+    display: flex;
+    justify-content: space-between;
+    
+}
+
+.allcourse-info div{
+    width: 300px;
+    height: 100px;
+    border-radius: 10px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+
+
 .course-container{
     width: 365px;
     height: 250px;
@@ -21,6 +48,7 @@
     background-color: white;
     margin-top: 10px;
     margin-right: 10px;
+    box-sizing: border-box;
 }
 
 .course-img{
@@ -43,14 +71,16 @@
 }
 
 .topCourse{
-    display: grid;
-    grid-template-columns: auto auto auto;
-    margin-top: 10px;
-    gap: 10px;
+    display: flex;
+    grid-template-columns: auto auto;
+    flex-direction: row;
+    
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .enrollments{
-    width: 480px;
+    width: 485px;
     display: flex;
     flex-direction: column;
     background-color: rgb(43, 136, 165);
@@ -58,15 +88,52 @@
     margin-left: 0px;
     padding-left: 10px;
     padding-right: 10px;
-    margin-top: 20px;
+    /* margin-top: 20px; */
     justify-content: center;
     align-items: flex-start;
+    margin-left: 10px;
     padding-top: 10px;
     margin-bottom: 20px;
 }
 
+table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  td{
+    border: 3px solid  #4f3e9d;
+    text-align: left;
+    padding: 8px;
+    
+    color: rgb(0, 0, 0);
+  }
+
+  tr:nth-child(even) {
+    background-color: #ececec;
+  }
+
+  th{
+    border: 3px solid  #4f3e9d;
+    text-align: left;
+    
+    padding: 8px;
+    color: rgb(0, 0, 0);
+  }
+
+  tr{
+      background-color: white;
+  }
+
 .course-det{
     
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.course-det-f{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -99,6 +166,20 @@
     font-size: 2rem;
     color: white;
     font-family: poppins-bold;
+    margin-bottom: 10px;
+    margin-left: 10px;
+}
+
+#headding{
+    font-size: 1.5rem;
+    color: rgb(0, 0, 0);
+    font-family: poppins-bold;
+}
+
+#data{
+    font-size: 1rem;
+    color: red;
+    
 }
 
 #search{
@@ -113,4 +194,126 @@
     height: 50px;
     margin-right: 0;
     border-radius: 5px;
+}
+
+/* responsive */
+
+@media(max-width:1770px){
+
+    .topCourse{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .enrollments{
+        width: 300px;
+    }
+
+    .body{
+        display: grid;
+        grid-template-columns: auto auto auto;
+    }
+
+    
+}
+
+@media(max-width:1425px){
+
+    /* .topCourse{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    } */
+
+    /* .enrollments{
+        width: 300px;
+    } */
+
+    .body{
+        display: grid;
+        grid-template-columns: auto auto;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+@media(max-width:1255px){
+    .topCourse{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .enrollments{
+        width: 250px;
+    }
+
+    .course-det-f{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+@media(max-width:1100px){
+
+    .topCourse{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .enrollments{
+        width: 65%;
+    }
+
+    .category-container{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .course-det-f{
+        display: flex;
+        flex-direction: row;
+    }
+
+    .body{
+        display: grid;
+        grid-template-columns: auto;
+    }
+}
+
+@media(max-width:885px){
+    .course-det-f{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+}
+
+@media(max-width:410px){
+    .course-det-f{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+
+    .course-img{
+        width: 300px;
+        height: 150px;
+    }
+
+    .course-container{
+        width: 300px;
+        height: 200px;
+    }
+
+    #courseName{
+        font-size: 1rem;
+    }
 }

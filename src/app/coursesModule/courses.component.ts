@@ -20,7 +20,7 @@ export class CoursesComponent implements OnInit {
   filterCategory:Course[]=[]
   filterSubCategory:Course[]=[]
   categories:string[]=["All"]
-  subCategories:string[]=["Select","All"]
+  subCategories:string[]=["All"]
   filter:string=""
   isLoaded:boolean=false
   
@@ -187,11 +187,14 @@ export class CoursesComponent implements OnInit {
   onChangeSub(event:Event){
     const filter:string=(event.target as HTMLInputElement).value
     //const filter=event
-    if(filter==="Select"){
-      return
-    }
     if(filter==="All"){
+      if(this.allSubCategory.length===0){
+        this.courses=this.allCourses 
+      }
+      else{
       this.courses=this.allSubCategory
+      }
+      
     }
     else{
       this.courses=[]

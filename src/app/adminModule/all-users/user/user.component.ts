@@ -14,6 +14,8 @@ import { User } from 'src/models/user.helper';
 export class UserComponent implements OnInit {
 
   allUsers:User[]=[]
+  isNotChanged:boolean=true
+  filtered:User[]=[]
 
   constructor(private adminHttp:AdminService,private course:CourseService,private route:Router, private auth:AuthService,private toast:TostNotificationService) { }
 
@@ -21,13 +23,59 @@ export class UserComponent implements OnInit {
     this.adminHttp.showAllUsers().subscribe({
       next:(response)=>{
         
-        this.allUsers=response.filter((curUser:User)=>{
-          return curUser.role!=="admin"
+        this.filtered=response.filter((curUser:User)=>{
+          return curUser.role==="user"
         })
+
+         this.allUsers=response
+         
 
       },
       error:(error)=>{
-        console.log("insideeeeee "+error);
+        console.log(error);
+        if(error==="IV_JWT"){
+        this.course.getToken().subscribe({next:(res:any)=>{
+          localStorage.removeItem("TOKEN")
+          localStorage.removeItem("Login_Status")
+          if(res==="jwt expired"){
+            this.route.navigate(['/login'])
+            localStorage.clear()
+            this.auth.Logout()
+            this.course.removeToken()
+            return
+          }
+          console.log(res);
+          
+          let response=JSON.parse(res)
+          let token=response.token
+          let role=response.role
+          localStorage.setItem("TOKEN",token);
+          localStorage.setItem("Login_Status",role);
+          console.log(" "+role);
+          
+          //this.route.navigate(['/home'])
+          window.location.reload()
+        }});
+      }
+      else if(error.text==="unauthorised user"){
+        this.toast.showError("Unauthorised route")
+        this.route.navigate(['/adminHome'])
+      }
+      else{
+        this.toast.showError("something went wrong please try again later")
+      } 
+      }
+    })
+  }
+
+  makeAdmin(userName:string,role:string){
+    this.adminHttp.makeAdmin(userName,role).subscribe({
+      next:(response)=>{
+        this.toast.showSuccess("Admin Done")
+        window.location.reload()
+      },
+      error:(error)=>{
+        console.log(error);
         if(error==="IV_JWT"){
         this.course.getToken().subscribe({next:(res:any)=>{
           localStorage.removeItem("TOKEN")
@@ -57,39 +105,10 @@ export class UserComponent implements OnInit {
     })
   }
 
-  makeAdmin(userName:string){
-    this.adminHttp.makeAdmin(userName).subscribe({
-      next:(response)=>{
-        this.toast.showSuccess("Admin Done")
-      },
-      error:(error)=>{
-        console.log("insideeeeee "+error);
-        if(error==="IV_JWT"){
-        this.course.getToken().subscribe({next:(res:any)=>{
-          localStorage.removeItem("TOKEN")
-          localStorage.removeItem("Login_Status")
-          if(res==="jwt expired"){
-            this.route.navigate(['/login'])
-            localStorage.clear()
-            this.auth.Logout()
-            this.course.removeToken()
-            return
-          }
-          let response=JSON.parse(res)
-          let token=response.token
-          let role=response.role
-          localStorage.setItem("TOKEN",token);
-          localStorage.setItem("Login_Status",role);
-          console.log(" "+role);
-          
-          //this.route.navigate(['/home'])
-          window.location.reload()
-        }});
-      }
-      else{
-        this.toast.showError("something went wrong please try again later")
-      }
-      }
+  onChange(role:string){
+    this.isNotChanged=false
+    this.filtered=this.allUsers.filter((curUser:User)=>{
+      return curUser.role===role
     })
   }
 

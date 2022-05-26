@@ -21,7 +21,7 @@ export class CourseDetailsComponent implements OnInit {
   course!:Course
   courseName!:string
   comments:any[]=[]
-  syllabus:string[]=[]
+  syllabus:string[]=[] 
   currentUser!:User
   uname=""
   newcomment=""
@@ -30,7 +30,9 @@ export class CourseDetailsComponent implements OnInit {
   isEnrolled:boolean=false
   isLoaded:boolean=false
   rpay!:any
+  is_enrolled:string=""
   isCalled:boolean=false
+  loading_text:string="please wait.."
   constructor(private selected:CourseService,private router:Router,private auth:AuthService,private rout:ActivatedRoute,private user:UserService,private admin:AdminService,private toast:TostNotificationService) {
    
    }
@@ -41,19 +43,12 @@ export class CourseDetailsComponent implements OnInit {
     
     //console.log(this.courseName);
     this.courseName=this.rout.snapshot.paramMap.get('name')||''
+    this.is_enrolled=this.rout.snapshot.paramMap.get('is_enrolled')||'no'
     this.selected.getSelectedCourse(this.courseName).subscribe({
       next:(response)=>{
         console.log(response);
         this.course=response
-        // let arr=this.course.comments.split('@')
-        // console.log(arr);
-
         
-        // for(let i=0;i<arr.length;i++){
-        //   let oneComment=arr[i].split('-')
-        //   let obj={"name":oneComment[0],"comment":oneComment[1]}
-        //   this.comments.push(obj)
-        // }
       },
       error:(error)=>{
         console.log("insideeeeee "+error);
@@ -120,6 +115,12 @@ export class CourseDetailsComponent implements OnInit {
       }
     })
 
+    if(this.is_enrolled!=='no'){
+      this.alreadyEnrolled=true
+    }
+    else{
+      this.isLoaded=false
+      this.loading_text="please wait.."
     this.user.getMyEnrollments().subscribe({
       next:(response)=>{
         
@@ -134,8 +135,15 @@ export class CourseDetailsComponent implements OnInit {
 
           this.alreadyEnrolled=true
         }
+      },complete:()=>{
+        this.isLoaded=true
       }
     })
+  }
+    console.log(this.is_enrolled);
+    
+
+    
     
   }
 
@@ -145,6 +153,8 @@ export class CourseDetailsComponent implements OnInit {
     if(this.alreadyEnrolled){
       return 
     }
+
+    this.loading_text="your payment is under progress.."
 
     this.isLoaded=false
 
@@ -160,7 +170,7 @@ export class CourseDetailsComponent implements OnInit {
           "amount": res.amount,
           "currency": "INR",
           "name": "LearnIT",
-          "description": "Your Enrollment fee",
+          "description": this.course.name,
            "order_id": res.id,
           "handler": (response:any)=>{
             console.log(response);
@@ -310,6 +320,7 @@ export class CourseDetailsComponent implements OnInit {
     }
     },complete:()=>{
       this.isLoaded=true
+      this.loading_text="please wait.."
       this.selected.increaseEnrollmentCount({"name":this.course.name}).subscribe(
         (res)=>{
           console.log("poodddaaaa "+res);
@@ -322,6 +333,7 @@ export class CourseDetailsComponent implements OnInit {
   }
 
   paymentFailureHandler(response:any){
+    alert("your payment failed")
     this.toast.showError("unexpected error orrucred during payment please try again")
   }
 
@@ -340,6 +352,7 @@ export class CourseDetailsComponent implements OnInit {
     this.admin.deleteCourse(this.course.name).subscribe({
       next:(res)=>{
         this.toast.showSuccess("Deleted Successfully")
+        this.router.navigate(['/adminHome'])
       },
       error:(error)=>{
         console.log("insideeeeee "+error);
@@ -376,7 +389,7 @@ export class CourseDetailsComponent implements OnInit {
   }
 
   isAdmin(){
-    if(this.user.getRole()==='admin'){
+    if(this.user.getRole()==='admin'||this.user.getRole()==='support'){
       return true
     }
     return false

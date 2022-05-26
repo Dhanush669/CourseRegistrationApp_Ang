@@ -45,11 +45,12 @@ export class AdminService {
     return this.adminHttp.showAllUsers(uri)
   }
 
-  makeAdmin(userName:string){
+  makeAdmin(userName:string,role:string){
    // this.setHeader()
     let uri="makeAdmin"
     let body={ 
-      "emailId":userName
+      "emailId":userName,
+      "role":role
     }
     // return this.adminHttp.makeAdmin(uri,this.header,body)
     return this.adminHttp.makeAdmin(uri,body)

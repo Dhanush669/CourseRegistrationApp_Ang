@@ -24,17 +24,12 @@ export class HttpErrorInterceptor implements HttpInterceptor {
 
         if (error.error instanceof ErrorEvent) {
 
-          // client-side error
-
           errorMessage = error.error.message;
 
         } else {
 
-          // server-side error
-
           errorMessage = error.error.message;
           console.log("dy dhey "+JSON.stringify(error)+" "+error.error);
-          
 
         }
         //window.alert(error.error.text)

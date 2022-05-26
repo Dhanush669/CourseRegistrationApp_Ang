@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { TostNotificationService } from 'src/app/services/tost-notification.service';
@@ -14,6 +14,7 @@ export class NavbarComponent implements OnInit {
 
   isSmaller:boolean=false
   //isLoggedIn!:string
+  @Output() public sidenavToggle = new EventEmitter();
   constructor(public auth:AuthService,private router:Router,private toast:TostNotificationService) { 
    // this.isLoggedIn=this.auth.isLoggedIn;
   }
@@ -32,6 +33,7 @@ export class NavbarComponent implements OnInit {
   }
 
   logout(){
+    this.hide()
     this.auth.Logout()
     localStorage.clear()
     this.toast.showSuccess("Logging out")
@@ -49,6 +51,10 @@ export class NavbarComponent implements OnInit {
 
   hide(){
     this.isSmaller=false
+  }
+
+  onToggleSidenav(){
+    this.sidenavToggle.emit();
   }
 
 

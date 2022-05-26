@@ -254,7 +254,7 @@ label{
     .courses{
         grid-template-columns: auto auto;
         justify-content: center;
-    }
+    } 
     
 }
 

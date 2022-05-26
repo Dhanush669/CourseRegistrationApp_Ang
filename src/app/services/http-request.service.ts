@@ -12,8 +12,9 @@ import { User } from 'src/models/user.helper';
 })
 export class HttpRequestService {
 
-  url:string='http://localhost:9000/user'
-  courseurl:string='http://localhost:9000/course'
+  url:string='http://65.2.75.241:9000/user'
+  courseurl:string='http://65.2.75.241:9000/course'
+  
   constructor(private http: HttpClient) { }
 
   // get(uri: string) {

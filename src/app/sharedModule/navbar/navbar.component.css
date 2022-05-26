@@ -19,6 +19,27 @@
     display: none;
 }
 
+mat-toolbar{
+    background-color: #4f3e9d;
+    justify-content: space-between;
+    width: 95%;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+.side-nav{
+    background-color: #4f3e9d;
+}
+
+.side-nav-div{
+    
+    width: 200px;
+}
+
+mat-sidenav{
+    background-color: #423385;
+}
+
 .topnav{
 display:flex;
 flex-direction: row;
@@ -28,8 +49,9 @@ top: 0;
 width: 95%;
 position: sticky;
 margin:0 auto;
-margin-bottom: 20px;
+margin-top: 10px;
 background-color: #503E9D;
+margin-bottom: 20px;
 }
 
 .right{
@@ -64,7 +86,7 @@ a:hover{
 }
 
 a{
-    margin: 20px;
+    margin: 10px;
     color: white;
     font-size: 1rem;
 }
@@ -80,6 +102,8 @@ button{
     background-color: red;
     color: white;
     width: 100px;
+    margin: 0 auto;
+    margin-bottom: 20px;
 }
 
 /* responsive */

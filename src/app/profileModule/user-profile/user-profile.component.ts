@@ -11,7 +11,7 @@ import { User } from 'src/models/user.helper';
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.css']
+  styleUrls: ['./user-profile.component.css'] 
 })
 export class UserProfileComponent implements OnInit {
 
@@ -153,7 +153,7 @@ export class UserProfileComponent implements OnInit {
     this.btn_text="Edit"
   }
   goToCourseDet(show:string){
-    this.route.navigate(['/courseDetails',{name:show}])
+    this.route.navigate(['/courseDetails',{name:show,is_enrolled:"yes"}])
   }
 
 }

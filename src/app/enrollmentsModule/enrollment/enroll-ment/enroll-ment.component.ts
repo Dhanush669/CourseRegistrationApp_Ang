@@ -58,7 +58,7 @@ export class EnrollMentComponent implements OnInit {
   }
 
   goToCourseDet(show:string){
-    this.route.navigate(['/courseDetails',{name:show}])
+    this.route.navigate(['/courseDetails',{name:show,is_enrolled:"yes"}])
   }
 
   goToCourse(){

@@ -23,6 +23,7 @@ export class ForgorPasswordComponent implements OnInit {
   isSendClicked:boolean=false
   timeLeft:number=50
   optSend:boolean=false
+  interval!:any
 
   constructor(private rout:ActivatedRoute,private userService:UserService,private toast:TostNotificationService,private router:Router) { }
 
@@ -50,6 +51,7 @@ export class ForgorPasswordComponent implements OnInit {
   }
 
   SendOTP(){
+    this.exception=""
     this.startTimer()
     this.isSendClicked=true
     this.userService.sendOTP(this.user.phno).subscribe({
@@ -64,6 +66,7 @@ export class ForgorPasswordComponent implements OnInit {
   }
 
   resend(){
+    this.exception=""
     this.isSendClicked=true
     this.showResend=false
     this.timeLeft=50
@@ -71,13 +74,17 @@ export class ForgorPasswordComponent implements OnInit {
   }
 
   startTimer() {
-    setInterval(() => {
+    
+    
+    this.interval= setInterval(() => { 
+      console.log("called meeeee");
       if(this.timeLeft > 0) {
         this.timeLeft--;
       } else {
         this.timeLeft = 0;
         this.isSendClicked=false
         this.showResend=true
+        clearInterval(this.interval)
       }
     },1000)
   }
@@ -95,7 +102,9 @@ export class ForgorPasswordComponent implements OnInit {
           this.toast.showSuccess("OTP verification Successfull")
         
       },error:(err)=>{
-        this.exception=err
+        
+          this.exception="invalid opt"
+        
       }
     })
     

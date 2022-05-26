@@ -2,11 +2,11 @@
     <h1 id="headding">Add New Course</h1>
     <div class="body"> 
         <form #newCourseForm="ngForm" method="post">
-            <div class="input-div">
+            <div class="input-div"> 
                 <label for="url">Image URL</label>
                 <input type="text" id="url" name="url" value="" required placeholder="img url" [(ngModel)]="url"
                 #vurl="ngModel"
-                />
+                /> 
                 <p *ngIf="vurl.dirty && vurl.invalid" id="error" class="ecname">image url should not be empty!</p>
             </div>
             <div class="input-div">
@@ -41,7 +41,7 @@
             <div class="input-div">
                 <div class="duration-div">
                     <div class="duration">
-                        <label  for="duration">Course Duration</label>
+                        <label id="dur" for="duration">Duration</label>
                     
                         <input type="text" id="duration" name="ducation" value=""
                                required placeholder="course duration" [(ngModel)]="duration" #vduration="ngModel"

@@ -1,23 +1,108 @@
 <div class="main">
-    <h1 id="heading">Top Courses</h1>
-    <div class="topCourse">
-        <div class="enrollments" *ngFor="let en of topCourses" (click)="overView(en.name)">
-            <h3>
-                {{en.name}}
-            </h3>
-            <div class="course-det">
-                <p >{{en.category}} -></p>
-                <p >{{en.sub_category}}</p>
-                
+    <!-- <h1 id="heading">Stats</h1>
+    <div class="courses-info">
+        
+        <div class="allcourse-info">
+            <div>
+                <h1 id="headding">Total Courses</h1>
+                <p id="data">12 courses</p>
+            </div>
+            <div>
+                <h1 id="headding">Enrollments</h1>
+                <p id="data">{{totalEnrollments}} enrollments</p>
+            </div> -->
+            <!-- <div>
+                <h1 id="headding">Total Hours of Course</h1>
+                <p id="data">{{totalHours}} Hours</p>
+            </div> -->
+            <!-- <div>
+                <h1 id="headding">Income</h1>
+                <p id="data">₹ {{income}}.00</p>
+            </div>
+        </div> -->
+
+        <!-- <div> -->
+
+            <div class="allcourse-info">
+                <!-- <div>
+                    <h1 id="headding">Total Courses</h1>
+                    <p id="data">12 courses</p>
+                </div>
+                <div>
+                    <h1 id="headding">Enrollments</h1>
+                    <p id="data">{{totalEnrollments}} enrollments</p>
+                </div>
+                <div>
+                    <h1 id="headding">Total Students</h1>
+                    <p id="data">{{totalStudents}} Students</p>
+                </div>
+                <div>
+                    <h1 id="headding">Income</h1>
+                    <p id="data">₹ {{income}}.00</p>
+                </div> -->
+    
+                <table>
+                    <tr>
+                      <th>Total Courses</th>
+                      <th>Total Enrollments</th>
+                      <th>Total Students</th>
+                      <th>Income</th>
+                    </tr>
+                    <tr>
+                      <td>{{totalCourses}} courses</td>
+                      <td>{{totalEnrollments}} enrollments</td>
+                      <td>{{totalStudents}} Students</td>
+                      <td>₹ {{income}}.00</td>
+                    </tr>
+                </table> 
             </div>
 
-            <div class="course-det">
-                    <p >₹ {{en.price}}.00, </p>
-                    <p >{{en.duration}}</p>
+            
+
+            <h1 id="heading">Top Courses</h1>
+            <div class="topCourse">
+                <!-- <div class="enrollments" *ngFor="let en of topCourses" (click)="overView(en.name)">
+                    <h3>
+                        {{en.name}}
+                    </h3>
+                    
+                   
+                    <div class="course-det-f">
+                        <p >{{en.category}} -></p>
+                        <p >{{en.sub_category}}</p>
+                        
+                    </div>
+        
+                    <div class="course-det">
+                            <p >₹ {{en.price}}.00, </p>
+                            <p >{{en.duration}}</p>
+                    </div>
+                    <p>{{en.no_of_enrollments}} - enrollments</p>
+                </div> -->
+                <table>
+                    <tr>
+                      <th>Name</th>
+                      <th>Category</th>
+                      <th>Price</th>
+                      <th>Enrollments</th>
+                    </tr>
+                    <tr *ngFor="let en of topCourses" (click)="overView(en.name)">
+                      <td>{{en.name}}</td>
+                      <td>{{en.category}}</td>
+                      <td>₹ {{en.price}}.00</td>
+                      <td>{{en.no_of_enrollments}}</td>
+                    </tr>
+                </table>    
+
             </div>
-            <p>{{en.no_of_enrollments}} - enrollments</p>
-        </div>
-    </div>
+        <!-- </div> -->
+
+        
+
+        
+        
+    <!-- </div> -->
+    
     
     <h1 id="heading">All Courses</h1>
     <div class="filter-div">
@@ -43,5 +128,5 @@
             
             <h3 id="courseName">{{course.name}}</h3>
         </div>
-    </div>
+    </div> 
 </div>

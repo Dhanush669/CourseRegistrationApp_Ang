@@ -1,131 +1,79 @@
-
-<!-- not logged in -->
-<div class="topnav" *ngIf="auth.isLoggedIn==='no'">
+<mat-toolbar *ngIf="auth.isLoggedIn==='no'">
     <div class="brand" layout="row" layout-align="center center">
-        <img id="logo" src="https://learnit.s3.ap-south-1.amazonaws.com/nav_logo.png"/>
+        <img id="logo" src="https://learnitv1.s3.ap-south-1.amazonaws.com/images/nav_logo.png"/>
         <b>LIT</b>
     </div>
-    <div class="right-login">
-        <a routerLink="login"  routerLinkActive="active">
-            LogIn
-        </a>
-        <a routerLink="register"  routerLinkActive="active">
-            Register
-        </a>
-        
+    <div>
+        <a href="login" mat-button>Login</a> 
+        <a href="register" mat-button>Register</a>
     </div>
-</div>
+    
+</mat-toolbar>
 
-<!-- logged in user -->
-<div>
-    <div class="topnav" *ngIf="auth.isLoggedIn==='user'">
-        <div class="brand" (click)="goToHome()">
-            <img id="logo" src="https://learnit.s3.ap-south-1.amazonaws.com/nav_logo.png"/>
-            <b>LIT</b>
-        </div>
-
-        <div class="right">
-
-            <a routerLink="home"  routerLinkActive="active">
-                Home
-            </a>
-            <a routerLink="courses"  routerLinkActive="active">
-                Courses
-            </a>
-
-            <a routerLink="profile"  routerLinkActive="active">
-                Profile
-            </a>
-
-            <!-- <a routerLink="myEnrollments"  routerLinkActive="active">
-                My Enrollments
-            </a> -->
-            <button (click)="logout()">
-                Logout
-            </button>
-        </div>
-        <img src="../../../assets/list.png" alt="" id="menu" (click)="showMenu()">
+  <mat-toolbar *ngIf="auth.isLoggedIn==='user'">
+    <div class="brand" layout="row" layout-align="center center">
+        <img id="logo" src="https://learnitv1.s3.ap-south-1.amazonaws.com/images/nav_logo.png"/>
+        <b>LIT</b>
     </div>
-
-    <div class="res-nav dis" *ngIf="auth.isLoggedIn==='user' && isSmaller">
-        <a routerLink="home"  routerLinkActive="active" (click)="hide()">
-            Home
-        </a>
-        <a routerLink="courses"  routerLinkActive="active" (click)="hide()">
-            Courses
-        </a>
-
-        <a routerLink="profile"  routerLinkActive="active" (click)="hide()">
-            Profile
-        </a>
-
-        <!-- <a routerLink="myEnrollments"  routerLinkActive="active">
-            My Enrollments
-        </a> -->
+    <div fxShow="true" fxHide.lt-md="true">
+        <a href="home" mat-button>Home</a> 
+        <a href="courses" mat-button>Courses</a>
+        <a href="profile" mat-button>Profile</a> 
         <button (click)="logout()">
             Logout
         </button>
     </div>
 
-</div>
+    <div fxShow="true" fxHide.gt-sm="true">
+        <img src="https://learnitv1.s3.ap-south-1.amazonaws.com/images/list.png" alt="" id="menu" (click)="sidenav.toggle()">
+      </div>
+    
+  </mat-toolbar>
 
-<!-- Admin -->
-<div>
-    <div class="topnav" *ngIf="auth.isLoggedIn==='admin'">
-        <div class="brand" (click)="goToHomeAdmin()">
-            <img id="logo" src="https://learnit.s3.ap-south-1.amazonaws.com/nav_logo.png"/>
-            <b>LIT</b>
-        </div>
-
-        <div class="right">
-            <a routerLink="adminHome"  routerLinkActive="active">
-                Home
-            </a>
-
-            <a routerLink="addCourse"  routerLinkActive="active">
-                Add Course
-            </a>
-
-            <a routerLink="allUsers"  routerLinkActive="active">
-                Users
-            </a>
-
-            <a routerLink="addCategory"  routerLinkActive="active">
-                Add Category
-            </a>
-
-            <button (click)="logout()">
-                Logout
-            </button>
-
-            
-            
-        </div>
-        <img src="../../../assets/list.png" alt="" id="menu" (click)="showMenu()">
+  <mat-toolbar *ngIf="(auth.isLoggedIn==='admin'||auth.isLoggedIn==='support')">
+    <div class="brand" layout="row" layout-align="center center">
+        <img id="logo" src="https://learnitv1.s3.ap-south-1.amazonaws.com/images/nav_logo.png"/>
+        <b>LIT</b>
     </div>
-
-    <div class="res-nav dis" *ngIf="auth.isLoggedIn==='admin' && isSmaller">
-        <a routerLink="adminHome"  routerLinkActive="active"  (click)="hide()">
-            Home
-        </a>
-
-        <a routerLink="addCourse"  routerLinkActive="active" (click)="hide()">
-            Add Course
-        </a>
-
-        <a routerLink="allUsers"  routerLinkActive="active" (click)="hide()">
-            Users
-        </a>
-
-        <a routerLink="addCategory"  routerLinkActive="active" (click)="hide()">
-            Add Category
-        </a>
-
+    <div fxShow="true" fxHide.lt-md="true">
+        <a href="adminHome" mat-button>Home</a> 
+        <a href="addCourse" mat-button>Add Course</a>
+        <a href="allUsers" mat-button>Users</a> 
+        <a href="addCategory" mat-button>Add Category</a> 
         <button (click)="logout()">
             Logout
         </button>
     </div>
 
-</div>
+    <div fxShow="true" fxHide.gt-sm="true">
+        <img src="https://learnitv1.s3.ap-south-1.amazonaws.com/images/list.png" alt="" id="menu" (click)="sidenav.toggle()">
+      </div>
+    
+  </mat-toolbar>
 
-<router-outlet></router-outlet>
+  <mat-sidenav-container fxFlexFill class="side-nav">
+    <mat-sidenav #sidenav fxLayout="column">
+      <div fxLayout="column" *ngIf="(auth.isLoggedIn==='admin'||auth.isLoggedIn==='support')" class="side-nav-div">
+        <a href="adminHome" mat-button>Home</a> 
+        <a href="addCourse" mat-button>Add Course</a>
+        <a href="allUsers" mat-button>Users</a> 
+        <a href="addCategory" mat-button>Add Category</a>
+        <button (click)="logout()">
+            Logout
+        </button>
+      </div>
+
+      <div fxLayout="column" *ngIf="auth.isLoggedIn==='user'" class="side-nav-div">
+        <a href="home" mat-button>Home</a> 
+        <a href="courses" mat-button>Courses</a>
+        <a href="profile" mat-button>Profile</a> 
+        <button (click)="logout()">
+            Logout
+        </button>
+      </div>
+    </mat-sidenav>
+    <router-outlet></router-outlet> 
+  </mat-sidenav-container>
+
+<!-- <router-outlet></router-outlet>  -->
+

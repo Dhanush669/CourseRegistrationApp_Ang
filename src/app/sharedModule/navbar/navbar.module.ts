@@ -10,6 +10,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDividerModule } from '@angular/material/divider';
 import {MatSnackBarModule} from '@angular/material/snack-bar'
 import {MatListModule} from '@angular/material/list'
+import {MatMenuModule} from '@angular/material/menu'
+import { FlexLayoutModule } from '@angular/flex-layout';
+
 
 
 
@@ -21,16 +24,24 @@ import {MatListModule} from '@angular/material/list'
     CommonModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    // MatToolbarModule,
-    // MatSidenavModule,
+    MatToolbarModule,
+    MatSidenavModule,
     // MatButtonModule,
-    // MatIconModule,
+     MatIconModule,
     // MatSnackBarModule,
     // MatDividerModule,
     // MatListModule,
+    FlexLayoutModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatIconModule,
+    MatDividerModule
   ],
   exports:[
-    NavbarComponent
+    NavbarComponent,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatIconModule
   ]
 })
 export class NavbarModule { }

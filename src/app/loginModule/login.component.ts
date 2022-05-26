@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
       
       
       if(response==="UNF"){
-        this.exception="No user found with these credentials try again (or) Please Login..!"
+        this.exception="No user found with these credentials Please Login..!"
       }
       else if(response=="WP"){
         this.exception="Incorrect Password. Try again..!"
